@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: Behaviorism & Learning Theories | DSSSB TGT Pedagogy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0f766e;
+            --secondary-color: #14b8a6;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.8rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.5rem 0 0.75rem 0; font-size: 1.3rem; border-left: 4px solid var(--primary-color); padding-left: 8px; }
+        h3 { color: var(--text-main); margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul { padding-left: 1.5rem; }
+
+        .bilingual-box {
+            background: #f1f5f9;
+            border-left: 3px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Quiz Styling */
+        .question-box {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .question-box p {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .options label {
+            display: block;
+            padding: 0.6rem 1rem;
+            margin-bottom: 0.5rem;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .options label:hover { background: #f0fdf4; border-color: var(--secondary-color); }
+        .options input { margin-right: 0.75rem; }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover { background: #042f2e; }
+
+        #resultBox {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .correct-ans { color: var(--success-color); font-size: 0.85rem; margin-top: 0.4rem; display: block; font-weight: 500; }
+        .incorrect-ans { color: var(--error-color); font-size: 0.85rem; margin-top: 0.4rem; display: block; font-weight: 500; }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Prep</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Pedagogy 15-Day Plan</a> > Day 1: Behaviorism
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 1: Behaviorism & Learning Theories</h1>
+            <div class="subtitle">DSSSB TGT Section B | Teaching Methodology Masterclass</div>
+            
+            <p>Behaviorism (व्यवहारवाद) is a foundational learning theory in educational psychology that views learning as a change in observable behavior caused by environmental stimuli and reinforcement consequences, treating internal cognitive processes as a secondary "black box."</p>
+
+            <h2>1. Ivan Pavlov: Classical Conditioning (शास्त्रीय अनुबंधन सिद्धांत)</h2>
+            <ul>
+                <li><strong>Core Concept:</strong> Associative learning involving involuntary reflex responses paired with neutral stimuli.</li>
+                <li><strong>Key Components:</strong> Unconditioned Stimulus (UCS - भोजन), Unconditioned Response (UCR - लार आना), Conditioned Stimulus (CS - घंटी), and Conditioned Response (CR).</li>
+                <li><strong>Classroom Implication:</strong> Explains emotional conditioning, test anxiety (pairing exams with negative feedback), and environmental triggers.</li>
+            </ul>
+
+            <h2>2. E.L. Thorndike: Connectionism & Trial-and-Error (संबंधवाद एवं प्रयास-त्रुटि सिद्धांत)</h2>
+            <ul>
+                <li><strong>Law of Effect (प्रभाव का नियम):</strong> Actions followed by satisfaction or reward are strengthened; actions followed by discomfort are weakened. (Foundation of reinforcement).</li>
+                <li><strong>Law of Exercise (अभ्यास का नियम):</strong> Divided into <em>Law of Use</em> (practice strengthens bonds) and <em>Law of Disuse</em> (neglect weakens them).</li>
+                <li><strong>Law of Readiness (तत्परता का नियम):</strong> A learner must be physiologically and mentally prepared to learn for satisfaction to occur.</li>
+            </ul>
+
+            <h2>3. B.F. Skinner: Operant Conditioning (क्रियाप्रसूत अनुबंधन सिद्धांत)</h2>
+            <ul>
+                <li><strong>Core Concept:</strong> Voluntary behavior is shaped, maintained, or eliminated by its consequences (reinforcement vs. punishment).</li>
+                <li><strong>Reinforcement (पुनर्बलन):</strong> Always increases the probability of a behavior recurring. <em>Positive</em> = adding a pleasant stimulus (praise); <em>Negative</em> = removing an aversive stimulus.</li>
+                <li><strong>Punishment (दंड):</strong> Always decreases behavior. <em>Positive</em> = adding an aversive stimulus; <em>Negative</em> = withdrawing a privilege.</li>
+                <li><strong>Classroom Application:</strong> Programmed instruction, token economies, immediate feedback loops, and sequential behavioral shaping.</li>
+            </ul>
+
+            <div class="bilingual-box">
+                <strong>High-Yield Exam Trap (परीक्षा की दृष्टि से महत्वपूर्ण):</strong> Negative reinforcement is <em>not</em> punishment. Negative reinforcement increases target behaviors by taking away an annoying condition (e.g., stopping a loud buzzer when a task is completed correctly).<br>
+                <em>नकारात्मक पुनर्बलन (Negative Reinforcement) कोई दंड नहीं है; यह किसी कष्टदायक स्थिति को हटाकर वांछित व्यवहार को बढ़ाता है।</em>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Day 1 Practice Quiz (10 MCQs)</h1>
+            <p>Test your understanding of Behaviorism and Learning Theories based on recent DSSSB TGT PYQs.</p>
+            <br>
+            <form id="quizForm">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p>Q1. Who is known as the pioneer of Classical Conditioning, and what was his primary experiment?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="A"> A) B.F. Skinner; Operant chamber with rats</label>
+                        <label><input type="radio" name="q1" value="B"> B) Ivan Pavlov; Salivation in dogs using a bell</label>
+                        <label><input type="radio" name="q1" value="C"> C) E.L. Thorndike; Puzzle box with cats</label>
+                        <label><input type="radio" name="q1" value="D"> D) John B. Watson; Little Albert experiment</label>
+                    </div>
+                    <span id="feedback-q1"></span>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="C">
+                    <p>Q2. Thorndike’s "Law of Effect" states that:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="A"> A) Learning takes place only through physical maturation and growth.</label>
+                        <label><input type="radio" name="q2" value="B"> B) Repetition of a task without feedback leads to permanent forgetting.</label>
+                        <label><input type="radio" name="q2" value="C"> C) Responses followed by satisfaction/reward are strengthened, while those followed by discomfort are weakened.</label>
+                        <label><input type="radio" name="q2" value="D"> D) Complex behaviors are acquired by breaking them down into microscopic motor steps.</label>
+                    </div>
+                    <span id="feedback-q2"></span>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="B">
+                    <p>Q3. Which of the following best describes "Operant Conditioning" as proposed by B.F. Skinner?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="A"> A) Learning occurs when an unconditioned stimulus is paired with a conditioned stimulus.</label>
+                        <label><input type="radio" name="q3" value="B"> B) Behavior is shaped and maintained by its consequences (reinforcement and punishment).</label>
+                        <label><input type="radio" name="q3" value="C"> C) Learning happens entirely through sudden insight and cognitive restructuring.</label>
+                        <label><input type="radio" name="q3" value="D"> D) Children learn moral values exclusively by observing adult role models.</label>
+                    </div>
+                    <span id="feedback-q3"></span>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="B">
+                    <p>Q4. In Thorndike’s trial-and-error theory of learning, the "Law of Exercise" is further divided into two parts. What are they?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="A"> A) Law of Primacy and Law of Recency</label>
+                        <label><input type="radio" name="q4" value="B"> B) Law of Use and Law of Disuse</label>
+                        <label><input type="radio" name="q4" value="C"> C) Law of Assimilation and Law of Accommodation</label>
+                        <label><input type="radio" name="q4" value="D"> D) Law of Positive Reinforcement and Law of Negative Reinforcement</label>
+                    </div>
+                    <span id="feedback-q4"></span>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="B">
+                    <p>Q5. A teacher praises a student every time they complete their classwork on time, causing the student to finish work promptly every day. According to behaviorism, this praise acts as a:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="A"> A) Negative Reinforcer</label>
+                        <label><input type="radio" name="q5" value="B"> B) Positive Reinforcer</label>
+                        <label><input type="radio" name="q5" value="C"> C) Primary Punisher</label>
+                        <label><input type="radio" name="q5" value="D"> D) Conditioned Stimulus</label>
+                    </div>
+                    <span id="feedback-q5"></span>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="D">
+                    <p>Q6. Removing an unpleasant stimulus when a desired behavior is exhibited is known as:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="A"> A) Positive Punishment</label>
+                        <label><input type="radio" name="q6" value="B"> B) Negative Punishment</label>
+                        <label><input type="radio" name="q6" value="C"> C) Positive Reinforcement</label>
+                        <label><input type="radio" name="q6" value="D"> D) Negative Reinforcement</label>
+                    </div>
+                    <span id="feedback-q6"></span>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="C">
+                    <p>Q7. Which learning law proposed by Thorndike emphasizes that a learner must be mentally and physically prepared to learn in order to find satisfaction in it?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="A"> A) Law of Effect</label>
+                        <label><input type="radio" name="q7" value="B"> B) Law of Exercise</label>
+                        <label><input type="radio" name="q7" value="C"> C) Law of Readiness</label>
+                        <label><input type="radio" name="q7" value="D"> D) Law of Belongingness</label>
+                    </div>
+                    <span id="feedback-q7"></span>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p>Q8. Programmed instruction and teaching machines, which break learning down into small sequential steps with immediate feedback, are direct applications of whose theory?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="A"> A) Jean Piaget</label>
+                        <label><input type="radio" name="q8" value="B"> B) B.F. Skinner</label>
+                        <label><input type="radio" name="q8" value="C"> C) Lev Vygotsky</label>
+                        <label><input type="radio" name="q8" value="D"> D) Albert Bandura</label>
+                    </div>
+                    <span id="feedback-q8"></span>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="B">
+                    <p>Q9. Which of the following represents a limitation of strict Behaviorism in a modern classroom setting?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="A"> A) It relies too heavily on structured drills and practice.</label>
+                        <label><input type="radio" name="q9" value="B"> B) It ignores internal mental processes, cognitive structures, and problem-solving reasoning.</label>
+                        <label><input type="radio" name="q9" value="C"> C) It focuses excessively on rewards and positive reinforcement.</label>
+                        <label><input type="radio" name="q9" value="D"> D) It is only applicable to animal behavior, not human students.</label>
+                    </div>
+                    <span id="feedback-q9"></span>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="B">
+                    <p>Q10. A student who was once scolded by a strict math teacher starts feeling anxious whenever they enter the math block or hear the school bell ring for math period. This is an example of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="A"> A) Operant Extinction</label>
+                        <label><input type="radio" name="q10" value="B"> B) Classical Conditioning</label>
+                        <label><input type="radio" name="q10" value="C"> C) Shaping</label>
+                        <label><input type="radio" name="q10" value="D"> D) Insight Learning</label>
+                    </div>
+                    <span id="feedback-q10"></span>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="submitQuiz()">Submit Answers & View Score</button>
+            </form>
+
+            <div id="resultBox"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Prep Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function submitQuiz() {
+            let questions = document.querySelectorAll('.question-box');
+            let score = 0;
+            let total = questions.length;
+
+            questions.forEach((q, index) => {
+                let qName = 'q' + (index + 1);
+                let selected = document.querySelector(`input[name="${qName}"]:checked`);
+                let correctOpt = q.getAttribute('data-correct');
+                let feedbackSpan = document.getElementById(`feedback-${qName}`);
+
+                if (selected) {
+                    if (selected.value === correctOpt) {
+                        score++;
+                        feedbackSpan.innerHTML = "✅ Correct!";
+                        feedbackSpan.className = "correct-ans";
+                    } else {
+                        feedbackSpan.innerHTML = `❌ Incorrect. Correct answer was (${correctOpt}).`;
+                        feedbackSpan.className = "incorrect-ans";
+                    }
+                } else {
+                    feedbackSpan.innerHTML = `⚠️ Not answered. Correct answer was (${correctOpt}).`;
+                    feedbackSpan.className = "incorrect-ans";
+                }
+            });
+
+            let resultBox = document.getElementById('resultBox');
+            resultBox.style.display = "block";
+            let percentage = (score / total) * 100;
+            if (percentage >= 70) {
+                resultBox.style.background = "#dcfce7";
+                resultBox.style.color = "#166534";
+                resultBox.style.border = "1px solid #bbf7d0";
+                resultBox.innerHTML = `🎉 Excellent work! You scored ${score} out of ${total} (${percentage}%). You've mastered Day 1 Behaviorism!`;
+            } else {
+                resultBox.style.background = "#fee2e2";
+                resultBox.style.color = "#991b1b";
+                resultBox.style.border = "1px solid #fecaca";
+                resultBox.innerHTML = `⚠️ You scored ${score} out of ${total} (${percentage}%). Review the notes above and try again to improve!`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,871 @@
+
+Gemini
+
+New chat
+Library
+Images
+Scheduled
+Students
+
+More
+New notebook
+Math cheat sheet
+Dsssb current affairs
+Theory of computation for ugc net and gate cs
+All notebooks
+Python
+PST
+Harlay
+Regula Falsi Infographic Notes
+Viva Prep: NLP Applications Quiz
+Building N-gram Language Models
+pta nhi
+CS Paper 2 part 1
+paper 1 part 2
+Paper 1 part 1
+CS paper 2 part 2
+p2 test series
+DSSSB TGT GK Strategy
+Assessing Analytical and Cognitive Proficiency
+Clarifying a Typo
+Accidental Typo Greeting
+DSSSB TGT Math Revision Sheet
+C Programming Practical File Solutions
+DSSSB TGT CS Strategy for NET Qualified Candidates
+DSSSB TGT Exam Preparation
+Oats aur Peanut Butter se Thakan
+DSSSB TGT CS GK Pattern
+Untitled
+Untitled
+Veedol 10W-30 API SP Oils
+DSSSB TGT Math Cheat Sheet
+पायथन टाइमर कोड
+Computer Networks Lecture Plan
+Conversation with Gemini
+In pdf Bloom's Taxonomy (1956 vs. 2001 Revised): Cognitive (Remember to Create), Affective, and Psychomotor domains.
+
+I will now generate a bilingual (Hindi and English) PDF document covering Day 4 of your DSSSB TGT Pedagogy Crash Course: Bloom's Taxonomy (1956 vs. 2001 Revised), the Cognitive, Affective, and Psychomotor Domains, Instructional Models (5E, Herbartian Steps, Micro-Teaching), and Solved DSSSB Previous Year Questions.
+
+Day 4 Bloom's Taxonomy & Domains (Bilingual)
+Oct 23, 6:47 AM
+This 4-page bilingual PDF covers:
+
+The 3H Framework: Cognitive (Head), Affective (Heart), and Psychomotor (Hand) domains.
+
+1956 vs. 2001 Revised Bloom's Taxonomy: Side-by-side table and SVG pyramid diagram illustrating the shift from Nouns to Action Verbs and the swap between Evaluation and Create, along with the 4 Knowledge Dimensions (Factual, Conceptual, Procedural, Metacognitive).
+
+Affective & Psychomotor Hierarchies: Krathwohl's 5 Affective levels (R-R-V-O-C), R.H. Dave's 5 Psychomotor levels (I-M-P-A-N), and Elizabeth Simpson's 7 Psychomotor levels, plus the 5E Model, Herbartian Steps, and 36-minute Micro-Teaching Cycle.
+
+12 Solved Bilingual DSSSB TGT PYQs: Complete with Hindi translations and explanations.
+
+ICT in Education: Blended Learning, Flipped Classroom, Synchronous vs. Asynchronous learning, CAI (Computer Assisted Instruction).
+
+I will now generate a bilingual (Hindi and English) PDF document covering Day 5 of your DSSSB TGT Pedagogy Crash Course: ICT in Education (Blended Learning, Flipped Classroom, Synchronous vs. Asynchronous Learning, CAI Modes, TPACK Framework, and Government Digital Initiatives like SWAYAM, DIKSHA, and NISHTHA), along with 12 Solved Bilingual DSSSB Previous Year Questions.
+
+Day 5 ICT & Digital Pedagogy (Bilingual)
+Oct 23, 7:04 AM
+This 4-page bilingual PDF covers:
+
+Blended Learning & Flipped Classroom: Core mechanisms, Station/Lab Rotation models, and an SVG workflow diagram showing how the Flipped Classroom inverts Bloom's Taxonomy (Asynchronous LOTS at home → Synchronous HOTS with teacher scaffolding in class).
+
+Synchronous vs. Asynchronous Learning: Side-by-side comparison of real-time vs. self-paced ICT tools, pacing, and pedagogical benefits.
+
+CAI (Computer-Assisted Instruction) & CMI: The 5 instructional modes of CAI (Drill & Practice, Tutorial, Simulation, Discovery, and Instructional Gaming), Linear (Skinner) vs. Branching (Norman Crowder) roots, and how CAI differs from CMI.
+
+TPACK Framework & Government Digital Portals: Mishra & Koehler's TPACK model, SWAYAM (4 Quadrants), SWAYAM Prabha (GSAT-15 DTH), DIKSHA (QR-coded Energized Textbooks), and NISHTHA, followed by 12 Solved Bilingual DSSSB TGT PYQs.
+
+Types of Assessment: Formative (Assessment FOR Learning), Summative (OF Learning), Assessment AS Learning, Diagnostic & Remedial teaching.
+
+I will now generate a bilingual (Hindi and English) PDF document covering Day 8 of your DSSSB TGT Pedagogy Crash Course: Types of Assessment (Formative Assessment FOR Learning, Summative Assessment OF Learning, Assessment AS Learning, Diagnostic & Remedial Teaching, Test Characteristics, and Evaluation Tools), along with 12 Solved Bilingual DSSSB Previous Year Questions.
+
+Day 8 Assessment & Diagnostic Teaching (Bilingual)
+Oct 23, 7:12 AM
+This 4-page bilingual PDF covers:
+
+Assessment FOR, OF, and AS Learning: Side-by-side comparison table covering timing, purpose, primary actors, classroom examples, and Paul Black's famous Chef Tasting the Soup analogy.
+
+Diagnostic & Remedial Teaching: The core distinction between Achievement tests and Diagnostic tests, along with an SVG workflow diagram mapping the 5-step Diagnostic-to-Remedial Teaching Loop (Formative Check → Diagnostic Test → Error Analysis → Remedial Teaching → Re-Evaluation).
+
+Qualities of a Good Test & Reference Types: Validity (वैधता), Reliability (विश्वसनीयता), Objectivity (वस्तुनिष्ठता), Norm-Referenced (NRT) vs. Criterion-Referenced (CRT) vs. Ipsative Assessment.
+
+Qualitative Evaluation Tools & 12 Solved Bilingual PYQs: Portfolio, Anecdotal Record, Cumulative Record, Rubrics, CCE, and NEP 2020's 360-Degree Holistic Progress Card.
+
+NEP 2020 Core Pillars: 5+3+3+4 Structure, Coding/Computational Thinking from Class 6, Experiential learning, Holistic Progress Card (360-degree).NCF 2005 (5 Guiding Principles) & NCF-SE 2023 updates; RTE Act 2009 (Teacher duties, pupil-teacher ratio, norms).
+
+I will now generate a bilingual (Hindi and English) PDF document covering Day 9 of your DSSSB TGT Pedagogy Crash Course: NEP 2020 Core Pillars (5+3+3+4 Structure, Coding & Computational Thinking from Class 6, Experiential Learning, PARAKH & 360-Degree Holistic Progress Card), NCF 2005 (5 Guiding Principles) & NCF-SE 2023 updates, and RTE Act 2009 (Important Sections, Pupil-Teacher Ratio & Schedule Norms), along with 12 Solved Bilingual DSSSB Previous Year Questions.
+
+Day 9 NEP 2020, NCF & RTE 2009 (Bilingual)
+Oct 23, 7:17 AM
+This 4-page bilingual PDF covers:
+
+NEP 2020 Core Pillars & 5+3+3+4 Curricular Structure: K. Kasturirangan Committee, the 5 foundational pillars (Access, Equity, Quality, Affordability, Accountability), the complete age/class breakdown of Foundational (5 yrs), Preparatory (3 yrs), Middle (3 yrs), and Secondary (4 yrs) stages, Coding & 10 Bagless Days from Class 6, PARAKH, and the 360-Degree Holistic Progress Card (HPC).
+
+NCF 2005 & NCF-SE 2023 Updates: Prof. Yash Pal's Learning Without Burden, Tagore's Civilization and Progress, the 5 Guiding Principles of NCF 2005, and NCF-SE 2023's Panchakosha Vikas (5 layers) and Panchadi (Aditi, Bodh, Abhyas, Prayog, Prasar) 5-step pedagogy.
+
+RTE Act 2009 (Sections, PTR & Schedule Norms): 86th Amendment (Article 21A), age groups (6–14 yrs; 6–18 yrs for CwSN), key sections (Sec 12, 13, 14, 16, 17, 21 SMC, 24, 27, 28), PTR (30:1 Primary, 35:1 Upper Primary), working days/hours (200 days/800 hrs vs. 220 days/1000 hrs), and 45 hours/week teacher working norm, followed by 12 Solved Bilingual DSSSB TGT PYQs.
+
+Inclusive Classroom & RPwD Act 2016 (21 Disabilities): Learning Disabilities (Dyslexia, Dysgraphia, Dyscalculia, dyspraxia, ADHD, Autism).UDL (Universal Design for Learning), Assistive Technologies (Screen readers, Braille displays), Gifted & Creative learners.
+
+I will now generate a bilingual (Hindi and English) study document covering Day 10 of your DSSSB TGT Pedagogy Crash Course: Inclusive Education, the RPwD Act 2016 (21 Disabilities), Specific Learning Disabilities & Neurodevelopmental Disorders (Dyslexia, Dysgraphia, Dyscalculia, Dyspraxia, ADHD, Autism), Universal Design for Learning (UDL), Assistive Technologies, and Gifted & Creative Learners, complete with 12 Solved Bilingual DSSSB Previous Year Questions.
+
+Day 10 Inclusive Education & RPwD Act 2016 (Bilingual)
+Oct 23, 7:24 AM
+This 4-page bilingual study guide covers:
+
+Inclusive Classroom & RPwD Act 2016: The distinction between Segregation, Integration, and Inclusion (Salamanca Statement 1994), along with the RPwD Act 2016 provisions (21 disabilities, ≥40% Benchmark Disability, free education from 6–18 years, 5% higher education quota, and 4% government job reservation).
+
+Learning Disabilities & Neurodevelopmental Disorders: Detailed breakdown of Dyslexia, Dysgraphia, Dyscalculia, Dyspraxia, ADHD, and Autism (ASD), plus Samuel Kirk's SLD definition.
+
+UDL (Universal Design for Learning) & Assistive Tech: Visual diagram of CAST's 3 UDL pillars (Engagement = Why, Representation = What, Action & Expression = How), screen readers (JAWS, NVDA), Refreshable Braille Displays, AAC/PECS, and ADHD/Autism classroom accommodations.
+
+Gifted & Creative Learners + 12 Solved Bilingual DSSSB PYQs: Renzulli's Three-Ring Model, Guilford & Torrance's 4 Elements of Divergent Thinking (Fluency, Flexibility, Originality, Elaboration), and Curriculum Enrichment vs. Acceleration.
+
+Adolescence (TGT Age Group 11-18 yrs): Stanley Hall ('Storm & Stress'), Erikson's Identity vs. Role Confusion, Kohlberg's Moral Development.Intrinsic vs. Extrinsic Motivation, Maslow's Hierarchy of Needs, Fostering Critical Thinking & Algorithmic/Logical reasoning.
+
+I have successfully generated a bilingual (Hindi and English) PDF document covering Day 11 of your DSSSB TGT Pedagogy Crash Course: Adolescent Psychology (Stanley Hall's Storm & Stress, Erikson's Identity vs. Role Confusion, Kohlberg's Moral Development), Motivation (Intrinsic vs. Extrinsic), Maslow's Hierarchy of Needs, and Fostering Critical & Algorithmic/Logical Reasoning, along with 15 Solved Bilingual DSSSB Previous Year Questions.
+
+PDF icon
+DSSSB_TGT_Day11_Adolescence_Motivation_Bilingual
+ PDF 
+Summary of Day 11 Masterclass Coverage:
+Adolescent Psychology & Stanley Hall: The transitional TGT age group (11–18 years), physical maturation, emotional upheavals, and Hall's conceptualization of "Storm and Stress" (तूफान और तनाव की अवस्था).
+
+Erikson's Psychosocial Stage 5: Identity vs. Role Confusion (पहचान बनाम भूमिका भ्रम), ego identity formation, career/value exploration, and peer group influence.
+
+Kohlberg's Moral Development: The 3 Levels (Pre-Conventional, Conventional, Post-Conventional) and 6 stages tested via the Heinz Dilemma.
+
+Motivation & Maslow's Hierarchy: Intrinsic (passion, curiosity) vs. Extrinsic (rewards, grades) motivation, and Maslow's deficiency needs (D-needs) versus growth needs (B-needs culminating in Self-Actualization).
+
+Critical & Logical Reasoning: Strategies for fostering analytical thinking, algorithmic logic, problem decomposition, and debugging skills in secondary classrooms.
+
+15 Solved Bilingual DSSSB TGT PYQs: Complete with Hindi translations, correct options, and detailed pedagogical explanations.
+
+Adolescence (TGT Age Group 11-18 yrs): Stanley Hall ('Storm & Stress'), Erikson's Identity vs. Role Confusion, Kohlberg's Moral Development.Intrinsic vs. Extrinsic Motivation, Maslow's Hierarchy of Needs, Fostering Critical Thinking & Algorithmic/Logical reasoning.
+
+I will now generate a bilingual (Hindi and English) study document covering Day 11 of your DSSSB TGT Pedagogy Crash Course: Adolescence (Stanley Hall's Storm & Stress, Erikson's Identity vs. Role Confusion, James Marcia's Identity Statuses, Kohlberg's Moral Development), Intrinsic vs. Extrinsic Motivation, Maslow's Hierarchy of Needs, and Fostering Critical & Algorithmic/Logical Reasoning, along with 12 Solved Bilingual DSSSB Previous Year Questions.
+
+Day 11 Adolescence, Motivation & Logical Reasoning (Bilingual)
+Oct 23, 5:23 PM
+This 4-page bilingual PDF covers:
+
+Adolescence (11–18 yrs) — Stanley Hall, Erikson & Marcia: G. Stanley Hall's "Storm and Stress" (तूफान और तनाव का काल), Erik Erikson's Stage 5 (Identity vs. Role Confusion, Virtue: Fidelity), and James Marcia's 4 Identity Statuses (Diffusion, Foreclosure, Moratorium, Achievement).
+
+Kohlberg's Moral Development & Gilligan's Critique: Complete 3-Level, 6-Stage table mapped to the Heinz Dilemma, plus Carol Gilligan's In a Different Voice (Ethics of Care vs. Ethics of Justice).
+
+Motivation & Maslow's Hierarchy of Needs: Visual SVG pyramid separating Deficiency Needs (D-Needs: Tiers 1–4) from Growth Needs (B-Need: Self-Actualization), Intrinsic vs. Extrinsic Motivation, the Overjustification Effect, Deci & Ryan's Self-Determination Theory (Autonomy, Competence, Relatedness), and Mastery vs. Performance Goals.
+
+Critical Thinking & Algorithmic/Logical Reasoning + 12 Solved Bilingual PYQs: The 4 pillars of Computational Thinking (Decomposition, Pattern Recognition, Abstraction, Algorithm Design) and 12 solved DSSSB TGT previous year questions in both English and Hindi.
+
+Curriculum Design: Spiral Curriculum (Bruner), Hidden vs. Overt Curriculum, Core Principles of Curriculum construction.
+
+I will now generate a bilingual (Hindi and English) study document covering Day 12 of your DSSSB TGT Pedagogy Crash Course: Curriculum Design (Etymology, Syllabus vs. Curriculum, Jerome Bruner's Spiral Curriculum, Overt/Explicit vs. Hidden vs. Null Curriculum, Core Principles of Curriculum Construction, Hilda Taba vs. Ralph Tyler Models, and Action Research by Kurt Lewin & Stephen Corey), complete with 12 Solved Bilingual DSSSB Previous Year Questions.
+
+Day 12 Curriculum Design & Action Research (Bilingual)
+Oct 23, 7:19 PM
+This 4-page bilingual PDF covers:
+
+Curriculum Meaning, Etymology & Bruner's Spiral Curriculum: Latin root 'Currere' (Racecourse), Cunningham's artist-studio definition, Curriculum vs. Syllabus, and Jerome Bruner's Spiral Curriculum (Iterative revisiting, increasing complexity from Enactive → Iconic → Symbolic, and prior-to-new linkage).
+
+Types of Curriculum: Side-by-side table comparing Overt/Explicit Curriculum, Hidden/Implicit Curriculum (Philip Jackson, 1968), Null/Excluded Curriculum (Elliot Eisner, 1979), Core Curriculum, and Subject vs. Learner-Centered Curriculum.
+
+Core Principles of Curriculum Construction & Models: Child-Centricity, Variety & Flexibility, Horizontal Correlation vs. Vertical Articulation, Utility, Forward-Looking/Futurism, Conservation, and Leisure, plus Ralph Tyler's Top-Down Deductive Model (1949) vs. Hilda Taba's Grassroots Inductive Model (1962).
+
+Action Research & 12 Solved Bilingual DSSSB TGT PYQs: Kurt Lewin (1946) & Stephen M. Corey (1953), the PAOR Cycle (Plan → Act → Observe → Reflect) for solving immediate classroom problems, and 12 solved bilingual practice questions.
+
+Pedagogy of Technical / Logical Subjects: Lab management, debugging as diagnostic learning, project-based evaluation.
+
+I will now generate a bilingual (Hindi and English) study document covering Day 13 of your DSSSB TGT Pedagogy Crash Course: Pedagogy of Technical & Logical Subjects (Computer Lab Management & Ergonomics, Pair Programming, Debugging Errors as Diagnostic Learning, Seymour Papert's Constructionism, PRIMM Framework, and Project-Based Evaluation Rubrics), complete with 12 Solved Bilingual DSSSB Previous Year Questions.
+
+Day 13 Pedagogy of Technical & Logical Subjects (Bilingual)
+
+Edit directly or with Gemini
+ Click anywhere to type and edit directly, or select text to prompt Gemini for changes. 
+This 4-page bilingual PDF covers:
+
+Computer & Science Lab Management: U-Shape/Perimeter layouts, ergonomic standards (eye-level monitors, 90° posture), electrical safety (CO₂ / Class C fire extinguishers), the 3 lab registers (Stock Register: Consumable vs. Non-Consumable, Log Book, Maintenance), Preventive vs. Corrective Maintenance, and Pair Programming (Driver vs. Navigator).
+
+Debugging as Diagnostic Learning: Complete taxonomy of Syntax Errors, Runtime Exceptions, Logical/Semantic Errors, and Latent Bugs, plus Seymour Papert's Constructionism (errors as windows into a learner's thinking).
+
+Instructional Frameworks for Logical Subjects: Visual SVG workflow of Sue Sentance's PRIMM Model (Predict → Run → Investigate → Modify → Make), Dry Runs & Trace Tables, Parson's Problems (jumbled code lines to reduce cognitive load), Unplugged Computing (CS Unplugged), and Rubber-Duck Debugging.
+
+Project-Based Evaluation + 12 Solved Bilingual DSSSB PYQs: Process + Product evaluation, Analytic vs. Holistic Rubrics, and preventing plagiarism/free-riding via Live Viva-Voce, On-the-Spot Code Modification, and Commit Logs.
+
+I am planning for make a website with interaactive quizzes with that notes on a website page. first i am planning to make a home page that consists of two parts paper 1 and paper 2 , topics of paper 1 as reasoning, math , gk, eng , hindi and further subtopics of these"AnalogiesClassificationNumber SeriesAlphabet & Mixed SeriesCoding-DecodingDirection SenseBlood RelationsOrder & RankingSeating ArrangementSyllogismsVenn DiagramsMathematical OperationsNon-Verbal ReasoningDivisibility & NumbersSimplification & SurdsLCM & HCFPercentagesProfit, Loss & MarkupSimple Interest (SI)Compound Interest (CI)Ratio & ProportionPartnership & AgesMixtures & AlligationAveragesTime & WorkPipes & CisternsTime, Speed & DistanceTrains & BoatsMensuration 2D & 3DData Interpretationवर्ण विचारशब्द भेदसंज्ञा, सर्वनाम व विशेषणक्रिया एवं काललिंग, वचन एवं कारकसंधि (Sandhi)समास (Samas)उपसर्ग एवं प्रत्ययवर्तनी एवं वाक्य शुद्धिशब्दावली (Vocabulary)मुहावरे एवं लोकोक्तियाँअपठित गद्यांशNouns & PronounsPrepositions & Phrasal VerbsConjunctions & ModalsSubject-Verb AgreementTenses & ConditionalsActive & Passive VoiceDirect & Indirect SpeechError SpottingSentence Improvement & FillersSentence Rearrangement (PQRS)Vocabulary & IdiomsReading ComprehensionPolity: Constitution & ArticlesPolity: Executive & JudiciaryModern Indian HistoryIndian & World GeographyEveryday General ScienceEconomy & Static GKArt, Culture & MonumentsCurrent Affairs (Last 6 Months)". and paper 2 consists of different topics of computer science and teaching aptitude such as "". these subtopics have a link to another page of that content . i will make and add pges of html file for all these subtopics
+
+This is a fantastic and well-structured plan for your DSSSB TGT preparation website! Dividing your platform into Paper 1 (Section A) and Paper 2 (Subject & Pedagogy) with interactive subtopic pages will make it an exceptionally powerful study tool.
+
+I have built the complete, responsive Homepage (index.html) containing all the subtopics you listed for both Paper 1 and Paper 2, complete with a live search bar and tabbed navigation. I've also created a reusable topic-template.html that you can copy for each subtopic to display your study notes alongside an interactive practice quiz with instant score evaluation and feedback.
+
+📁 Files Generated for Your Project
+index.html – The main portal/home page with Paper 1 and Paper 2 cards, tabs, and live topic search.
+
+topic-template.html – A clean template containing formatted study notes sections and an interactive multiple-choice quiz with score checking (submitQuiz()).
+
+🌐 Complete Home Page Code (index.html)
+You can save this code directly as index.html in your website root directory:
+
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSSSB TGT Master Hub | Paper 1 & Paper 2 Notes & Quizzes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --transition: all 0.3s ease;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white; padding: 2.5rem 1rem; text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+
+        .search-bar {
+            margin: 0 auto 2rem auto; max-width: 600px; display: flex;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-radius: 50px;
+            overflow: hidden; border: 1px solid var(--border-color); background: white;
+        }
+        .search-bar input { flex: 1; padding: 0.9rem 1.5rem; border: none; outline: none; font-size: 1rem; }
+        .search-bar button { background: var(--secondary-color); color: white; border: none; padding: 0 1.5rem; font-weight: 600; cursor: pointer; }
+        .search-bar button:hover { background: var(--primary-color); }
+
+        .tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+        .tab-btn {
+            padding: 0.75rem 2rem; font-size: 1rem; font-weight: 600; border: none; border-radius: 8px; cursor: pointer;
+            background: white; color: var(--text-muted); box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: var(--transition);
+        }
+        .tab-btn.active { background: var(--primary-color); color: white; }
+
+        .section-container { display: none; }
+        .section-container.active { display: block; }
+
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+
+        .card {
+            background: var(--card-bg); border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
+            overflow: hidden; transition: var(--transition);
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08); }
+
+        .card-header {
+            background: #f1f5f9; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-color);
+            font-weight: 600; color: var(--primary-color); font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        .subtopic-list { list-style: none; padding: 0.5rem 0; max-height: 280px; overflow-y: auto; }
+        .subtopic-list::-webkit-scrollbar { width: 6px; }
+        .subtopic-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .subtopic-list li { border-bottom: 1px solid #f8fafc; }
+        .subtopic-list li:last-child { border-bottom: none; }
+
+        .subtopic-list a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.75rem 1.25rem; color: var(--text-main); text-decoration: none; font-size: 0.95rem; transition: var(--transition);
+        }
+        .subtopic-list a:hover { background: #eff6ff; color: var(--secondary-color); padding-left: 1.5rem; }
+        .subtopic-list a::after { content: "→"; color: var(--text-muted); font-weight: bold; }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border-color); background: white; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .tabs { flex-direction: column; padding: 0 1rem; }
+            .tab-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DSSSB TGT Master Prep Hub</h1>
+        <p>Interactive Notes, Comprehensive Topics & Practice Quizzes for Paper 1 & Paper 2</p>
+    </header>
+
+    <div class="container">
+        <!-- Live Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search any subtopic (e.g., Percentages, Polity, DBMS)..." onkeyup="filterTopics()">
+            <button onclick="filterTopics()">Search</button>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('paper1')">Paper 1 (Section A)</button>
+            <button class="tab-btn" onclick="switchTab('paper2')">Paper 2 (Subject & Pedagogy)</button>
+        </div>
+
+        <!-- PAPER 1 SECTION -->
+        <div id="paper1" class="section-container active">
+            <div class="category-grid">
+                
+                <!-- Reasoning -->
+                <div class="card">
+                    <div class="card-header">🧠 General Intelligence & Reasoning</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/reasoning/analogies-classification.html">Analogies & Classification</a></li>
+                        <li><a href="topics/reasoning/number-series.html">Number Series</a></li>
+                        <li><a href="topics/reasoning/alphabet-mixed-series.html">Alphabet & Mixed Series</a></li>
+                        <li><a href="topics/reasoning/coding-decoding.html">Coding-Decoding</a></li>
+                        <li><a href="topics/reasoning/direction-sense.html">Direction Sense</a></li>
+                        <li><a href="topics/reasoning/blood-relations.html">Blood Relations</a></li>
+                        <li><a href="topics/reasoning/order-ranking.html">Order & Ranking</a></li>
+                        <li><a href="topics/reasoning/seating-arrangement.html">Seating Arrangement</a></li>
+                        <li><a href="topics/reasoning/syllogisms.html">Syllogisms</a></li>
+                        <li><a href="topics/reasoning/venn-diagrams.html">Venn Diagrams</a></li>
+                        <li><a href="topics/reasoning/mathematical-operations.html">Mathematical Operations</a></li>
+                        <li><a href="topics/reasoning/non-verbal-reasoning.html">Non-Verbal Reasoning</a></li>
+                    </ul>
+                </div>
+
+                <!-- Numerical Ability / Math -->
+                <div class="card">
+                    <div class="card-header">📊 Arithmetical & Numerical Ability</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/math/divisibility-numbers.html">Divisibility & Numbers</a></li>
+                        <li><a href="topics/math/simplification-surds.html">Simplification & Surds</a></li>
+                        <li><a href="topics/math/lcm-hcf.html">LCM & HCF</a></li>
+                        <li><a href="topics/math/percentages.html">Percentages</a></li>
+                        <li><a href="topics/math/profit-loss-markup.html">Profit, Loss & Markup</a></li>
+                        <li><a href="topics/math/simple-interest.html">Simple Interest (SI)</a></li>
+                        <li><a href="topics/math/compound-interest.html">Compound Interest (CI)</a></li>
+                        <li><a href="topics/math/ratio-proportion.html">Ratio & Proportion</a></li>
+                        <li><a href="topics/math/partnership-ages.html">Partnership & Ages</a></li>
+                        <li><a href="topics/math/mixtures-alligation.html">Mixtures & Alligation</a></li>
+                        <li><a href="topics/math/averages.html">Averages</a></li>
+                        <li><a href="topics/math/time-work.html">Time & Work</a></li>
+                        <li><a href="topics/math/pipes-cisterns.html">Pipes & Cisterns</a></li>
+                        <li><a href="topics/math/time-speed-distance.html">Time, Speed & Distance</a></li>
+                        <li><a href="topics/math/trains-boats.html">Trains & Boats</a></li>
+                        <li><a href="topics/math/mensuration-2d-3d.html">Mensuration 2D & 3D</a></li>
+                        <li><a href="topics/math/data-interpretation.html">Data Interpretation</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hindi -->
+                <div class="card">
+                    <div class="card-header">🇮🇳 हिंदी भाषा और व्याकरण</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/hindi/varn-vichar.html">वर्ण विचार</a></li>
+                        <li><a href="topics/hindi/shabd-bhed.html">शब्द भेद</a></li>
+                        <li><a href="topics/hindi/sangya-sarvanam-visheshan.html">संज्ञा, सर्वनाम व विशेषण</a></li>
+                        <li><a href="topics/hindi/kriya-kaal.html">क्रिया एवं काल</a></li>
+                        <li><a href="topics/hindi/ling-vachan-karak.html">लिंग, वचन एवं कारक</a></li>
+                        <li><a href="topics/hindi/sandhi.html">संधि (Sandhi)</a></li>
+                        <li><a href="topics/hindi/samas.html">समास (Samas)</a></li>
+                        <li><a href="topics/hindi/upsarg-pratyay.html">उपसर्ग एवं प्रत्यय</a></li>
+                        <li><a href="topics/hindi/vartani-vaky-shuddhi.html">वर्तनी एवं वाक्य शुद्धि</a></li>
+                        <li><a href="topics/hindi/vocabulary.html">शब्दावली (Vocabulary)</a></li>
+                        <li><a href="topics/hindi/muhavare-lokoktiyan.html">मुहावरे एवं लोकोक्तियाँ</a></li>
+                        <li><a href="topics/hindi/apatith-gadyansh.html">अपठित गद्यांश</a></li>
+                    </ul>
+                </div>
+
+                <!-- English -->
+                <div class="card">
+                    <div class="card-header">🔤 English Language & Comprehension</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/english/nouns-pronouns.html">Nouns & Pronouns</a></li>
+                        <li><a href="topics/english/prepositions-phrasal-verbs.html">Prepositions & Phrasal Verbs</a></li>
+                        <li><a href="topics/english/conjunctions-modals.html">Conjunctions & Modals</a></li>
+                        <li><a href="topics/english/subject-verb-agreement.html">Subject-Verb Agreement</a></li>
+                        <li><a href="topics/english/tenses-conditionals.html">Tenses & Conditionals</a></li>
+                        <li><a href="topics/english/active-passive-voice.html">Active & Passive Voice</a></li>
+                        <li><a href="topics/english/direct-indirect-speech.html">Direct & Indirect Speech</a></li>
+                        <li><a href="topics/english/error-spotting.html">Error Spotting</a></li>
+                        <li><a href="topics/english/sentence-improvement-fillers.html">Sentence Improvement & Fillers</a></li>
+                        <li><a href="topics/english/sentence-rearrangement.html">Sentence Rearrangement (PQRS)</a></li>
+                        <li><a href="topics/english/vocabulary-idioms.html">Vocabulary & Idioms</a></li>
+                        <li><a href="topics/english/reading-comprehension.html">Reading Comprehension</a></li>
+                    </ul>
+                </div>
+
+                <!-- General Awareness / GK -->
+                <div class="card">
+                    <div class="card-header">🌍 General Awareness (GK / GS)</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/gk/polity-constitution-articles.html">Polity: Constitution & Articles</a></li>
+                        <li><a href="topics/gk/polity-executive-judiciary.html">Polity: Executive & Judiciary</a></li>
+                        <li><a href="topics/gk/modern-indian-history.html">Modern Indian History</a></li>
+                        <li><a href="topics/gk/indian-world-geography.html">Indian & World Geography</a></li>
+                        <li><a href="topics/gk/everyday-general-science.html">Everyday General Science</a></li>
+                        <li><a href="topics/gk/economy-static-gk.html">Economy & Static GK</a></li>
+                        <li><a href="topics/gk/art-culture-monuments.html">Art, Culture & Monuments</a></li>
+                        <li><a href="topics/gk/current-affairs-6months.html">Current Affairs (Last 6 Months)</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PAPER 2 SECTION -->
+        <div id="paper2" class="section-container">
+            <div class="category-grid">
+                
+                <!-- Computer Science & Pedagogy Topics -->
+                <div class="card">
+                    <div class="card-header">💻 Computer Science & Subject Specific</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/paper2/cs-fundamentals.html">Computer Fundamentals & Architecture</a></li>
+                        <li><a href="topics/paper2/programming-python-c.html">Python & C Programming Concepts</a></li>
+                        <li><a href="topics/paper2/data-structures.html">Data Structures & Algorithms</a></li>
+                        <li><a href="topics/paper2/database-management.html">Database Management Systems (DBMS)</a></li>
+                        <li><a href="topics/paper2/computer-networks.html">Computer Networks & Protocols</a></li>
+                        <li><a href="topics/paper2/operating-systems.html">Operating Systems & Memory Management</a></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">📚 Teaching Methodology & Pedagogy</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/paper2/learning-theories.html">Learning Theories & Psychology (Piaget, Vygotsky)</a></li>
+                        <li><a href="topics/paper2/teaching-methods-maxims.html">Teaching Methods & Maxims (Heuristic, Project)</a></li>
+                        <li><a href="topics/paper2/blooms-taxonomy.html">Bloom's Taxonomy (Revised 2001 & Domains)</a></li>
+                        <li><a href="topics/paper2/ict-digital-pedagogy.html">ICT in Education & Digital Portals (SWAYAM, DIKSHA)</a></li>
+                        <li><a href="topics/paper2/assessment-evaluation.html">Assessment & Evaluation (Formative, Summative)</a></li>
+                        <li><a href="topics/paper2/nep2020-ncf-rte.html">NEP 2020, NCF 2005/2023 & RTE Act 2009</a></li>
+                        <li><a href="topics/paper2/inclusive-education.html">Inclusive Education & RPwD Act 2016</a></li>
+                        <li><a href="topics/paper2/adolescent-motivation.html">Adolescence Psychology & Motivation (Maslow)</a></li>
+                        <li><a href="topics/paper2/curriculum-action-research.html">Curriculum Design & Action Research</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Prep Hub. Built for Aspirants & Educators.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.section-container').forEach(sec => sec.classList.remove('active'));
+            
+            if(tabId === 'paper1') {
+                document.querySelector('.tabs button:nth-child(1)').classList.add('active');
+                document.getElementById('paper1').classList.add('active');
+            } else {
+                document.querySelector('.tabs button:nth-child(2)').classList.add('active');
+                document.getElementById('paper2').classList.add('active');
+            }
+        }
+
+        function filterTopics() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                let listItems = card.querySelectorAll('.subtopic-list li');
+                let cardHasMatch = false;
+
+                listItems.forEach(li => {
+                    let text = li.textContent.toLowerCase();
+                    if(text.includes(input)) {
+                        li.style.display = "";
+                        cardHasMatch = true;
+                    } else {
+                        li.style.display = "none";
+                    }
+                });
+
+                if(cardHasMatch || input === "") {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+💡 Reusable Subtopic Page Template (topic-template.html)
+When creating individual HTML pages for your subtopics (e.g., topics/math/percentages.html), you can base them on this template which includes formatted notes and a working quiz with automated scoring:
+
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subtopic Notes & Quiz | DSSSB TGT Prep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav { background: var(--primary-color); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+        .breadcrumb { margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted); }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg); border-radius: 12px; padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--border-color); margin-bottom: 2rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.8rem; }
+        h2 { color: var(--secondary-color); margin: 1.5rem 0 0.75rem 0; font-size: 1.3rem; }
+        p, li { margin-bottom: 0.75rem; color: #334155; }
+        ul { padding-left: 1.5rem; }
+
+        .question-box { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .question-box p { font-weight: 600; color: var(--primary-color); margin-bottom: 0.75rem; }
+        .options label {
+            display: block; padding: 0.6rem 1rem; margin-bottom: 0.5rem;
+            background: #f8fafc; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer;
+        }
+        .options label:hover { background: #eff6ff; border-color: var(--secondary-color); }
+        .options input { margin-right: 0.75rem; }
+
+        .submit-btn {
+            background: var(--secondary-color); color: white; border: none;
+            padding: 0.75rem 2rem; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer;
+        }
+        .submit-btn:hover { background: var(--primary-color); }
+
+        #resultBox { margin-top: 1.5rem; padding: 1rem; border-radius: 8px; font-weight: 600; display: none; }
+        .correct-ans { color: var(--success-color); font-size: 0.85rem; margin-top: 0.4rem; display: block; }
+        .incorrect-ans { color: var(--error-color); font-size: 0.85rem; margin-top: 0.4rem; display: block; }
+        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Prep</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > Subtopic Study Notes & Quiz
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Subtopic Title Here</h1>
+            <p>High-yield study notes tailored for DSSSB TGT exams.</p>
+            <h2>1. Concept Overview</h2>
+            <p>Insert your detailed notes, definitions, and formulas here.</p>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz</h1>
+            <form id="quizForm">
+                <div class="question-box" data-correct="A">
+                    <p>Q1. Sample question text?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="A"> Option A</label>
+                        <label><input type="radio" name="q1" value="B"> Option B</label>
+                        <label><input type="radio" name="q1" value="C"> Option C</label>
+                        <label><input type="radio" name="q1" value="D"> Option D</label>
+                    </div>
+                    <span id="feedback-q1"></span>
+                </div>
+                <button type="button" class="submit-btn" onclick="submitQuiz()">Submit Answers</button>
+            </form>
+            <div id="resultBox"></div>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 DSSSB TGT Master Prep Hub</p></footer>
+
+    <script>
+        function submitQuiz() {
+            let questions = document.querySelectorAll('.question-box');
+            let score = 0;
+            let total = questions.length;
+
+            questions.forEach((q, index) => {
+                let qName = 'q' + (index + 1);
+                let selected = document.querySelector(`input[name="${qName}"]:checked`);
+                let correctOpt = q.getAttribute('data-correct');
+                let feedbackSpan = document.getElementById(`feedback-${qName}`);
+
+                if (selected) {
+                    if (selected.value === correctOpt) {
+                        score++;
+                        feedbackSpan.innerHTML = "✅ Correct!";
+                        feedbackSpan.className = "correct-ans";
+                    } else {
+                        feedbackSpan.innerHTML = `❌ Incorrect. Correct answer was (${correctOpt}).`;
+                        feedbackSpan.className = "incorrect-ans";
+                    }
+                } else {
+                    feedbackSpan.innerHTML = `⚠️ Not answered. Correct answer was (${correctOpt}).`;
+                    feedbackSpan.className = "incorrect-ans";
+                }
+            });
+
+            let resultBox = document.getElementById('resultBox');
+            resultBox.style.display = "block";
+            let percentage = (score / total) * 100;
+            resultBox.innerHTML = `You scored ${score} out of ${total} (${percentage}%).`;
+            resultBox.style.background = percentage >= 70 ? "#dcfce7" : "#fee2e2";
+            resultBox.style.color = percentage >= 70 ? "#166534" : "#991b1b";
+        }
+    </script>
+</body>
+</html>
+🚀 Recommended Folder Structure
+To keep your website organized as you build out all the subpages, arrange your files like this:
+
+Plaintext
+my-dsssb-website/
+│
+├── index.html              <-- (Home page created above)
+├── topic-template.html     <-- (Template for your subpages)
+│
+└── topics/
+    ├── reasoning/
+    │   ├── analogies-classification.html
+    │   ├── number-series.html
+    │   └── ...
+    ├── math/
+    │   ├── percentages.html
+    │   └── ...
+    ├── hindi/
+    ├── english/
+    ├── gk/
+    └── paper2/
+        ├── learning-theories.html
+        ├── teaching-methods-maxims.html
+        └── ...
+but there is 15 days learing plan for teaching methodology
+
+Your website structure is coming together brilliantly!
+
+I have generated the dedicated HTML page for your 15-Day Teaching Methodology & Pedagogy Plan (topics/paper2/15-day-pedagogy-plan.html), complete with responsive styling, a clean tabular breakdown of all 15 days, and navigation back to your master hub.
+
+HTML icon
+topics/paper2/15-day-pedagogy-plan
+ HTML 
+📂 How to Integrate This into Your Website
+Create a folder named topics in your root directory, and inside it create paper2.
+
+Place the generated file 15-day-pedagogy-plan.html inside topics/paper2/.
+
+In your main index.html file under the Teaching Methodology & Pedagogy card, you can link to it directly:
+
+HTML
+<li><a href="topics/paper2/15-day-pedagogy-plan.html">15-Day Pedagogy Study Plan & Roadmap</a></li>
+Would you like me to generate HTML template pages for any of the other specific Paper 2 pedagogy topics (such as Bloom's Taxonomy, Learning Theories, or NEP 2020) next?
+
+
+
+
+
+Gemini is AI and can make mistakes.
+
+Processed and analyzed in code
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15-Day Teaching Methodology & Pedagogy Plan | DSSSB TGT Prep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav { background: var(--primary-color); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+        .breadcrumb { margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted); }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card {
+            background: var(--card-bg); border-radius: 12px; padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--border-color); margin-bottom: 2rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 2rem; font-size: 0.95rem; }
+        th, td { border: 1px solid var(--border-color); padding: 0.85rem 1rem; text-align: left; vertical-align: top; }
+        th { background: var(--primary-color); color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f8fafc; }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Prep</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > 15-Day Pedagogy Study Plan
+        </div>
+
+        <div class="content-card">
+            <h1>15-Day Teaching Methodology & Pedagogy Plan</h1>
+            <p class="subtitle">Target: 8–9+ Marks out of 10 in DSSSB TGT Section B (Paper 2). Daily Commitment: 30–40 Minutes.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Module / Unit</th>
+                        <th>Core Topic (Concepts & Keywords)</th>
+                        <th>Practice Focus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Day 1</strong></td>
+                        <td>Learning Theories & Psychology</td>
+                        <td>Behaviorism: Thorndike's Laws, Skinner's Operant Conditioning, Pavlov.</td>
+                        <td>Drill & practice vs. reinforcement in lab learning.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 2</strong></td>
+                        <td>Learning Theories & Psychology</td>
+                        <td>Constructivism: Piaget's 4 Stages, Vygotsky (ZPD, Scaffolding, MKO).</td>
+                        <td>Collaborative project work and peer problem-solving.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 3</strong></td>
+                        <td>Teaching Methods & Maxims</td>
+                        <td>Teacher vs. Learner-Centered: Lecture, Demonstration, Heuristic, Project, Problem-Solving.</td>
+                        <td>Inductive vs. Deductive method & Maxims of Teaching.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 4</strong></td>
+                        <td>Taxonomy & Lesson Planning</td>
+                        <td>Bloom's Revised Taxonomy (Remember to Create), 5E Model, Micro-Teaching (36 mins).</td>
+                        <td>Formulating behavioral objectives & lesson steps.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 5</strong></td>
+                        <td>ICT & Digital Pedagogy</td>
+                        <td>Blended & Flipped Learning, CAI, Government Portals: SWAYAM, DIKSHA, NISHTHA.</td>
+                        <td>Digital tools and online repository analysis.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 6</strong></td>
+                        <td>TLM & Communication</td>
+                        <td>Edgar Dale's Cone of Experience, Classroom Communication Barriers, FIAC.</td>
+                        <td>Audio-visual aids and discourse analysis.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 7</strong></td>
+                        <td>Mid-Plan Revision & Drill</td>
+                        <td>Consolidate Days 1–6 Summary Charts (Theorists, Methods, Bloom's, Portals).</td>
+                        <td>Solve 60 Mixed Pedagogy PYQs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 8</strong></td>
+                        <td>Assessment & Evaluation</td>
+                        <td>Formative (FOR Learning), Summative (OF Learning), AS Learning, Diagnostic & Remedial.</td>
+                        <td>Test validity, reliability, rubrics, portfolios.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 9</strong></td>
+                        <td>NEP 2020 & NCF</td>
+                        <td>NEP 2020 (5+3+3+4, Coding from Class 6, PARAKH), NCF 2005, RTE Act 2009.</td>
+                        <td>Policy norms and structural reforms.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 10</strong></td>
+                        <td>Inclusive Education</td>
+                        <td>RPwD Act 2016 (21 Disabilities), Learning Disabilities (Dyslexia, ADHD, Autism), UDL.</td>
+                        <td>Accommodations for diverse learners.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 11</strong></td>
+                        <td>Adolescent Psychology & Motivation</td>
+                        <td>Stanley Hall ('Storm & Stress'), Erikson (Identity vs Role Confusion), Maslow's Needs.</td>
+                        <td>Intrinsic vs. Extrinsic motivation and adolescent guidance.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 12</strong></td>
+                        <td>Curriculum & Action Research</td>
+                        <td>Spiral Curriculum (Bruner), Hidden vs. Overt Curriculum, Action Research Cycle.</td>
+                        <td>Curriculum principles and classroom research steps.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 13</strong></td>
+                        <td>Subject-Specific Pedagogy</td>
+                        <td>Pedagogy of Logical/Technical Subjects: Lab management, Debugging as diagnostic learning.</td>
+                        <td>Computational thinking and project evaluation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 14</strong></td>
+                        <td>Full PYQ Marathon</td>
+                        <td>Solve 10 sets of 10 Pedagogy Questions from recent DSSSB TGT Official Papers.</td>
+                        <td>Positive vs. Negative tag-word elimination.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 15</strong></td>
+                        <td>Final Rapid Review</td>
+                        <td>1-Page Cheat Sheet Review: NEP 2020 numbers, Theorist pairs, Digital Portals.</td>
+                        <td>2 Timed 10-Question Mini Mocks.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Prep Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+topics/paper2/15-day-pedagogy-plan.html
+Displaying topics/paper2/15-day-pedagogy-plan.html.

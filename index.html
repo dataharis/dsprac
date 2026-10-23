@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSSSB TGT Master Hub | Paper 1 & Paper 2 Notes & Quizzes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --transition: all 0.3s ease;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white; padding: 2.5rem 1rem; text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+
+        .search-bar {
+            margin: 0 auto 2rem auto; max-width: 600px; display: flex;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-radius: 50px;
+            overflow: hidden; border: 1px solid var(--border-color); background: white;
+        }
+        .search-bar input { flex: 1; padding: 0.9rem 1.5rem; border: none; outline: none; font-size: 1rem; }
+        .search-bar button { background: var(--secondary-color); color: white; border: none; padding: 0 1.5rem; font-weight: 600; cursor: pointer; }
+        .search-bar button:hover { background: var(--primary-color); }
+
+        .tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+        .tab-btn {
+            padding: 0.75rem 2rem; font-size: 1rem; font-weight: 600; border: none; border-radius: 8px; cursor: pointer;
+            background: white; color: var(--text-muted); box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: var(--transition);
+        }
+        .tab-btn.active { background: var(--primary-color); color: white; }
+
+        .section-container { display: none; }
+        .section-container.active { display: block; }
+
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+
+        .card {
+            background: var(--card-bg); border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
+            overflow: hidden; transition: var(--transition);
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08); }
+
+        .card-header {
+            background: #f1f5f9; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-color);
+            font-weight: 600; color: var(--primary-color); font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        .subtopic-list { list-style: none; padding: 0.5rem 0; max-height: 280px; overflow-y: auto; }
+        .subtopic-list::-webkit-scrollbar { width: 6px; }
+        .subtopic-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .subtopic-list li { border-bottom: 1px solid #f8fafc; }
+        .subtopic-list li:last-child { border-bottom: none; }
+
+        .subtopic-list a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.75rem 1.25rem; color: var(--text-main); text-decoration: none; font-size: 0.95rem; transition: var(--transition);
+        }
+        .subtopic-list a:hover { background: #eff6ff; color: var(--secondary-color); padding-left: 1.5rem; }
+        .subtopic-list a::after { content: "→"; color: var(--text-muted); font-weight: bold; }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border-color); background: white; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .tabs { flex-direction: column; padding: 0 1rem; }
+            .tab-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DSSSB TGT Master Prep Hub</h1>
+        <p>Interactive Notes, Comprehensive Topics & Practice Quizzes for Paper 1 & Paper 2</p>
+    </header>
+
+    <div class="container">
+        <!-- Live Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search any subtopic (e.g., Percentages, Polity, DBMS)..." onkeyup="filterTopics()">
+            <button onclick="filterTopics()">Search</button>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('paper1')">Paper 1 (Section A)</button>
+            <button class="tab-btn" onclick="switchTab('paper2')">Paper 2 (Subject & Pedagogy)</button>
+        </div>
+
+        <!-- PAPER 1 SECTION -->
+        <div id="paper1" class="section-container active">
+            <div class="category-grid">
+                
+                <!-- Reasoning -->
+                <div class="card">
+                    <div class="card-header">🧠 General Intelligence & Reasoning</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/reasoning/analogies-classification.html">Analogies & Classification</a></li>
+                        <li><a href="topics/reasoning/number-series.html">Number Series</a></li>
+                        <li><a href="topics/reasoning/alphabet-mixed-series.html">Alphabet & Mixed Series</a></li>
+                        <li><a href="topics/reasoning/coding-decoding.html">Coding-Decoding</a></li>
+                        <li><a href="topics/reasoning/direction-sense.html">Direction Sense</a></li>
+                        <li><a href="topics/reasoning/blood-relations.html">Blood Relations</a></li>
+                        <li><a href="topics/reasoning/order-ranking.html">Order & Ranking</a></li>
+                        <li><a href="topics/reasoning/seating-arrangement.html">Seating Arrangement</a></li>
+                        <li><a href="topics/reasoning/syllogisms.html">Syllogisms</a></li>
+                        <li><a href="topics/reasoning/venn-diagrams.html">Venn Diagrams</a></li>
+                        <li><a href="topics/reasoning/mathematical-operations.html">Mathematical Operations</a></li>
+                        <li><a href="topics/reasoning/non-verbal-reasoning.html">Non-Verbal Reasoning</a></li>
+                    </ul>
+                </div>
+
+                <!-- Numerical Ability / Math -->
+                <div class="card">
+                    <div class="card-header">📊 Arithmetical & Numerical Ability</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/math/divisibility-numbers.html">Divisibility & Numbers</a></li>
+                        <li><a href="topics/math/simplification-surds.html">Simplification & Surds</a></li>
+                        <li><a href="topics/math/lcm-hcf.html">LCM & HCF</a></li>
+                        <li><a href="topics/math/percentages.html">Percentages</a></li>
+                        <li><a href="topics/math/profit-loss-markup.html">Profit, Loss & Markup</a></li>
+                        <li><a href="topics/math/simple-interest.html">Simple Interest (SI)</a></li>
+                        <li><a href="topics/math/compound-interest.html">Compound Interest (CI)</a></li>
+                        <li><a href="topics/math/ratio-proportion.html">Ratio & Proportion</a></li>
+                        <li><a href="topics/math/partnership-ages.html">Partnership & Ages</a></li>
+                        <li><a href="topics/math/mixtures-alligation.html">Mixtures & Alligation</a></li>
+                        <li><a href="topics/math/averages.html">Averages</a></li>
+                        <li><a href="topics/math/time-work.html">Time & Work</a></li>
+                        <li><a href="topics/math/pipes-cisterns.html">Pipes & Cisterns</a></li>
+                        <li><a href="topics/math/time-speed-distance.html">Time, Speed & Distance</a></li>
+                        <li><a href="topics/math/trains-boats.html">Trains & Boats</a></li>
+                        <li><a href="topics/math/mensuration-2d-3d.html">Mensuration 2D & 3D</a></li>
+                        <li><a href="topics/math/data-interpretation.html">Data Interpretation</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hindi -->
+                <div class="card">
+                    <div class="card-header">🇮🇳 हिंदी भाषा और व्याकरण</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/hindi/varn-vichar.html">वर्ण विचार</a></li>
+                        <li><a href="topics/hindi/shabd-bhed.html">शब्द भेद</a></li>
+                        <li><a href="topics/hindi/sangya-sarvanam-visheshan.html">संज्ञा, सर्वनाम व विशेषण</a></li>
+                        <li><a href="topics/hindi/kriya-kaal.html">क्रिया एवं काल</a></li>
+                        <li><a href="topics/hindi/ling-vachan-karak.html">लिंग, वचन एवं कारक</a></li>
+                        <li><a href="topics/hindi/sandhi.html">संधि (Sandhi)</a></li>
+                        <li><a href="topics/hindi/samas.html">समास (Samas)</a></li>
+                        <li><a href="topics/hindi/upsarg-pratyay.html">उपसर्ग एवं प्रत्यय</a></li>
+                        <li><a href="topics/hindi/vartani-vaky-shuddhi.html">वर्तनी एवं वाक्य शुद्धि</a></li>
+                        <li><a href="topics/hindi/vocabulary.html">शब्दावली (Vocabulary)</a></li>
+                        <li><a href="topics/hindi/muhavare-lokoktiyan.html">मुहावरे एवं लोकोक्तियाँ</a></li>
+                        <li><a href="topics/hindi/apatith-gadyansh.html">अपठित गद्यांश</a></li>
+                    </ul>
+                </div>
+
+                <!-- English -->
+                <div class="card">
+                    <div class="card-header">🔤 English Language & Comprehension</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/english/nouns-pronouns.html">Nouns & Pronouns</a></li>
+                        <li><a href="topics/english/prepositions-phrasal-verbs.html">Prepositions & Phrasal Verbs</a></li>
+                        <li><a href="topics/english/conjunctions-modals.html">Conjunctions & Modals</a></li>
+                        <li><a href="topics/english/subject-verb-agreement.html">Subject-Verb Agreement</a></li>
+                        <li><a href="topics/english/tenses-conditionals.html">Tenses & Conditionals</a></li>
+                        <li><a href="topics/english/active-passive-voice.html">Active & Passive Voice</a></li>
+                        <li><a href="topics/english/direct-indirect-speech.html">Direct & Indirect Speech</a></li>
+                        <li><a href="topics/english/error-spotting.html">Error Spotting</a></li>
+                        <li><a href="topics/english/sentence-improvement-fillers.html">Sentence Improvement & Fillers</a></li>
+                        <li><a href="topics/english/sentence-rearrangement.html">Sentence Rearrangement (PQRS)</a></li>
+                        <li><a href="topics/english/vocabulary-idioms.html">Vocabulary & Idioms</a></li>
+                        <li><a href="topics/english/reading-comprehension.html">Reading Comprehension</a></li>
+                    </ul>
+                </div>
+
+                <!-- General Awareness / GK -->
+                <div class="card">
+                    <div class="card-header">🌍 General Awareness (GK / GS)</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/gk/polity-constitution-articles.html">Polity: Constitution & Articles</a></li>
+                        <li><a href="topics/gk/polity-executive-judiciary.html">Polity: Executive & Judiciary</a></li>
+                        <li><a href="topics/gk/modern-indian-history.html">Modern Indian History</a></li>
+                        <li><a href="topics/gk/indian-world-geography.html">Indian & World Geography</a></li>
+                        <li><a href="topics/gk/everyday-general-science.html">Everyday General Science</a></li>
+                        <li><a href="topics/gk/economy-static-gk.html">Economy & Static GK</a></li>
+                        <li><a href="topics/gk/art-culture-monuments.html">Art, Culture & Monuments</a></li>
+                        <li><a href="topics/gk/current-affairs-6months.html">Current Affairs (Last 6 Months)</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PAPER 2 SECTION -->
+        <div id="paper2" class="section-container">
+            <div class="category-grid">
+                
+                <!-- Computer Science & Pedagogy Topics -->
+                <div class="card">
+                    <div class="card-header">💻 Computer Science & Subject Specific</div>
+                    <ul class="subtopic-list">
+                        <li><a href="topics/paper2/cs-fundamentals.html">Computer Fundamentals & Architecture</a></li>
+                        <li><a href="topics/paper2/programming-python-c.html">Python & C Programming Concepts</a></li>
+                        <li><a href="topics/paper2/data-structures.html">Data Structures & Algorithms</a></li>
+                        <li><a href="topics/paper2/database-management.html">Database Management Systems (DBMS)</a></li>
+                        <li><a href="topics/paper2/computer-networks.html">Computer Networks & Protocols</a></li>
+                        <li><a href="topics/paper2/operating-systems.html">Operating Systems & Memory Management</a></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card" data-category="pedagogy">
+    <div class="card-header">📚 Teaching Methodology & Pedagogy (15-Day Plan)</div>
+    <ul class="subtopic-list">
+        <li><a href="topics/pedagogy/day1-behaviorism.html">Day 1: Learning Theories (Behaviorism: Thorndike, Skinner)</a></li>
+        <li><a href="topics/pedagogy/day2-constructivism.html">Day 2: Constructivism (Piaget, Vygotsky, Bruner)</a></li>
+        <li><a href="topics/pedagogy/day3-teaching-methods.html">Day 3: Teaching Methods & Maxims (Heuristic, Project)</a></li>
+        <li><a href="topics/pedagogy/day4-blooms-taxonomy.html">Day 4: Bloom's Taxonomy & Micro-Teaching</a></li>
+        <li><a href="topics/pedagogy/day5-ict-pedagogy.html">Day 5: ICT & Digital Portals (SWAYAM, DIKSHA)</a></li>
+        <li><a href="topics/pedagogy/day6-tlm-communication.html">Day 6: TLM & Edgar Dale's Cone of Experience</a></li>
+        <li><a href="topics/pedagogy/day7-revision-drill.html">Day 7: Mid-Plan Revision & PYQ Drill</a></li>
+        <li><a href="topics/pedagogy/day8-assessment-evaluation.html">Day 8: Assessment, Diagnostic & Remedial Teaching</a></li>
+        <li><a href="topics/pedagogy/day9-nep2020-ncf-rte.html">Day 9: NEP 2020, NCF 2005/2023 & RTE Act 2009</a></li>
+        <li><a href="topics/pedagogy/day10-inclusive-education.html">Day 10: Inclusive Education & RPwD Act 2016</a></li>
+        <li><a href="topics/pedagogy/day11-adolescent-motivation.html">Day 11: Adolescent Psychology & Motivation (Maslow)</a></li>
+        <li><a href="topics/pedagogy/day12-curriculum-action-research.html">Day 12: Curriculum Design & Action Research</a></li>
+        <li><a href="topics/pedagogy/day13-technical-pedagogy.html">Day 13: Technical Pedagogy & Lab Management</a></li>
+        <li><a href="topics/pedagogy/day14-pyq-marathon.html">Day 14: Full Pedagogy PYQ Marathon</a></li>
+        <li><a href="topics/pedagogy/day15-rapid-revision.html">Day 15: Final Rapid Revision & Mini-Mocks</a></li>
+    </ul>
+</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Prep Hub. Built for Aspirants & Educators.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.section-container').forEach(sec => sec.classList.remove('active'));
+            
+            if(tabId === 'paper1') {
+                document.querySelector('.tabs button:nth-child(1)').classList.add('active');
+                document.getElementById('paper1').classList.add('active');
+            } else {
+                document.querySelector('.tabs button:nth-child(2)').classList.add('active');
+                document.getElementById('paper2').classList.add('active');
+            }
+        }
+
+        function filterTopics() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                let listItems = card.querySelectorAll('.subtopic-list li');
+                let cardHasMatch = false;
+
+                listItems.forEach(li => {
+                    let text = li.textContent.toLowerCase();
+                    if(text.includes(input)) {
+                        li.style.display = "";
+                        cardHasMatch = true;
+                    } else {
+                        li.style.display = "none";
+                    }
+                });
+
+                if(cardHasMatch || input === "") {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+💡 Reusable Subtopic Page Template (topic-template.html)
+When creating individual HTML pages for your subtopics (e.g., topics/math/percentages.html), you can base them on this template which includes formatted notes and a working quiz with automated scoring:
+
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subtopic Notes & Quiz | DSSSB TGT Prep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav { background: var(--primary-color); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+        .breadcrumb { margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted); }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg); border-radius: 12px; padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--border-color); margin-bottom: 2rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.8rem; }
+        h2 { color: var(--secondary-color); margin: 1.5rem 0 0.75rem 0; font-size: 1.3rem; }
+        p, li { margin-bottom: 0.75rem; color: #334155; }
+        ul { padding-left: 1.5rem; }
+
+        .question-box { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .question-box p { font-weight: 600; color: var(--primary-color); margin-bottom: 0.75rem; }
+        .options label {
+            display: block; padding: 0.6rem 1rem; margin-bottom: 0.5rem;
+            background: #f8fafc; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer;
+        }
+        .options label:hover { background: #eff6ff; border-color: var(--secondary-color); }
+        .options input { margin-right: 0.75rem; }
+
+        .submit-btn {
+            background: var(--secondary-color); color: white; border: none;
+            padding: 0.75rem 2rem; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer;
+        }
+        .submit-btn:hover { background: var(--primary-color); }
+
+        #resultBox { margin-top: 1.5rem; padding: 1rem; border-radius: 8px; font-weight: 600; display: none; }
+        .correct-ans { color: var(--success-color); font-size: 0.85rem; margin-top: 0.4rem; display: block; }
+        .incorrect-ans { color: var(--error-color); font-size: 0.85rem; margin-top: 0.4rem; display: block; }
+        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Prep</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > Subtopic Study Notes & Quiz
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Subtopic Title Here</h1>
+            <p>High-yield study notes tailored for DSSSB TGT exams.</p>
+            <h2>1. Concept Overview</h2>
+            <p>Insert your detailed notes, definitions, and formulas here.</p>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz</h1>
+            <form id="quizForm">
+                <div class="question-box" data-correct="A">
+                    <p>Q1. Sample question text?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="A"> Option A</label>
+                        <label><input type="radio" name="q1" value="B"> Option B</label>
+                        <label><input type="radio" name="q1" value="C"> Option C</label>
+                        <label><input type="radio" name="q1" value="D"> Option D</label>
+                    </div>
+                    <span id="feedback-q1"></span>
+                </div>
+                <button type="button" class="submit-btn" onclick="submitQuiz()">Submit Answers</button>
+            </form>
+            <div id="resultBox"></div>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 DSSSB TGT Master Prep Hub</p></footer>
+
+    <script>
+        function submitQuiz() {
+            let questions = document.querySelectorAll('.question-box');
+            let score = 0;
+            let total = questions.length;
+
+            questions.forEach((q, index) => {
+                let qName = 'q' + (index + 1);
+                let selected = document.querySelector(`input[name="${qName}"]:checked`);
+                let correctOpt = q.getAttribute('data-correct');
+                let feedbackSpan = document.getElementById(`feedback-${qName}`);
+
+                if (selected) {
+                    if (selected.value === correctOpt) {
+                        score++;
+                        feedbackSpan.innerHTML = "✅ Correct!";
+                        feedbackSpan.className = "correct-ans";
+                    } else {
+                        feedbackSpan.innerHTML = `❌ Incorrect. Correct answer was (${correctOpt}).`;
+                        feedbackSpan.className = "incorrect-ans";
+                    }
+                } else {
+                    feedbackSpan.innerHTML = `⚠️ Not answered. Correct answer was (${correctOpt}).`;
+                    feedbackSpan.className = "incorrect-ans";
+                }
+            });
+
+            let resultBox = document.getElementById('resultBox');
+            resultBox.style.display = "block";
+            let percentage = (score / total) * 100;
+            resultBox.innerHTML = `You scored ${score} out of ${total} (${percentage}%).`;
+            resultBox.style.background = percentage >= 70 ? "#dcfce7" : "#fee2e2";
+            resultBox.style.color = percentage >= 70 ? "#166534" : "#991b1b";
+        }
+    </script>
+</body>
+</html>
