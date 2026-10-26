@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7: Mid-Plan Revision Drill | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; position: sticky; top: 20px; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 7: Revision Drill
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 7: Mid-Plan Revision Drill</h1>
+            <div class="subtitle">Comprehensive 50-Question PYQ Drill | Covering Days 1 to 6</div>
+            
+            <p>Welcome to Day 7! You have successfully covered the foundational pillars of Teaching Methodology over the last 6 days. Today is dedicated strictly to <strong>Retrieval Practice</strong>.</p>
+            
+            <h2>Topics Covered in this Drill:</h2>
+            <ul>
+                <li><strong>Day 1:</strong> Behaviorism (Pavlov, Skinner, Thorndike)</li>
+                <li><strong>Day 2:</strong> Constructivism (Piaget, Vygotsky, Bruner)</li>
+                <li><strong>Day 3:</strong> Teaching Methods & Maxims (Project, Heuristic, Inductive-Deductive)</li>
+                <li><strong>Day 4:</strong> Bloom's Taxonomy & Micro-Teaching</li>
+                <li><strong>Day 5:</strong> ICT & Digital Pedagogy (SWAYAM, DIKSHA, Flipped Classroom)</li>
+                <li><strong>Day 6:</strong> TLM, Edgar Dale's Cone, FIAC & Communication</li>
+            </ul>
+
+            <div class="bilingual-box">
+                <strong>Instruction (निर्देश):</strong> This is a 50-question mock drill. Treat this as a real DSSSB CBT exam environment. Read the bilingual questions carefully. Your score will update dynamically at the top of the quiz box. Good luck! (शुभकामनाएं!)
+            </div>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <div class="quiz-intro">
+                <h2>50-Question Mega Drill</h2>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 50</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. Thorndike's law stating that connections are strengthened with practice and weakened when practice is discontinued is known as:<br><br>थार्नडाइक का वह नियम जो कहता है कि अभ्यास के साथ संबंध मजबूत होते हैं और अभ्यास बंद करने पर कमजोर होते हैं, क्या कहलाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Law of Effect (प्रभाव का नियम)</button>
+                        <button class="opt-btn" value="B">B) Law of Exercise (अभ्यास का नियम)</button>
+                        <button class="opt-btn" value="C">C) Law of Readiness (तत्परता का नियम)</button>
+                        <button class="opt-btn" value="D">D) Law of Belongingness</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Law of Exercise is divided into Law of Use (practice strengthens) and Law of Disuse (neglect weakens).</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q2. In a flipped classroom model, where do students typically engage with the lower-order thinking skills (like listening to the lecture)?<br><br>फ्लिप्ड क्लासरूम मॉडल में, छात्र आमतौर पर निम्न-स्तर के सोच कौशल (जैसे व्याख्यान सुनना) का अभ्यास कहाँ करते हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) In the school laboratory</button>
+                        <button class="opt-btn" value="B">B) In the classroom with the teacher</button>
+                        <button class="opt-btn" value="C">C) At home, via pre-recorded videos (घर पर, पहले से रिकॉर्ड किए गए वीडियो के माध्यम से)</button>
+                        <button class="opt-btn" value="D">D) During the final examination</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> The Flipped Classroom reverses traditional teaching. Direct instruction (lower-order) is done at home via video, freeing up class time for interactive problem-solving (higher-order).</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q3. According to Vygotsky, what is 'Private Speech'?<br><br>वायगोत्स्की के अनुसार, 'निजी वाक्' (Private Speech) क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Speech used by children to annoy adults</button>
+                        <button class="opt-btn" value="B">B) Speech directed to oneself that serves a self-regulating and planning function (स्वयं को निर्देशित वाक् जो स्व-नियमन का कार्य करता है)</button>
+                        <button class="opt-btn" value="C">C) A sign of cognitive immaturity and egocentrism</button>
+                        <button class="opt-btn" value="D">D) Speech used only when playing with peers</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Vygotsky argued that children talk to themselves (Private Speech) to guide their own behavior and solve problems.</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q4. Which of the following is NOT one of the 4 quadrants of the SWAYAM platform?<br><br>निम्नलिखित में से कौन-सा SWAYAM प्लेटफॉर्म के 4 चतुर्थांशों (quadrants) में से एक नहीं है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Video Lectures</button>
+                        <button class="opt-btn" value="B">B) E-Content / Reading Material</button>
+                        <button class="opt-btn" value="C">C) Online Discussion Forum</button>
+                        <button class="opt-btn" value="D">D) Mandatory physical lab attendance (अनिवार्य भौतिक लैब उपस्थिति)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> SWAYAM is an online MOOC platform. Its 4 quadrants are Video, E-Content, Web Resources/Discussion, and Self-Assessment. Physical attendance is not required.</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q5. According to Piaget, a child who believes that the moving clouds are 'alive' and have intentions is displaying:<br><br>पियाजे के अनुसार, एक बच्चा जो मानता है कि चलते हुए बादल 'जीवित' हैं और उनके अपने इरादे हैं, वह क्या प्रदर्शित कर रहा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Animism (जीववाद)</button>
+                        <button class="opt-btn" value="B">B) Object Permanence</button>
+                        <button class="opt-btn" value="C">C) Conservation</button>
+                        <button class="opt-btn" value="D">D) Reversibility</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Animism is a feature of the Pre-operational stage where children attribute human qualities (life, feelings) to inanimate objects.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q6. Which educational initiative provides 'Energized Textbooks' with QR codes?<br><br>कौन-सी शैक्षिक पहल QR कोड वाली 'ऊर्जायुक्त पाठ्यपुस्तकें' (Energized Textbooks) प्रदान करती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) NISHTHA</button>
+                        <button class="opt-btn" value="B">B) DIKSHA (दीक्षा)</button>
+                        <button class="opt-btn" value="C">C) SWAYAM PRABHA</button>
+                        <button class="opt-btn" value="D">D) E-Pathshala</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> DIKSHA is the National Digital Infrastructure for Teachers that integrates QR codes in physical textbooks to link them to digital resources.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q7. The maxim "Whole to Part" (पूर्ण से अंश की ओर) is based on which psychological school of thought?<br><br>"पूर्ण से अंश की ओर" शिक्षण सूत्र किस मनोवैज्ञानिक विचारधारा पर आधारित है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Behaviorism</button>
+                        <button class="opt-btn" value="B">B) Gestalt Psychology (गेस्टाल्ट मनोविज्ञान)</button>
+                        <button class="opt-btn" value="C">C) Psychoanalysis</button>
+                        <button class="opt-btn" value="D">D) Connectionism</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Gestalt psychologists (Wertheimer, Kohler, Koffka) believed that humans perceive the whole configuration before focusing on individual parts.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q8. In B.F. Skinner's Operant Conditioning, removing an unpleasant stimulus to increase a desired behavior is called:<br><br>स्किनर के क्रियाप्रसूत अनुबंधन में, वांछित व्यवहार को बढ़ाने के लिए एक अप्रिय उद्दीपक को हटाना क्या कहलाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Positive Reinforcement</button>
+                        <button class="opt-btn" value="B">B) Positive Punishment</button>
+                        <button class="opt-btn" value="C">C) Negative Reinforcement (ऋणात्मक पुनर्बलन)</button>
+                        <button class="opt-btn" value="D">D) Negative Punishment</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Negative reinforcement increases a behavior by taking away something annoying (e.g., taking an aspirin to remove a headache).</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q9. The 'Project Method' was developed by W.H. Kilpatrick. It is rooted in the philosophy of:<br><br>'प्रायोजना विधि' डब्ल्यू.एच. किलपैट्रिक द्वारा विकसित की गई थी। यह किस दर्शन पर आधारित है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Idealism</button>
+                        <button class="opt-btn" value="B">B) Pragmatism of John Dewey (जॉन डीवी का प्रयोजनवाद)</button>
+                        <button class="opt-btn" value="C">C) Naturalism</button>
+                        <button class="opt-btn" value="D">D) Realism</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> The Project Method is the practical application of John Dewey's Pragmatism, focusing on "learning by doing" in a social environment.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q10. In the 2001 Revised Bloom’s Taxonomy, the highest level of the cognitive domain is:<br><br>2001 के संशोधित ब्लूम वर्गीकरण में, संज्ञानात्मक क्षेत्र का सर्वोच्च स्तर क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Evaluate</button>
+                        <button class="opt-btn" value="B">B) Create (रचना करना / सृजन करना)</button>
+                        <button class="opt-btn" value="C">C) Synthesis</button>
+                        <button class="opt-btn" value="D">D) Analyze</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> In 2001, Anderson & Krathwohl swapped Evaluation and Synthesis, renaming them to verbs. 'Create' is now at the apex.</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q11. According to Piaget, fitting new information into an existing schema is called _____, whereas altering the schema is called _____.<br><br>पियाजे के अनुसार, नई जानकारी को मौजूदा स्कीमा में फिट करना _____ कहलाता है, जबकि स्कीमा को बदलना _____ कहलाता है।</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Accommodation ; Assimilation</button>
+                        <button class="opt-btn" value="B">B) Equilibration ; Disequilibrium</button>
+                        <button class="opt-btn" value="C">C) Centration ; Decentration</button>
+                        <button class="opt-btn" value="D">D) Assimilation ; Accommodation (आत्मसात्करण ; समायोजन)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Assimilation uses existing structures without change. Accommodation alters structures to fit new reality.</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q12. What is the total duration of a standard Micro-Teaching cycle?<br><br>एक मानक सूक्ष्म शिक्षण चक्र की कुल अवधि कितनी होती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 30 Minutes</button>
+                        <button class="opt-btn" value="B">B) 36 Minutes</button>
+                        <button class="opt-btn" value="C">C) 45 Minutes</button>
+                        <button class="opt-btn" value="D">D) 60 Minutes</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Micro-teaching cycle (Stanford model) takes 36 mins: Teach (6) > Feedback (6) > Replan (12) > Reteach (6) > Refeedback (6).</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q13. Which category in FIAC (Flanders Interaction Analysis) represents the teacher accepting and clarifying students' feelings?<br><br>FIAC में कौन-सी श्रेणी शिक्षक द्वारा छात्रों की भावनाओं को स्वीकार करने और स्पष्ट करने को दर्शाती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Category 1</button>
+                        <button class="opt-btn" value="B">B) Category 3</button>
+                        <button class="opt-btn" value="C">C) Category 9</button>
+                        <button class="opt-btn" value="D">D) Category 10</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Category 1 is "Accepts Feelings". It is part of indirect teacher influence.</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q14. In Dale's Cone of Experience, which of the following provides the most concrete (least abstract) learning experience?<br><br>डेल के अनुभव शंकु में, निम्नलिखित में से कौन-सा सबसे मूर्त (सबसे कम अमूर्त) अधिगम अनुभव प्रदान करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Watching a video</button>
+                        <button class="opt-btn" value="B">B) Looking at pictures</button>
+                        <button class="opt-btn" value="C">C) Direct purposeful experiences (प्रत्यक्ष उद्देश्यपूर्ण अनुभव)</button>
+                        <button class="opt-btn" value="D">D) Listening to a lecture</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Direct purposeful experiences sit at the absolute base of the cone, providing the most concrete, hands-on learning.</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q15. The Inductive Method of teaching proceeds from:<br><br>शिक्षण की आगमन विधि किस ओर बढ़ती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Examples to Rules / Specific to General (उदाहरण से नियम / विशिष्ट से सामान्य)</button>
+                        <button class="opt-btn" value="B">B) Rules to Examples / General to Specific</button>
+                        <button class="opt-btn" value="C">C) Abstract to Concrete</button>
+                        <button class="opt-btn" value="D">D) Unknown to Known</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Induction builds a rule by analyzing specific examples first.</div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q16. The concept of 'Zone of Proximal Development' (ZPD) was introduced by:<br><br>'समीपस्थ विकास का क्षेत्र' (ZPD) की अवधारणा किसके द्वारा प्रस्तुत की गई थी?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Jean Piaget</button>
+                        <button class="opt-btn" value="B">B) B.F. Skinner</button>
+                        <button class="opt-btn" value="C">C) Lev Vygotsky (लेव वायगोत्स्की)</button>
+                        <button class="opt-btn" value="D">D) Jerome Bruner</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> ZPD is a core concept in Vygotsky's Socio-Cultural theory.</div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q17. Which of the following is an example of an Asynchronous ICT tool?<br><br>निम्नलिखित में से कौन-सा एक अतुल्यकालिक (Asynchronous) ICT उपकरण का उदाहरण है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Live Zoom class</button>
+                        <button class="opt-btn" value="B">B) Email and Discussion Forums (ईमेल और चर्चा मंच)</button>
+                        <button class="opt-btn" value="C">C) Live YouTube stream</button>
+                        <button class="opt-btn" value="D">D) Real-time chat</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Asynchronous tools do not require real-time interaction. Students can engage at their own pace.</div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q18. According to Piaget, 'Object Permanence' develops during which stage?<br><br>पियाजे के अनुसार, 'वस्तु स्थायित्व' का विकास किस अवस्था के दौरान होता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Pre-operational stage</button>
+                        <button class="opt-btn" value="B">B) Sensorimotor stage (संवेदी-पेशीय अवस्था)</button>
+                        <button class="opt-btn" value="C">C) Concrete operational stage</button>
+                        <button class="opt-btn" value="D">D) Formal operational stage</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Object permanence (knowing objects exist even when unseen) develops around 8-12 months in the Sensorimotor stage.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q19. The Heuristic Method of teaching, developed by H.E. Armstrong, places the student in the role of a:<br><br>एच.ई. आर्मस्ट्रांग द्वारा विकसित ह्यूरिस्टिक विधि छात्र को किसकी भूमिका में रखती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Discoverer / Scientist (खोजकर्ता / वैज्ञानिक)</button>
+                        <button class="opt-btn" value="B">B) Passive listener</button>
+                        <button class="opt-btn" value="C">C) Rote memorizer</button>
+                        <button class="opt-btn" value="D">D) Teacher</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Heurisko means "I find out". The student independently discovers facts rather than being told.</div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q20. In the 5E Instructional model, which phase is primarily used for assessment of learning?<br><br>5E शिक्षण मॉडल में, कौन-सा चरण मुख्य रूप से अधिगम के मूल्यांकन के लिए उपयोग किया जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Explain</button>
+                        <button class="opt-btn" value="B">B) Evaluate (मूल्यांकन करना)</button>
+                        <button class="opt-btn" value="C">C) Engage</button>
+                        <button class="opt-btn" value="D">D) Explore</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> The 'Evaluate' phase allows the teacher to assess students' understanding and mastery of the concept.</div>
+                </div>
+
+                <!-- Q21 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q21. Jerome Bruner’s 'Spiral Curriculum' is based on the idea that:<br><br>जेरोम ब्रूनर की 'सर्पिल पाठ्यचर्या' इस विचार पर आधारित है कि:</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Curriculum should go in circles and never advance</button>
+                        <button class="opt-btn" value="B">B) Difficult subjects should only be taught in college</button>
+                        <button class="opt-btn" value="C">C) Any subject can be taught effectively in some intellectually honest form to any child at any stage of development (बुनियादी अवधारणाओं को बार-बार बढ़ती जटिलता के साथ पढ़ाया जा सकता है)</button>
+                        <button class="opt-btn" value="D">D) Rote learning is best</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Bruner argued that complex ideas can be introduced early and revisited with increasing depth (the spiral).</div>
+                </div>
+
+                <!-- Q22 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q22. Classical Conditioning is associated with ________, while Operant Conditioning is associated with ________.<br><br>शास्त्रीय अनुबंधन ________ से जुड़ा है, जबकि क्रियाप्रसूत अनुबंधन ________ से जुड़ा है।</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Skinner ; Pavlov</button>
+                        <button class="opt-btn" value="B">B) Pavlov ; Skinner (पावलोव ; स्किनर)</button>
+                        <button class="opt-btn" value="C">C) Thorndike ; Vygotsky</button>
+                        <button class="opt-btn" value="D">D) Piaget ; Bruner</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Ivan Pavlov discovered Classical Conditioning (dogs/reflexes), and B.F. Skinner developed Operant Conditioning (consequences/reinforcement).</div>
+                </div>
+
+                <!-- Q23 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q23. Which barrier of communication occurs when the vocabulary or symbols used by the teacher are not understood by the student?<br><br>संचार की वह कौन-सी बाधा है जब शिक्षक द्वारा उपयोग की जाने वाली शब्दावली या प्रतीकों को छात्र नहीं समझ पाते हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Physical Barrier</button>
+                        <button class="opt-btn" value="B">B) Psychological Barrier</button>
+                        <button class="opt-btn" value="C">C) Semantic Barrier (शब्दार्थ संबंधी बाधा)</button>
+                        <button class="opt-btn" value="D">D) Mechanical Barrier</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Semantic barriers relate to the meaning of words, language differences, or confusing jargon.</div>
+                </div>
+
+                <!-- Q24 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q24. In Herbartian lesson planning, what is the purpose of the 'Presentation' step?<br><br>हर्बर्ट की पाठ योजना में 'प्रस्तुतिकरण' (Presentation) चरण का उद्देश्य क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To test the students at the end</button>
+                        <button class="opt-btn" value="B">B) To introduce the new subject matter and concepts using TLMs (नए विषय वस्तु और अवधारणाओं को प्रस्तुत करना)</button>
+                        <button class="opt-btn" value="C">C) To check previous knowledge</button>
+                        <button class="opt-btn" value="D">D) To assign homework</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> During presentation, the core content of the day's lesson is delivered to the students.</div>
+                </div>
+
+                <!-- Q25 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q25. "Shaping" in behaviorism refers to:<br><br>व्यवहारवाद में "शेपिंग" (Shaping) का क्या अर्थ है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Reinforcing successive approximations of a desired complex behavior (वांछित जटिल व्यवहार के क्रमिक सन्निकटन को पुनर्बलन देना)</button>
+                        <button class="opt-btn" value="B">B) Punishing a student until they comply</button>
+                        <button class="opt-btn" value="C">C) Ignoring a behavior until it goes away</button>
+                        <button class="opt-btn" value="D">D) Copying notes from a board</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Shaping (Skinner) involves rewarding small steps that gradually lead to the final complex target behavior.</div>
+                </div>
+
+                <!-- Q26 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q26. What does TPACK stand for?<br><br>TPACK का पूर्ण रूप क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Teaching Pedagogy and Content Knowledge</button>
+                        <button class="opt-btn" value="B">B) Technological Pedagogical Content Knowledge</button>
+                        <button class="opt-btn" value="C">C) Teachers Planning and Classroom Knowledge</button>
+                        <button class="opt-btn" value="D">D) Technology Process and Computer Knowledge</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> TPACK outlines the intersection of Technology, Pedagogy, and Content Knowledge required for effective digital teaching.</div>
+                </div>
+
+                <!-- Q27 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q27. According to Piaget, a child who can arrange sticks from shortest to longest has achieved the skill of:<br><br>पियाजे के अनुसार, एक बच्चा जो छड़ियों को सबसे छोटी से सबसे लंबी तक व्यवस्थित कर सकता है, उसने कौन-सा कौशल प्राप्त कर लिया है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Conservation</button>
+                        <button class="opt-btn" value="B">B) Centration</button>
+                        <button class="opt-btn" value="C">C) Seriation (क्रमबद्धता)</button>
+                        <button class="opt-btn" value="D">D) Animism</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Seriation (Concrete Operational Stage) is the ability to sort objects according to a specific quantitative dimension like length or weight.</div>
+                </div>
+
+                <!-- Q28 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q28. In CAI (Computer Assisted Instruction), which mode involves virtual replication of real-world scenarios, ideal for dangerous experiments?<br><br>CAI में, कौन-सा मोड वास्तविक दुनिया के परिदृश्यों का आभासी प्रतिरूपण है, जो खतरनाक प्रयोगों के लिए आदर्श है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Drill and Practice</button>
+                        <button class="opt-btn" value="B">B) Simulation (सिमुलेशन)</button>
+                        <button class="opt-btn" value="C">C) Tutorial</button>
+                        <button class="opt-btn" value="D">D) Word Processing</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Simulations allow learners to experiment safely in a computerized model of reality.</div>
+                </div>
+
+                <!-- Q29 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q29. According to Krathwohl's Affective Domain, what is the highest level of emotional/value internalization?<br><br>क्राथवोहल के भावात्मक क्षेत्र के अनुसार, भावनात्मक/मूल्य आंतरिककरण का उच्चतम स्तर क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Responding</button>
+                        <button class="opt-btn" value="B">B) Organization</button>
+                        <button class="opt-btn" value="C">C) Characterization by a value (मूल्य द्वारा चरित्रिकरण)</button>
+                        <button class="opt-btn" value="D">D) Receiving</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Characterization is the peak of the affective domain, where a person's value system consistently dictates their behavior and worldview.</div>
+                </div>
+
+                <!-- Q30 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q30. Reciprocal Teaching, based on Vygotsky's theories, uses four main strategies. Which of the following is NOT one of them?<br><br>वायगोत्स्की पर आधारित 'पारस्परिक शिक्षण' चार रणनीतियों का उपयोग करता है। इनमें से कौन-सा उनमें से एक नहीं है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Memorizing (रटना)</button>
+                        <button class="opt-btn" value="B">B) Summarizing (सारांशित करना)</button>
+                        <button class="opt-btn" value="C">C) Questioning (प्रश्न पूछना)</button>
+                        <button class="opt-btn" value="D">D) Predicting (भविष्यवाणी करना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> The four strategies of Reciprocal Teaching are Summarizing, Questioning, Clarifying, and Predicting (SQCP). Memorizing is not included.</div>
+                </div>
+
+                <!-- Q31 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q31. Which maxim of teaching is heavily aligned with Inductive reasoning?<br><br>कौन-सा शिक्षण सूत्र मुख्य रूप से आगमनात्मक तर्क (Inductive reasoning) के साथ संरेखित है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) General to Specific</button>
+                        <button class="opt-btn" value="B">B) Particular to General (विशिष्ट से सामान्य की ओर)</button>
+                        <button class="opt-btn" value="C">C) Abstract to Concrete</button>
+                        <button class="opt-btn" value="D">D) Unknown to Known</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Inductive reasoning builds a general rule from specific (particular) examples.</div>
+                </div>
+
+                <!-- Q32 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q32. In classical conditioning, 'Spontaneous Recovery' refers to:<br><br>शास्त्रीय अनुबंधन में, 'स्वतः पुनःप्राप्ति' (Spontaneous Recovery) का क्या अर्थ है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) The permanent forgetting of a reflex</button>
+                        <button class="opt-btn" value="B">B) The sudden reappearance of an extinguished conditioned response after a rest period (विश्राम अवधि के बाद विलुप्त वातानुकूलित प्रतिक्रिया की अचानक वापसी)</button>
+                        <button class="opt-btn" value="C">C) Learning a completely new trick</button>
+                        <button class="opt-btn" value="D">D) Ignoring the bell</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Even after extinction, if the subject is given a rest period, the conditioned response (salivation) may temporarily reappear when the bell is rung.</div>
+                </div>
+
+                <!-- Q33 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q33. According to Simpson's Psychomotor Domain, what is the highest level (Level 7) involving the creation of new movement patterns?<br><br>सिम्पसन के मनोगत्यात्मक क्षेत्र के अनुसार, नया कौशल सृजन (Level 7) क्या कहलाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Mechanism</button>
+                        <button class="opt-btn" value="B">B) Origination (उद्भव / सृजन)</button>
+                        <button class="opt-btn" value="C">C) Adaptation</button>
+                        <button class="opt-btn" value="D">D) Perception</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Origination is the highest psychomotor level, where the learner creates entirely new, highly skilled physical movements or performances.</div>
+                </div>
+
+                <!-- Q34 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q34. In FIAC, Category 9 corresponds to:<br><br>FIAC में, श्रेणी 9 किससे संबंधित है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Pupil response</button>
+                        <button class="opt-btn" value="B">B) Pupil initiation (छात्र पहल)</button>
+                        <button class="opt-btn" value="C">C) Teacher lecturing</button>
+                        <button class="opt-btn" value="D">D) Silence</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Category 8 is Pupil Response. Category 9 is Pupil Initiation, meaning the student volunteers an idea or asks a new question.</div>
+                </div>
+
+                <!-- Q35 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q35. Brainstorming was primarily developed by Alex Osborn to foster:<br><br>एलेक्स ओसबोर्न द्वारा विकसित 'ब्रेनस्टॉर्मिंग' का मुख्य उद्देश्य क्या था?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Divergent and creative thinking (अपसारी और रचनात्मक चिंतन)</button>
+                        <button class="opt-btn" value="B">B) Rote memorization</button>
+                        <button class="opt-btn" value="C">C) Convergent recall</button>
+                        <button class="opt-btn" value="D">D) Discipline in class</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Brainstorming defers judgment to generate a massive quantity of creative ideas, encouraging divergent thinking.</div>
+                </div>
+
+                <!-- Q36 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q36. Providing a student with temporary instructional support (like hints) within their ZPD is termed as:<br><br>छात्र को उसके ZPD के भीतर अस्थायी निर्देशनात्मक सहायता (जैसे संकेत) प्रदान करना क्या कहलाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Shaping</button>
+                        <button class="opt-btn" value="B">B) Assimilation</button>
+                        <button class="opt-btn" value="C">C) Scaffolding (पाड़ / मचान)</button>
+                        <button class="opt-btn" value="D">D) Conditioning</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Scaffolding is the temporary support from an MKO that is gradually faded as the learner becomes independent.</div>
+                </div>
+
+                <!-- Q37 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q37. Which of the following is the longest and most critical step in Kilpatrick's Project Method?<br><br>किलपैट्रिक की प्रायोजना विधि में सबसे लंबा और सबसे महत्वपूर्ण चरण कौन-सा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Planning (योजना)</button>
+                        <button class="opt-btn" value="B">B) Evaluating (मूल्यांकन)</button>
+                        <button class="opt-btn" value="C">C) Executing (क्रियान्वयन)</button>
+                        <button class="opt-btn" value="D">D) Selection (चयन)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Executing the project is where the actual "learning by doing" takes place, taking up the majority of the time and effort.</div>
+                </div>
+
+                <!-- Q38 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q38. "A student takes an aspirin to get rid of a headache." In behavioral terms, this is an example of:<br><br>"एक छात्र सिरदर्द से छुटकारा पाने के लिए एस्पिरिन लेता है।" व्यवहारिक शब्दों में, यह किसका उदाहरण है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Positive Reinforcement</button>
+                        <button class="opt-btn" value="B">B) Negative Reinforcement (ऋणात्मक पुनर्बलन)</button>
+                        <button class="opt-btn" value="C">C) Punishment</button>
+                        <button class="opt-btn" value="D">D) Classical Conditioning</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> The removal of the headache (aversive stimulus) reinforces the behavior of taking the pill.</div>
+                </div>
+
+                <!-- Q39 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q39. According to Piaget, egocentrism (अहं-केंद्रितता) is a prominent characteristic of which stage?<br><br>पियाजे के अनुसार, 'अहं-केंद्रितता' किस अवस्था की प्रमुख विशेषता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Sensorimotor</button>
+                        <button class="opt-btn" value="B">B) Concrete Operational</button>
+                        <button class="opt-btn" value="C">C) Formal Operational</button>
+                        <button class="opt-btn" value="D">D) Pre-Operational (पूर्व-संक्रियात्मक)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> During the pre-operational stage (2-7 yrs), children struggle to see situations from another person's perspective.</div>
+                </div>
+
+                <!-- Q40 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q40. The EDUSAT satellite (GSAT-3) is primarily associated with which form of education?<br><br>EDUSAT उपग्रह मुख्य रूप से किस प्रकार की शिक्षा से जुड़ा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Special Education</button>
+                        <button class="opt-btn" value="B">B) Kindergarten teaching</button>
+                        <button class="opt-btn" value="C">C) Distance and interactive satellite-based education (दूरस्थ शिक्षा)</button>
+                        <button class="opt-btn" value="D">D) Teacher appraisals</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> EDUSAT was launched by ISRO exclusively to support distance learning and tele-education in India.</div>
+                </div>
+
+                <!-- Q41 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q41. A teacher using a physical model of a heart instead of a real human heart is using which level of Dale's Cone?<br><br>असली हृदय के बजाय हृदय के भौतिक मॉडल का उपयोग करना डेल के शंकु के किस स्तर पर आता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Contrived Experiences (कृत्रिम अनुभव)</button>
+                        <button class="opt-btn" value="B">B) Direct Purposeful Experiences</button>
+                        <button class="opt-btn" value="C">C) Verbal Symbols</button>
+                        <button class="opt-btn" value="D">D) Dramatized Experiences</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Models, mock-ups, and simulations represent 'Contrived Experiences', which are just one step above direct purposeful experiences.</div>
+                </div>
+
+                <!-- Q42 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q42. Which cognitive level is demonstrated when a student finds and fixes a bug in a computer program?<br><br>जब कोई छात्र कंप्यूटर प्रोग्राम में बग (त्रुटि) ढूँढकर ठीक करता है, तो यह किस संज्ञानात्मक स्तर को दर्शाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Remember</button>
+                        <button class="opt-btn" value="B">B) Analyze (विश्लेषण करना)</button>
+                        <button class="opt-btn" value="C">C) Understand</button>
+                        <button class="opt-btn" value="D">D) Receive</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Debugging requires breaking down the code to find the logical flaw, which is Analysis.</div>
+                </div>
+
+                <!-- Q43 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q43. Bruner's 'Enactive Mode' of representation corresponds most closely to which of Piaget's stages?<br><br>ब्रूनर का 'सक्रियता' (Enactive) मोड पियाजे की किस अवस्था से सबसे अधिक मेल खाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Formal Operational</button>
+                        <button class="opt-btn" value="B">B) Sensorimotor (संवेदी-पेशीय)</button>
+                        <button class="opt-btn" value="C">C) Concrete Operational</button>
+                        <button class="opt-btn" value="D">D) Pre-operational</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Both Enactive mode and Sensorimotor stage rely on physical, motor-based interactions with the environment to learn (0-2 years).</div>
+                </div>
+
+                <!-- Q44 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q44. Which learning environment blends face-to-face instruction with online, digital instruction?<br><br>कौन-सा अधिगम परिवेश आमने-सामने के निर्देश को ऑनलाइन डिजिटल निर्देश के साथ मिलाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Pure Distance Learning</button>
+                        <button class="opt-btn" value="B">B) Blended Learning (मिश्रित अधिगम)</button>
+                        <button class="opt-btn" value="C">C) Homeschooling</button>
+                        <button class="opt-btn" value="D">D) Traditional Lecture</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Blended learning combines the best of traditional classroom teaching with online digital platforms.</div>
+                </div>
+
+                <!-- Q45 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q45. In problem-solving, what is the step immediately following "Analyzing and Collecting Data"?<br><br>समस्या-समाधान में "डेटा विश्लेषण" के तुरंत बाद का चरण क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Evaluating the final result</button>
+                        <button class="opt-btn" value="B">B) Executing the project</button>
+                        <button class="opt-btn" value="C">C) Publishing the solution</button>
+                        <button class="opt-btn" value="D">D) Formulating Tentative Hypotheses (परिकल्पना निर्माण)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> After understanding the problem and analyzing the facts, a scientist formulates a tentative hypothesis to test.</div>
+                </div>
+
+                <!-- Q46 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q46. Under FIAC, 'Teacher Criticizing or Justifying Authority' falls under which category?<br><br>FIAC के तहत, 'शिक्षक का आलोचना करना या अधिकार जताना' किस श्रेणी में आता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Category 1</button>
+                        <button class="opt-btn" value="B">B) Category 4</button>
+                        <button class="opt-btn" value="C">C) Category 7</button>
+                        <button class="opt-btn" value="D">D) Category 10</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Category 7 records instances of teacher criticism or enforcing authority, which falls under 'Direct Teacher Influence'.</div>
+                </div>
+
+                <!-- Q47 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q47. If a student's anxiety prevents them from understanding the teacher's lesson, the communication barrier is:<br><br>यदि किसी छात्र की चिंता उसे पाठ समझने से रोकती है, तो संचार बाधा है:</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Psychological (मनोवैज्ञानिक)</button>
+                        <button class="opt-btn" value="B">B) Physical</button>
+                        <button class="opt-btn" value="C">C) Semantic</button>
+                        <button class="opt-btn" value="D">D) Linguistic</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Anxiety, fear, and emotional distress are psychological barriers in the receiver's mind.</div>
+                </div>
+
+                <!-- Q48 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q48. In the 5E model, which phase occurs last to measure student mastery?<br><br>5E मॉडल में, छात्र की महारत को मापने के लिए सबसे अंत में कौन-सा चरण आता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Elaborate</button>
+                        <button class="opt-btn" value="B">B) Evaluate (मूल्यांकन)</button>
+                        <button class="opt-btn" value="C">C) Explore</button>
+                        <button class="opt-btn" value="D">D) Explain</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Evaluate is the final E, focusing on formative and summative assessment of the concepts learned.</div>
+                </div>
+
+                <!-- Q49 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q49. Piaget stated that cognitive development relies on Biological Maturation, whereas Vygotsky stated it relies on:<br><br>पियाजे के अनुसार संज्ञानात्मक विकास जैविक परिपक्वता पर निर्भर है, जबकि वायगोत्स्की के अनुसार यह किस पर निर्भर है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Reinforcement schedules</button>
+                        <button class="opt-btn" value="B">B) Social Interaction and Culture (सामाजिक संपर्क और संस्कृति)</button>
+                        <button class="opt-btn" value="C">C) Genetic inheritance only</button>
+                        <button class="opt-btn" value="D">D) Psycho-sexual stages</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> Vygotsky's Socio-Cultural Theory emphasizes that cognitive growth is driven by social interaction and cultural tools like language.</div>
+                </div>
+
+                <!-- Q50 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q50. The National Initiative for School Heads' and Teachers' Holistic Advancement is abbreviated as:<br><br>स्कूल प्रमुखों और शिक्षकों की समग्र उन्नति के लिए राष्ट्रीय पहल का संक्षिप्त नाम क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) DIKSHA</button>
+                        <button class="opt-btn" value="B">B) NISHTHA (निष्ठा)</button>
+                        <button class="opt-btn" value="C">C) SWAYAM</button>
+                        <button class="opt-btn" value="D">D) PARAKH</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> NISHTHA is the flagship capacity-building and teacher training program launched by the Ministry of Education.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const totalQuestions = 50;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+
+                // Final Score Celebration
+                if (totalAnswered === totalQuestions) {
+                    const percentage = (score / totalQuestions) * 100;
+                    const scoreDisplay = document.querySelector('.score-display');
+                    if (percentage >= 75) {
+                        scoreDisplay.style.background = "#dcfce7";
+                        scoreDisplay.style.color = "#166534";
+                        scoreDisplay.innerHTML += ` (Excellent! ${percentage}%)`;
+                    } else {
+                        scoreDisplay.style.background = "#fee2e2";
+                        scoreDisplay.style.color = "#991b1b";
+                        scoreDisplay.innerHTML += ` (Keep Practicing! ${percentage}%)`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

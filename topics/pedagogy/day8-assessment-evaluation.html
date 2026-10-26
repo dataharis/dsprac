@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 8: Assessment & Evaluation | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; position: sticky; top: 20px; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 8: Assessment & Evaluation
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 8: Assessment & Evaluation</h1>
+            <div class="subtitle">Formative vs. Summative, Diagnostic Tests, CCE & Rubrics | Bilingual Notes</div>
+            
+            <h2>1. Assessment FOR, OF, and AS Learning (सीखने के लिए, का, और के रूप में आकलन)</h2>
+            <table>
+                <tr>
+                    <th>Type of Assessment (प्रकार)</th>
+                    <th>Purpose & Timing (उद्देश्य और समय)</th>
+                    <th>Example (उदाहरण)</th>
+                </tr>
+                <tr>
+                    <td><strong>Assessment FOR Learning</strong><br>(सीखने के <em>लिए</em> आकलन)</td>
+                    <td><strong>Formative (रचनात्मक):</strong> Takes place <em>during</em> the learning process. Used to diagnose gaps and improve teaching. (Feedback-driven).</td>
+                    <td>Quizzes, class discussions, teacher observing group work. <em>(Chef tasting the soup while cooking).</em></td>
+                </tr>
+                <tr>
+                    <td><strong>Assessment OF Learning</strong><br>(सीखने <em>का</em> आकलन)</td>
+                    <td><strong>Summative (योगात्मक):</strong> Takes place at the <em>end</em> of the term/unit. Used to grade, certify, or promote students.</td>
+                    <td>Annual exams, Board exams, Final projects. <em>(Guest tasting the soup when served).</em></td>
+                </tr>
+                <tr>
+                    <td><strong>Assessment AS Learning</strong><br>(सीखने के <em>रूप में</em> आकलन)</td>
+                    <td><strong>Metacognitive (मेटाकॉग्निटिव):</strong> Students assess their own learning. Fosters self-regulation and peer feedback.</td>
+                    <td>Self-assessment, peer-assessment, reflective journals.</td>
+                </tr>
+            </table>
+
+            <h2>2. Diagnostic Assessment & Remedial Teaching (निदानात्मक आकलन एवं उपचारात्मक शिक्षण)</h2>
+            <p><strong>Diagnostic Test (निदानात्मक परीक्षण):</strong> Conducted to find out the specific learning difficulties, weaknesses, or root causes of a student's errors. <em>(Like a doctor diagnosing a disease via a blood test).</em></p>
+            <p><strong>Remedial Teaching (उपचारात्मक शिक्षण):</strong> The instructional strategy applied <em>after</em> the diagnostic test to fix the identified learning gaps. <em>(Like the medicine given by the doctor).</em></p>
+            <div class="bilingual-box">
+                <strong>Correct Sequence (सही क्रम):</strong> Formative Assessment → Diagnostic Test (finds the gap) → Remedial Teaching (fixes the gap) → Re-evaluation.
+            </div>
+
+            <h2>3. Qualities of a Good Test (एक अच्छे परीक्षण की विशेषताएं)</h2>
+            <ul>
+                <li><strong>Validity (वैधता):</strong> The test measures exactly what it claims to measure. <em>(A math test should not test reading comprehension).</em></li>
+                <li><strong>Reliability (विश्वसनीयता):</strong> Consistency of scores. If a student takes the test multiple times under similar conditions, the score remains the same.</li>
+                <li><strong>Objectivity (वस्तुनिष्ठता):</strong> The score is not affected by the personal bias or mood of the examiner. (e.g., MCQs are highly objective).</li>
+                <li><strong>Usability/Practicability (व्यावहारिकता):</strong> Easy to administer, cost-effective, and time-efficient.</li>
+            </ul>
+
+            <h2>4. Assessment Tools & Frameworks (आकलन उपकरण)</h2>
+            <ul>
+                <li><strong>Rubrics (रूब्रिक्स):</strong> A scoring guide used to evaluate performance, a product, or a project based on specific criteria.</li>
+                <li><strong>Portfolio (पोर्टफोलियो):</strong> A purposeful collection of a student's best works, art, and assignments over a period of time, showing growth.</li>
+                <li><strong>Anecdotal Record (उपाख्यानात्मक रिकॉर्ड):</strong> A teacher's brief written notes detailing specific, significant behavioral incidents of a student.</li>
+                <li><strong>CCE (Continuous & Comprehensive Evaluation / सतत एवं व्यापक मूल्यांकन):</strong> Introduced by CBSE/RTE to evaluate both Scholastic (academic) and Co-scholastic (sports, arts, values) domains continuously.</li>
+            </ul>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (20 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 20</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. A teacher tastes the food while cooking to check the seasoning. In the context of educational evaluation, this is analogous to:<br><br>एक रसोइया खाना पकाते समय चखता है। शैक्षिक मूल्यांकन के संदर्भ में, यह किसके समान है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Assessment OF learning (सीखने का आकलन)</button>
+                        <button class="opt-btn" value="B">B) Assessment FOR learning (सीखने के लिए आकलन)</button>
+                        <button class="opt-btn" value="C">C) Assessment AS learning (सीखने के रूप में आकलन)</button>
+                        <button class="opt-btn" value="D">D) Summative Assessment (योगात्मक आकलन)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Tasting soup while cooking allows the chef to make improvements (add salt). This is exactly what Formative Assessment (Assessment FOR learning) does—it provides feedback to improve teaching/learning while it is still happening.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q2. Which type of assessment is primarily used for grading, certifying, and promoting students at the end of an instructional unit?<br><br>किस प्रकार के आकलन का उपयोग मुख्य रूप से एक शिक्षण इकाई के अंत में छात्रों को ग्रेड देने और कक्षोन्नति (promotions) के लिए किया जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Summative Assessment (योगात्मक आकलन)</button>
+                        <button class="opt-btn" value="B">B) Formative Assessment (रचनात्मक आकलन)</button>
+                        <button class="opt-btn" value="C">C) Diagnostic Assessment (निदानात्मक आकलन)</button>
+                        <button class="opt-btn" value="D">D) Peer Assessment (सहपाठी आकलन)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Summative Assessment (Assessment OF Learning) occurs at the end of the term (like board exams) to evaluate overall student achievement and assign grades.</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q3. If a test consistently yields the same score when administered to the same student under identical conditions, the test is said to be:<br><br>यदि कोई परीक्षण समान परिस्थितियों में एक ही छात्र पर बार-बार प्रशासित किए जाने पर समान अंक देता है, तो उस परीक्षण को क्या कहा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Valid (वैध)</button>
+                        <button class="opt-btn" value="B">B) Reliable (विश्वसनीय)</button>
+                        <button class="opt-btn" value="C">C) Objective (वस्तुनिष्ठ)</button>
+                        <button class="opt-btn" value="D">D) Subjective (व्यक्तिपरक)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Reliability refers to the consistency and stability of test scores. Validity refers to whether the test measures what it claims to measure.</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q4. What is the primary purpose of a 'Diagnostic Test' in a classroom?<br><br>कक्षा में 'निदानात्मक परीक्षण' का प्राथमिक उद्देश्य क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To assign grades for the final report card</button>
+                        <button class="opt-btn" value="B">B) To separate intelligent students from weak ones</button>
+                        <button class="opt-btn" value="C">C) To test the memory of students</button>
+                        <button class="opt-btn" value="D">D) To identify the specific learning gaps, difficulties, and root causes of student errors (छात्र की त्रुटियों के विशिष्ट सीखने के अंतराल, कठिनाइयों और मूल कारणों की पहचान करना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Just like a doctor diagnoses a disease, a teacher uses a diagnostic test to find the exact weakness or misconception a student is facing so that remedial teaching can be planned.</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q5. After conducting a diagnostic test and identifying that a student struggles with fractions, the teacher provides specific, customized instruction to help the student overcome this difficulty. This is called:<br><br>निदानात्मक परीक्षण करने के बाद, शिक्षक छात्र को कठिनाई दूर करने के लिए विशिष्ट निर्देश प्रदान करता है। इसे क्या कहा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Summative Evaluation (योगात्मक मूल्यांकन)</button>
+                        <button class="opt-btn" value="B">B) Remedial Teaching (उपचारात्मक शिक्षण)</button>
+                        <button class="opt-btn" value="C">C) Peer Tutoring (सहकर्मी ट्यूशन)</button>
+                        <button class="opt-btn" value="D">D) Brainstorming</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Remedial teaching strictly follows diagnostic testing. It is the 'cure' or 'medicine' applied to fix the specific learning gap found during diagnosis.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q6. When students are given opportunities to evaluate their own work and reflect on their learning process, it is known as:<br><br>जब छात्रों को अपने स्वयं के काम का मूल्यांकन करने और अपनी सीखने की प्रक्रिया पर विचार करने का अवसर दिया जाता है, तो इसे किस रूप में जाना जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Assessment OF Learning</button>
+                        <button class="opt-btn" value="B">B) Assessment FOR Learning</button>
+                        <button class="opt-btn" value="C">C) Assessment AS Learning (सीखने के रूप में आकलन)</button>
+                        <button class="opt-btn" value="D">D) Summative Assessment</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Assessment AS learning focuses on the student's metacognition. It involves self-assessment and peer-assessment where the student actively monitors their own progress.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q7. A teacher keeps a notebook where she writes down brief, factual descriptions of significant behavioral incidents regarding specific students (e.g., "Rahul shared his lunch today"). This tool is a/an:<br><br>एक शिक्षक नोटबुक में विशिष्ट छात्रों की महत्वपूर्ण व्यवहारिक घटनाओं का संक्षिप्त, तथ्यात्मक विवरण लिखती है। यह उपकरण क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Anecdotal Record (उपाख्यानात्मक रिकॉर्ड)</button>
+                        <button class="opt-btn" value="B">B) Portfolio (पोर्टफोलियो)</button>
+                        <button class="opt-btn" value="C">C) Rating Scale (रेटिंग स्केल)</button>
+                        <button class="opt-btn" value="D">D) Rubric (रूब्रिक)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Anecdotal records are short, objective, narrative summaries of specific events or behaviors observed by the teacher in the natural classroom setting.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q8. Which of the following best defines a 'Portfolio' in educational assessment?<br><br>शैक्षिक आकलन में 'पोर्टफोलियो' को कौन सर्वोत्तम रूप से परिभाषित करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) A strict record of only the student's exam marks</button>
+                        <button class="opt-btn" value="B">B) A purposeful collection of a student's work over time that exhibits their efforts, progress, and achievements (समय के साथ छात्र के काम का एक उद्देश्यपूर्ण संग्रह जो उसकी प्रगति को दर्शाता है)</button>
+                        <button class="opt-btn" value="C">C) A medical record file</button>
+                        <button class="opt-btn" value="D">D) The teacher's lesson planning diary</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A portfolio is a curated folder of a student's best artifacts (drawings, essays, projects) collected over a semester or year to showcase their longitudinal growth.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q9. The concept of CCE (Continuous and Comprehensive Evaluation) primarily stresses upon:<br><br>CCE (सतत एवं व्यापक मूल्यांकन) की अवधारणा मुख्य रूप से किस पर जोर देती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Conducting board exams every month</button>
+                        <button class="opt-btn" value="B">B) Evaluating only the cognitive (academic) abilities of students</button>
+                        <button class="opt-btn" value="C">C) Punishing students for poor grades</button>
+                        <button class="opt-btn" value="D">D) Holistic evaluation of both scholastic and co-scholastic aspects of a student's growth continuously (छात्र के विकास के शैक्षिक और सह-शैक्षिक दोनों पहलुओं का समग्र और निरंतर मूल्यांकन)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> CCE aims for the all-round development of the child. 'Comprehensive' means evaluating both Scholastic (Math, Science) and Co-Scholastic (Sports, Art, Life Skills) domains.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q10. A scoring guide that explicitly details the criteria for grading a project or assignment across different levels of quality is called a:<br><br>एक स्कोरिंग गाइड जो किसी प्रोजेक्ट को अलग-अलग गुणवत्ता स्तरों पर ग्रेड करने के मानदंडों का स्पष्ट रूप से विवरण देती है, क्या कहलाती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Syllabus</button>
+                        <button class="opt-btn" value="B">B) Rubric (रूब्रिक)</button>
+                        <button class="opt-btn" value="C">C) Checklist</button>
+                        <button class="opt-btn" value="D">D) Sociogram</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A rubric is a matrix or grid used by teachers (and students) that defines what is expected in an assignment and how it will be graded across various performance levels (e.g., Poor, Good, Excellent).</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q11. A mathematics test designed to measure algebra skills unintentionally contains highly complex English vocabulary, causing ESL (English Second Language) students to fail. This test lacks:<br><br>बीजगणित कौशल को मापने के लिए डिज़ाइन किए गए परीक्षण में गलती से अत्यधिक जटिल अंग्रेजी शब्दावली शामिल हो गई। इस परीक्षण में किस चीज़ की कमी है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Reliability (विश्वसनीयता)</button>
+                        <button class="opt-btn" value="B">B) Objectivity (वस्तुनिष्ठता)</button>
+                        <button class="opt-btn" value="C">C) Validity (वैधता)</button>
+                        <button class="opt-btn" value="D">D) Usability</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The test is supposed to measure Math, but it is actually measuring English reading skills. Because it does not measure what it claims to measure, it lacks Validity (वैधता).</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q12. The NEP 2020 proposes a shift in the assessment system from summative and rote-memorization based testing to:<br><br>NEP 2020 मूल्यांकन प्रणाली में योगात्मक और रटने-आधारित परीक्षण से किस ओर बदलाव का प्रस्ताव करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Exclusively online AI exams</button>
+                        <button class="opt-btn" value="B">B) Formative, competency-based assessments that test higher-order skills like analysis and critical thinking (रचनात्मक, योग्यता-आधारित आकलन जो उच्च-स्तरीय कौशल का परीक्षण करते हैं)</button>
+                        <button class="opt-btn" value="C">C) Abolishing all exams completely</button>
+                        <button class="opt-btn" value="D">D) Only assessing co-curricular activities</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> NEP 2020 shifts the focus to regular, formative, and competency-based assessment to promote learning and development, testing analysis, critical thinking, and conceptual clarity.</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q13. In Norm-Referenced Testing (NRT), a student's performance is compared to:<br><br>मानक-संदर्भित परीक्षण (NRT) में, किसी छात्र के प्रदर्शन की तुलना किससे की जाती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) A fixed, pre-determined passing standard</button>
+                        <button class="opt-btn" value="B">B) The performance of other students who took the same test (समान परीक्षण देने वाले अन्य छात्रों के प्रदर्शन से)</button>
+                        <button class="opt-btn" value="C">C) The student's own past performance</button>
+                        <button class="opt-btn" value="D">D) The teacher's expectations</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> NRT (like Percentiles in competitive exams like JEE/CAT) compares a test-taker to their peers (the 'norm' group). CRT (Criterion-Referenced) compares performance to a fixed standard (like getting 33% to pass).</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q14. The 360-degree Holistic Progress Card proposed by NEP 2020 will include evaluation by:<br><br>NEP 2020 द्वारा प्रस्तावित 360-डिग्री समग्र प्रगति कार्ड (HPC) में किसके द्वारा मूल्यांकन शामिल होगा?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) The teacher only</button>
+                        <button class="opt-btn" value="B">B) Computer software only</button>
+                        <button class="opt-btn" value="C">C) Self, Peers, and Teachers (स्वयं, सहपाठी और शिक्षक द्वारा)</button>
+                        <button class="opt-btn" value="D">D) The Principal only</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A 360-degree evaluation means a holistic, multi-dimensional report card reflecting the student's progress evaluated by the student themselves, their peers, and their teachers.</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q15. An objective type test (like MCQs) is superior to an essay type test primarily because it possesses high:<br><br>एक वस्तुनिष्ठ प्रकार का परीक्षण (जैसे MCQ) निबंध प्रकार के परीक्षण से मुख्य रूप से बेहतर है क्योंकि इसमें उच्च ______ होता है:</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Subjectivity</button>
+                        <button class="opt-btn" value="B">B) Creativity</button>
+                        <button class="opt-btn" value="C">C) Objectivity and Reliability in scoring (स्कोरिंग में वस्तुनिष्ठता और विश्वसनीयता)</button>
+                        <button class="opt-btn" value="D">D) Expression of ideas</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> MCQs remove the examiner's personal bias. Whether Examiner A checks it or Examiner B checks it, the score remains identical, ensuring high objectivity and scoring reliability.</div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q16. Which type of test is most appropriate if a teacher wants to identify why a student is constantly making errors in carrying over numbers during addition?<br><br>यदि शिक्षक यह पहचानना चाहता है कि छात्र जोड़ (addition) में हासिल (carry-over) लेने में बार-बार गलती क्यों कर रहा है, तो कौन-सा परीक्षण सबसे उपयुक्त है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Achievement Test</button>
+                        <button class="opt-btn" value="B">B) Diagnostic Test (निदानात्मक परीक्षण)</button>
+                        <button class="opt-btn" value="C">C) Intelligence Test</button>
+                        <button class="opt-btn" value="D">D) Summative Test</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Diagnostic tests are designed specifically to pinpoint the root cause of a student's learning difficulty so that it can be remedied.</div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q17. In the context of assessment, what does 'Ipsative Assessment' refer to?<br><br>आकलन के संदर्भ में, 'इप्सेटिव असेसमेंट' (Ipsative Assessment) का क्या अर्थ है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Comparing a student with national averages</button>
+                        <button class="opt-btn" value="B">B) Comparing a student's current performance with their own previous performance (छात्र के वर्तमान प्रदर्शन की तुलना उसके स्वयं के पिछले प्रदर्शन से करना)</button>
+                        <button class="opt-btn" value="C">C) Comparing students against a strict passing grade</button>
+                        <button class="opt-btn" value="D">D) Assessing physical fitness only</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Ipsative assessment measures personal progress. The student is competing against themselves, not against their peers (Norm) or a fixed grade (Criterion).</div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q18. Formative assessment is characterized by:<br><br>रचनात्मक आकलन (Formative Assessment) की विशेषता क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) End-of-year grading</button>
+                        <button class="opt-btn" value="B">B) Continuous feedback during the teaching-learning process to improve learning (सीखने में सुधार के लिए शिक्षण-अधिगम प्रक्रिया के दौरान निरंतर फीडबैक)</button>
+                        <button class="opt-btn" value="C">C) High-stakes board examinations</button>
+                        <button class="opt-btn" value="D">D) Final certification</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The primary goal of formative assessment is not to judge, but to form and shape the learning process through continuous, low-stakes feedback.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q19. Which of the following is NOT a tool used for Formative Assessment?<br><br>निम्नलिखित में से कौन-सा रचनात्मक आकलन के लिए प्रयुक्त उपकरण नहीं है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Annual Board Examination (वार्षिक बोर्ड परीक्षा)</button>
+                        <button class="opt-btn" value="B">B) Oral Quizzes</button>
+                        <button class="opt-btn" value="C">C) Class Discussions</button>
+                        <button class="opt-btn" value="D">D) Concept Maps and Worksheets</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Annual Board Examinations are the classic example of Summative Assessment (Assessment OF Learning), occurring at the end of the year for certification.</div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q20. When a student uses a rubric to grade their own essay before submitting it to the teacher, they are engaging in:<br><br>जब कोई छात्र अपना निबंध शिक्षक को सौंपने से पहले उसे ग्रेड देने के लिए रूब्रिक का उपयोग करता है, तो वह किसमें संलग्न है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Assessment of Learning</button>
+                        <button class="opt-btn" value="B">B) Peer Assessment</button>
+                        <button class="opt-btn" value="C">C) Assessment AS Learning (सीखने के रूप में आकलन)</button>
+                        <button class="opt-btn" value="D">D) Diagnostic Evaluation</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Self-assessment, reflecting on one's own work, and monitoring one's own progress is defined as Assessment AS Learning (metacognition).</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const totalQuestions = 20;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+
+                // Final Score Celebration
+                if (totalAnswered === totalQuestions) {
+                    const percentage = (score / totalQuestions) * 100;
+                    const scoreDisplay = document.querySelector('.score-display');
+                    if (percentage >= 75) {
+                        scoreDisplay.style.background = "#dcfce7";
+                        scoreDisplay.style.color = "#166534";
+                        scoreDisplay.innerHTML += ` (Excellent! ${percentage}%)`;
+                    } else {
+                        scoreDisplay.style.background = "#fee2e2";
+                        scoreDisplay.style.color = "#991b1b";
+                        scoreDisplay.innerHTML += ` (Review Notes! ${percentage}%)`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
