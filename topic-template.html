@@ -1,171 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>15-Day Teaching Methodology & Pedagogy Plan | DSSSB TGT Prep</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>DSSSB 2026 GK Marathon - All 13 Sets (258 MCQs)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #1e3a8a;
-            --secondary-color: #2563eb;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --success-color: #16a34a;
+        body {
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            background-color: #f1f5f9;
+            color: #0f172a;
         }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
-
-        nav { background: var(--primary-color); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-        nav a { color: white; text-decoration: none; font-weight: 500; }
-
-        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
-        .breadcrumb { margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted); }
-        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
-
-        .content-card {
-            background: var(--card-bg); border-radius: 12px; padding: 2.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--border-color); margin-bottom: 2rem;
+        .opt-btn {
+            transition: all 0.18s ease;
         }
-
-        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
-        .subtitle { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 2rem; font-size: 0.95rem; }
-        th, td { border: 1px solid var(--border-color); padding: 0.85rem 1rem; text-align: left; vertical-align: top; }
-        th { background: var(--primary-color); color: white; font-weight: 600; }
-        tr:nth-child(even) { background: #f8fafc; }
-
-        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; }
+        .opt-btn:not(:disabled):hover {
+            border-color: #6366f1;
+            background-color: #eef2ff;
+            transform: translateY(-1px);
+        }
+        .opt-correct {
+            background-color: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #14532d !important;
+        }
+        .opt-wrong {
+            background-color: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #7f1d1d !important;
+        }
+        .badge-correct {
+            background-color: #16a34a !important;
+            color: #ffffff !important;
+            border-color: #16a34a !important;
+        }
+        .badge-wrong {
+            background-color: #dc2626 !important;
+            color: #ffffff !important;
+            border-color: #dc2626 !important;
+        }
+        .set-tab-active {
+            background-color: #4f46e5 !important;
+            color: #ffffff !important;
+            border-color: #4f46e5 !important;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
 
-    <nav>
-        <h2>DSSSB TGT Master Prep</h2>
-        <a href="../../index.html">← Back to Home</a>
-    </nav>
+    <!-- Sticky Header & Live Scoreboard -->
+    <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                <!-- Title -->
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-extrabold text-lg shadow">
+                            GK
+                        </div>
+                        <div>
+                            <h1 class="text-lg md:text-xl font-extrabold text-slate-900 leading-tight">
+                                DSSSB 2026 GK Marathon Quiz
+                            </h1>
+                            <p class="text-xs text-slate-500 font-medium">
+                                All 13 Sets • 258 Real PYQs & Current Affairs (Bilingual: English & हिंदी)
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="container">
-        <div class="breadcrumb">
-            <a href="../../index.html">Home</a> > 15-Day Pedagogy Study Plan
+                <!-- Live Stats Bar -->
+                <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                    <div class="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 text-xs sm:text-sm font-semibold">
+                        <span class="text-slate-500">Attempted:</span>
+                        <span id="stat-attempted" class="text-indigo-700 font-bold">0/258</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 text-xs sm:text-sm font-semibold">
+                        <span class="text-emerald-700">Correct:</span>
+                        <span id="stat-correct" class="text-emerald-800 font-bold">0</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 bg-rose-50 px-3 py-1.5 rounded-lg border border-rose-200 text-xs sm:text-sm font-semibold">
+                        <span class="text-rose-700">Wrong:</span>
+                        <span id="stat-wrong" class="text-rose-800 font-bold">0</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-200 text-xs sm:text-sm font-semibold">
+                        <span class="text-amber-700">Accuracy:</span>
+                        <span id="stat-accuracy" class="text-amber-900 font-bold">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls Row: Set Tabs -->
+            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center gap-1.5 overflow-x-auto pb-1.5" id="set-tabs-container">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Filters, Search, View Mode & Study Mode -->
+            <div class="mt-2 pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+                <!-- Search Input -->
+                <div class="relative flex-1 min-w-[200px] max-w-md">
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Search Q.No (e.g. 45) or keyword (English / हिंदी)..."
+                        class="w-full pl-9 pr-8 py-1.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+                    >
+                    <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <button id="clear-search" class="hidden absolute right-2.5 top-2 text-slate-400 hover:text-slate-600 text-xs font-bold">✕</button>
+                </div>
+
+                <!-- Action Controls -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <!-- Status Filter -->
+                    <select id="status-filter" class="text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="all">Show: All Questions</option>
+                        <option value="unattempted">Unattempted Only</option>
+                        <option value="correct">Correct Only</option>
+                        <option value="wrong">Wrong Only</option>
+                    </select>
+
+                    <!-- Language Mode -->
+                    <select id="lang-select" class="text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="both">Language: Bilingual (En + हिं)</option>
+                        <option value="en">English Only</option>
+                        <option value="hi">हिंदी केवल (Hindi Only)</option>
+                    </select>
+
+                    <!-- View Mode Toggle -->
+                    <button id="view-mode-btn" class="text-xs sm:text-sm bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 px-3 py-1.5 rounded-lg font-semibold transition">
+                        Mode: Full Page List
+                    </button>
+
+                    <!-- Study Mode (Show All Answers) -->
+                    <button id="study-mode-btn" class="text-xs sm:text-sm bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-lg font-semibold transition">
+                        👁️ Show All Answers
+                    </button>
+
+                    <!-- Reset Button -->
+                    <button id="reset-btn" class="text-xs sm:text-sm bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 px-3 py-1.5 rounded-lg font-semibold transition">
+                        ↻ Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6">
+        <!-- Active View Banner -->
+        <div id="view-banner" class="mb-6 bg-gradient-to-r from-indigo-700 via-indigo-600 to-violet-700 rounded-2xl p-4 sm:p-5 text-white shadow-md flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-0.5 rounded-full text-xs font-semibold mb-1.5">
+                    <span id="banner-badge">ALL 13 SETS ON ONE PAGE</span>
+                </div>
+                <h2 id="banner-title" class="text-xl sm:text-2xl font-extrabold">Complete 258 Questions Marathon</h2>
+                <p id="banner-subtitle" class="text-xs sm:text-sm text-indigo-100 mt-0.5">
+                    Click any option on any question below for instant Green/Red verification and detailed Bilingual Explanation.
+                </p>
+            </div>
+            <div class="flex items-center gap-3 self-start sm:self-center bg-white/10 px-4 py-2.5 rounded-xl border border-white/15">
+                <div class="text-right">
+                    <div class="text-xs text-indigo-200 uppercase font-semibold">Current View Score</div>
+                    <div id="banner-set-score" class="text-xl font-extrabold">0 / 258</div>
+                </div>
+            </div>
         </div>
 
-        <div class="content-card">
-            <h1>15-Day Teaching Methodology & Pedagogy Plan</h1>
-            <p class="subtitle">Target: 8–9+ Marks out of 10 in DSSSB TGT Section B (Paper 2). Daily Commitment: 30–40 Minutes.</p>
+        <!-- Questions List Container -->
+        <div id="questions-container" class="space-y-6">
+            <!-- Rendered dynamically via JS -->
+        </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Day</th>
-                        <th>Module / Unit</th>
-                        <th>Core Topic (Concepts & Keywords)</th>
-                        <th>Practice Focus</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Day 1</strong></td>
-                        <td>Learning Theories & Psychology</td>
-                        <td>Behaviorism: Thorndike's Laws, Skinner's Operant Conditioning, Pavlov.</td>
-                        <td>Drill & practice vs. reinforcement in lab learning.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 2</strong></td>
-                        <td>Learning Theories & Psychology</td>
-                        <td>Constructivism: Piaget's 4 Stages, Vygotsky (ZPD, Scaffolding, MKO).</td>
-                        <td>Collaborative project work and peer problem-solving.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 3</strong></td>
-                        <td>Teaching Methods & Maxims</td>
-                        <td>Teacher vs. Learner-Centered: Lecture, Demonstration, Heuristic, Project, Problem-Solving.</td>
-                        <td>Inductive vs. Deductive method & Maxims of Teaching.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 4</strong></td>
-                        <td>Taxonomy & Lesson Planning</td>
-                        <td>Bloom's Revised Taxonomy (Remember to Create), 5E Model, Micro-Teaching (36 mins).</td>
-                        <td>Formulating behavioral objectives & lesson steps.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 5</strong></td>
-                        <td>ICT & Digital Pedagogy</td>
-                        <td>Blended & Flipped Learning, CAI, Government Portals: SWAYAM, DIKSHA, NISHTHA.</td>
-                        <td>Digital tools and online repository analysis.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 6</strong></td>
-                        <td>TLM & Communication</td>
-                        <td>Edgar Dale's Cone of Experience, Classroom Communication Barriers, FIAC.</td>
-                        <td>Audio-visual aids and discourse analysis.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 7</strong></td>
-                        <td>Mid-Plan Revision & Drill</td>
-                        <td>Consolidate Days 1–6 Summary Charts (Theorists, Methods, Bloom's, Portals).</td>
-                        <td>Solve 60 Mixed Pedagogy PYQs.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 8</strong></td>
-                        <td>Assessment & Evaluation</td>
-                        <td>Formative (FOR Learning), Summative (OF Learning), AS Learning, Diagnostic & Remedial.</td>
-                        <td>Test validity, reliability, rubrics, portfolios.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 9</strong></td>
-                        <td>NEP 2020 & NCF</td>
-                        <td>NEP 2020 (5+3+3+4, Coding from Class 6, PARAKH), NCF 2005, RTE Act 2009.</td>
-                        <td>Policy norms and structural reforms.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 10</strong></td>
-                        <td>Inclusive Education</td>
-                        <td>RPwD Act 2016 (21 Disabilities), Learning Disabilities (Dyslexia, ADHD, Autism), UDL.</td>
-                        <td>Accommodations for diverse learners.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 11</strong></td>
-                        <td>Adolescent Psychology & Motivation</td>
-                        <td>Stanley Hall ('Storm & Stress'), Erikson (Identity vs Role Confusion), Maslow's Needs.</td>
-                        <td>Intrinsic vs. Extrinsic motivation and adolescent guidance.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 12</strong></td>
-                        <td>Curriculum & Action Research</td>
-                        <td>Spiral Curriculum (Bruner), Hidden vs. Overt Curriculum, Action Research Cycle.</td>
-                        <td>Curriculum principles and classroom research steps.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 13</strong></td>
-                        <td>Subject-Specific Pedagogy</td>
-                        <td>Pedagogy of Logical/Technical Subjects: Lab management, Debugging as diagnostic learning.</td>
-                        <td>Computational thinking and project evaluation.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 14</strong></td>
-                        <td>Full PYQ Marathon</td>
-                        <td>Solve 10 sets of 10 Pedagogy Questions from recent DSSSB TGT Official Papers.</td>
-                        <td>Positive vs. Negative tag-word elimination.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Day 15</strong></td>
-                        <td>Final Rapid Review</td>
-                        <td>1-Page Cheat Sheet Review: NEP 2020 numbers, Theorist pairs, Digital Portals.</td>
-                        <td>2 Timed 10-Question Mini Mocks.</td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- Single Card / Flashcard Navigation Footer (Hidden in List Mode) -->
+        <div id="single-nav-bar" class="hidden mt-6 bg-white p-4 rounded-2xl shadow-sm border border-slate-200 items-center justify-between">
+            <button id="prev-q-btn" class="px-5 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 disabled:opacity-40">
+                ← Previous Question
+            </button>
+            <span id="single-pos-label" class="text-sm font-bold text-slate-600">1 / 258</span>
+            <button id="next-q-btn" class="px-5 py-2.5 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-40">
+                Next Question →
+            </button>
+        </div>
+    </main>
+
+    <!-- Quick Jump Floating Button -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Back to Top" class="fixed bottom-5 right-5 z-20 bg-indigo-600 hover:bg-indigo-700 text-white w-11 h-11 rounded-full shadow-lg flex items-center justify-center font-bold text-lg transition">
+        ↑
+    </button>
+
+    <!-- Custom Reset Modal -->
+    <div id="reset-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-xl border border-slate-200">
+            <h3 class="text-lg font-extrabold text-slate-900">Reset Quiz Progress?</h3>
+            <p class="text-sm text-slate-600 mt-2">
+                Do you want to clear your attempted answers for the current view or all 13 sets?
+            </p>
+            <div class="mt-5 flex flex-col sm:flex-row gap-2 justify-end">
+                <button id="cancel-reset-btn" class="px-4 py-2 rounded-lg text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700">
+                    Cancel
+                </button>
+                <button id="confirm-reset-set-btn" class="px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 hover:bg-amber-600 text-white">
+                    Reset Current View
+                </button>
+                <button id="confirm-reset-all-btn" class="px-4 py-2 rounded-lg text-sm font-semibold bg-rose-600 hover:bg-rose-700 text-white">
+                    Reset All 258 Qs
+                </button>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 DSSSB TGT Master Prep Hub. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+    <script>
+        // Complete 258 Questions Dataset (Sets 1 to 13)
+        // Format: [id, setNumber, qEn, qHi, [opt1, opt2, opt3, opt4], correctIndex(0-3), expEn, expHi]
+        const RAW_QUESTIONS = [
+            // ================= SET 1 (Q1 - Q20) =================
+            [1, 1, "Which mountain range is primarily found in Rajasthan and extends into Gujarat?", "निम्नलिखित में से कौन सी पर्वतमाला मुख्य रूप से राजस्थान में स्थित है और गुजरात तक फैली हुई है?", ["Satpura Range / सतपुड़ा पर्वतमाला", "Himalayan Range / हिमालय पर्वतमाला", "Aravalli Range / अरावली पर्वतमाला", "Western Ghats / पश्चिमी घाट"], 2, "The Aravalli Range is one of the oldest fold mountain ranges in the world, running ~670 km from Gujarat through Rajasthan to Haryana and Delhi.", "अरावली पर्वतमाला विश्व की सबसे प्राचीन वलित पर्वतमालाओं में से एक है, जो गुजरात से राजस्थान होते हुए दिल्ली-हरियाणा तक फैली है।"],
+            [2, 1, "Which regions lost their canal-irrigated agricultural land to Pakistan after Independence, affecting irrigation facilities in India?", "स्वतंत्रता के बाद भारत के किन क्षेत्रों की नहर सिंचित कृषि भूमि पाकिस्तान के हिस्से में चली गई जिससे भारत की सिंचाई व्यवस्था प्रभावित हुई?", ["Punjab and Sindh / पंजाब और सिंध", "Madras and Western UP / मद्रास और पश्चिमी यूपी", "Sindh and Madras / सिंध और मद्रास", "Western UP and Punjab / पश्चिमी यूपी और पंजाब"], 0, "Partition divided the rich Indus basin canal network, leaving major canal-irrigated tracts of West Punjab and Sindh in Pakistan.", "विभाजन के कारण सिंधु बेसिन का समृद्ध नहर नेटवर्क बंट गया और पश्चिमी पंजाब तथा सिंध की प्रमुख नहर सिंचित भूमि पाकिस्तान में चली गई।"],
+            [3, 1, "In the state of Assam, the Brahmaputra River has formed which of the following natural features?", "असम राज्य में ब्रह्मपुत्र नदी ने निम्नलिखित में से कौन सी प्राकृतिक संरचना बनाई है?", ["Mountain passes / पर्वतीय दर्रे", "Plateaus / पठार", "Deserts / मरुस्थल", "Flood plains / बाढ़ के मैदान"], 3, "In the Assam valley, the braided Brahmaputra River deposits huge silt loads to form extensive alluvial flood plains and river islands like Majuli.", "असम घाटी में ब्रह्मपुत्र नदी भारी मात्रा में गाद जमा करके विस्तृत बाढ़ के मैदान (Flood plains) और माजुली जैसे नदी द्वीप बनाती है।"],
+            [4, 1, "Which of the following places was recaptured by the British in March 1858 during the Revolt of 1857?", "1857 के विद्रोह के दौरान मार्च 1858 में अंग्रेजों ने निम्नलिखित में से किस स्थान पर पुनः कब्जा कर लिया था?", ["Kanpur / कानपुर", "Bundelkhand / बुंदेलखंड", "Lucknow / लखनऊ", "Delhi / दिल्ली"], 0, "As per the official exam answer key, Kanpur is marked (Note: Sir Colin Campbell recaptured Kanpur in Dec 1857 and Lucknow in March 1858).", "आधिकारिक उत्तर कुंजी में 'कानपुर' चिह्नित किया गया है (नोट: ऐतिहासिक रूप से कॉलिन कैंपबेल ने कानपुर पर दिसंबर 1857 और लखनऊ पर मार्च 1858 में पुनः कब्जा किया था)।"],
+            [5, 1, "The minimum age required to become a member of the Legislative Assembly (MLA) and Legislative Council (MLC) respectively is:", "विधानसभा (MLA) और विधान परिषद (MLC) का सदस्य बनने के लिए आवश्यक न्यूनतम आयु क्रमशः क्या होगी?", ["45 and 55 years / 45 और 55 वर्ष", "30 and 35 years / 30 और 35 वर्ष", "25 and 30 years / 25 और 30 वर्ष", "21 and 25 years / 21 और 25 वर्ष"], 2, "Under Article 173 of the Constitution, the minimum age is 25 years for the Legislative Assembly (Vidhan Sabha) and 30 years for the Legislative Council (Vidhan Parishad).", "संविधान के अनुच्छेद 173 के अनुसार विधानसभा के लिए न्यूनतम आयु 25 वर्ष और विधान परिषद के लिए 30 वर्ष निर्धारित है।"],
+            [6, 1, "The Tenth Schedule of the Constitution of India is primarily associated with which of the following issues?", "भारतीय संविधान की 10वीं अनुसूची मुख्य रूप से निम्नलिखित में से किस विषय से संबंधित है?", ["Administration of Scheduled Areas / अनुसूचित क्षेत्रों का प्रशासन", "Protection of certain laws / कुछ कानूनों का संरक्षण", "Administration of Tribal Areas / जनजातीय क्षेत्रों का प्रशासन", "Anti-Defection Law / दल-बदल विरोधी कानून"], 3, "Added by the 52nd Constitutional Amendment Act of 1985, the 10th Schedule contains provisions regarding disqualification on grounds of defection.", "52वें संविधान संशोधन अधिनियम, 1985 द्वारा जोड़ी गई 10वीं अनुसूची 'दल-बदल विरोधी कानून' (Anti-Defection Law) से संबंधित है।"],
+            [7, 1, "Which of the following best explains the Original Jurisdiction of the Supreme Court of India?", "निम्नलिखित में से कौन सा विकल्प भारत के सर्वोच्च न्यायालय के मूल क्षेत्राधिकार (Original Jurisdiction) की सर्वोत्तम व्याख्या करता है?", ["Hearing disputes between the Union and States or among States / संघ और राज्यों के बीच या राज्यों के बीच विवादों की सुनवाई करना", "Conducting elections to Parliament and State Legislatures / संसद और राज्य विधानमंडलों के चुनाव कराना", "Reviewing laws to determine constitutional validity / कानूनों की संवैधानिक वैधता की समीक्षा करना", "Hearing appeals from High Courts in constitutional matters / संवैधानिक मामलों में उच्च न्यायालय से अपीलों की सुनवाई करना"], 0, "Under Article 131, the Supreme Court has exclusive Original Jurisdiction in federal disputes between the Government of India and one or more States, or between two or more States.", "अनुच्छेद 131 के तहत सर्वोच्च न्यायालय को केंद्र और राज्यों के बीच या राज्यों के आपसी संघीय विवादों की सुनवाई का अनन्य मूल क्षेत्राधिकार प्राप्त है।"],
+            [8, 1, "Which political organization was founded by Jawaharlal Nehru in 1928 that advocated the complete severing of British ties with India?", "जवाहरलाल नेहरू द्वारा 1928 में किस राजनीतिक संगठन की स्थापना की गई थी जिसने भारत के साथ ब्रिटिश संबंधों को पूरी तरह से तोड़ने की वकालत की थी?", ["Independence for India League / इंडिपेंडेंस फॉर इंडिया लीग", "East India Association / ईस्ट इंडिया एसोसिएशन", "Servants of India Society / सर्वेंट्स ऑफ इंडिया सोसाइटी", "Hindustan Socialist Republican Association / हिंदुस्तान सोशलिस्ट रिपब्लिकन एसोसिएशन"], 0, "Jawaharlal Nehru and Subhas Chandra Bose founded the 'Independence for India League' in 1928 to press for Complete Independence (Purna Swaraj) over Dominion Status.", "जवाहरलाल नेहरू और सुभाष चंद्र बोस ने डोमिनियन स्टेटस के बजाय पूर्ण स्वराज की मांग के लिए 1928 में 'इंडिपेंडेंस फॉर इंडिया लीग' की स्थापना की थी।"],
+            [9, 1, "Who introduced the Market Control Policy during the Delhi Sultanate?", "दिल्ली सल्तनत के दौरान बाजार नियंत्रण नीति (Market Control Policy) की शुरुआत किसने की?", ["Ghiyasuddin Balban / गयासुद्दीन बलबन", "Alauddin Khilji / अलाउद्दीन खिलजी", "Muhammad bin Tughlaq / मुहम्मद बिन तुगलक", "Firoz Shah Tughlaq / फिरोज शाह तुगलक"], 1, "Alauddin Khilji introduced strict market control regulations (Diwan-i-Riyasat & Shahna-i-Mandi) to fix the prices of essential commodities and maintain a huge army.", "अलाउद्दीन खिलजी ने एक विशाल सेना को कम वेतन पर बनाए रखने के लिए आवश्यक वस्तुओं के मूल्य नियंत्रित करने हेतु बाजार नियंत्रण नीति लागू की थी।"],
+            [10, 1, "How do Mangrove forests in the delta regions of India differ from Tropical Deciduous forests of the interior plains?", "भारत के डेल्टा क्षेत्रों के मैंग्रोव वन आंतरिक मैदानों के उष्णकटिबंधीय पर्णपाती वनों से किस प्रकार भिन्न हैं?", ["Mangrove forests grow only in cool mountain regions / ये केवल ठंडे पर्वतीय क्षेत्रों में उगते हैं", "Mangrove forests occur mainly in regions with very low rainfall / ये बहुत कम वर्षा वाले क्षेत्रों में होते हैं", "Mangrove forests develop mainly in deep fertile inland soils / ये गहरी उपजाऊ आंतरिक मिट्टी में विकसित होते हैं", "Mangrove forests grow in saline and waterlogged coastal soils / मैंग्रोव वन लवणीय और जलाक्रांत तटीय मृदा में उगते हैं"], 3, "Mangrove trees are halophytes with specialized breathing roots (pneumatophores) that thrive in saline, tidal, and waterlogged coastal deltas like the Sundarbans.", "मैंग्रोव वन (सुंदरवन आदि) खारे पानी और ज्वारीय जलाक्रांत तटीय मिट्टी में उगते हैं और इनमें श्वसन मूल (Pneumatophores) पाए जाते हैं।"],
+            [11, 1, "Which of the following features is commonly associated with the Lakshadweep Islands?", "निम्नलिखित में से कौन सी विशेषता लक्षद्वीप द्वीप समूह से संबंधित है?", ["Lofty hills / ऊंची पहाड़ियां", "Coral atolls / प्रवाल द्वीप (कोरल एटोल)", "Large rivers / बड़ी नदियां", "Volcanic mountains / ज्वालामुखी पर्वत"], 1, "The Lakshadweep archipelago in the Arabian Sea is composed of coral atolls, barrier reefs, and submerged coral banks.", "अरब सागर में स्थित लक्षद्वीप समूह मुख्य रूप से प्रवाल निक्षेपों (Coral atolls / प्रवाल द्वीप) से बना है।"],
+            [12, 1, "Which of the following measures is primarily intended to improve institutional credit access in rural areas?", "निम्नलिखित में से कौन सा उपाय मुख्य रूप से ग्रामीण क्षेत्रों में संस्थागत ऋण तक पहुंच में सुधार के लिए बनाया गया है?", ["Expansion of Self-Help Groups and Regional Rural Banks / स्वयं सहायता समूहों (SHGs) और क्षेत्रीय ग्रामीण बैंकों (RRBs) का विस्तार", "Construction of rural storage and warehousing centers / ग्रामीण भंडारण और गोदाम केंद्रों का निर्माण", "Development of village transport and market connectivity / ग्रामीण परिवहन और बाजार संपर्क का विकास", "Improvement of irrigation facilities in villages / गांवों में सिंचाई सुविधाओं में सुधार"], 0, "Self-Help Groups (SHG-Bank Linkage) and Regional Rural Banks (RRBs) directly expand formal institutional banking and micro-credit to rural households.", "स्वयं सहायता समूह (SHGs) और क्षेत्रीय ग्रामीण बैंक (RRBs) ग्रामीण परिवारों को साहूकारों से बचाकर औपचारिक संस्थागत ऋण उपलब्ध कराते हैं।"],
+            [13, 1, "Which of the following cities of the Indus Valley Civilization was located on the banks of the Indus River?", "निम्नलिखित में से सिंधु घाटी सभ्यता का कौन सा नगर सिंधु नदी के तट पर स्थित था?", ["Inamgaon / इनामगांव", "Ropar / रोपड़", "Dholavira / धोलावीरा", "Mohenjo-daro / मोहनजोदड़ो"], 3, "Mohenjo-daro ('Mound of the Dead') in Sindh was located on the right bank of the Indus River (while Harappa was on the Ravi, Ropar on the Sutlej, and Dholavira on the Luni/Khadir bet).", "मोहनजोदड़ो (सिंध, पाकिस्तान) सिंधु नदी के दाहिने तट पर स्थित था, जबकि रोपड़ सतलुज नदी के तट पर था।"],
+            [14, 1, "Preventive Detention in India is related to which of the Fundamental Rights?", "भारत में 'निवारक निरोध' (Preventive Detention) किस मूल अधिकार से संबंधित है?", ["Right to Religion / धार्मिक स्वतंत्रता का अधिकार", "Right to Education / शिक्षा का अधिकार", "Right to Freedom / स्वतंत्रता का अधिकार", "Right to Equality / समानता का अधिकार"], 2, "Article 22, which deals with protection against arrest and detention including constitutional safeguards for Preventive Detention, falls under the 'Right to Freedom' (Articles 19–22).", "अनुच्छेद 22 (गिरफ्तारी और निवारक निरोध से संरक्षण) 'स्वतंत्रता के अधिकार' (अनुच्छेद 19-22) के अंतर्गत आता है।"],
+            [15, 1, "Which of the following pairs of crops is commonly grown simultaneously in the same field under the practice of mixed cropping in India?", "भारत में मिश्रित फसल (Mixed Cropping) पद्धति के अंतर्गत एक ही खेत में एक साथ निम्नलिखित में से कौन सी फसलें उगाई जाती हैं?", ["Coffee and Rubber / कॉफी और रबर", "Sugarcane and Jute / गन्ना और जूट", "Wheat and Gram / गेहूं और चना", "Rice and Tea / चावल और चाय"], 2, "Wheat and Gram (or Wheat and Mustard) are widely grown together in Rabi mixed cropping in India to optimize soil fertility and minimize risk of crop failure.", "भारत में रबी सीजन में गेहूं और चना (Wheat and Gram) को मिश्रित फसल के रूप में एक साथ उगाया जाता है।"],
+            [16, 1, "As per the Ministry of Mines, Government of India, which state was the leading producer of gold during 2023-24?", "भारत सरकार के खान मंत्रालय के अनुसार 2023-24 के दौरान कौन सा राज्य सोने का अग्रणी उत्पादक था?", ["Karnataka / कर्नाटक", "Andhra Pradesh / आंध्र प्रदेश", "Rajasthan / राजस्थान", "West Bengal / पश्चिम बंगाल"], 0, "Karnataka is the largest producer of gold in India (accounting for over 99% of primary gold ore production, mainly from Hutti and Kolar fields).", "कर्नाटक भारत में सोने का सबसे बड़ा उत्पादक राज्य है (हट्टी और कोलार की खदानें)।"],
+            [17, 1, "Which of the following movements began after the Jallianwala Bagh massacre?", "जलियांवाला बाग हत्याकांड के बाद कौन सा आंदोलन शुरू हुआ था?", ["Quit India Movement / भारत छोड़ो आंदोलन", "Non-Cooperation Movement / असहयोग आंदोलन", "Civil Disobedience Movement / सविनय अवज्ञा आंदोलन", "Swadeshi Movement / स्वदेशी आंदोलन"], 1, "Following the Jallianwala Bagh massacre (13 April 1919) and Khilafat issue, Mahatma Gandhi launched the Non-Cooperation Movement in August 1920.", "जलियांवाला बाग हत्याकांड (13 अप्रैल 1919) के पश्चात महात्मा गांधी ने 1920 में असहयोग आंदोलन (Non-Cooperation Movement) शुरू किया था।"],
+            [18, 1, "Which demand was repeatedly raised by the Moderates in the Indian National Congress between 1885 and 1905?", "1885 और 1905 के बीच भारतीय राष्ट्रीय कांग्रेस में नरमपंथियों (Moderates) द्वारा बार-बार कौन सी मांग उठाई गई?", ["Greater legislative representation / अधिक विधाई प्रतिनिधित्व", "Complete independence for India / भारत के लिए पूर्ण स्वतंत्रता", "Immediate civil disobedience / तत्काल सविनय अवज्ञा", "Peasant armed legislation / सशस्त्र कृषक विद्रोह"], 0, "During the Moderate phase (1885–1905), leaders demanded expansion and reform of Legislative Councils to give Indians greater representation and control over budgets.", "उदारवादी/नरमपंथी चरण (1885-1905) में नेताओं ने संवैधानिक तरीकों से विधान परिषदों के विस्तार और अधिक भारतीय प्रतिनिधित्व की मांग की थी।"],
+            [19, 1, "Which of the following best explains the role of infrastructure in economic growth?", "निम्नलिखित में से कौन सा विकल्प आर्थिक वृद्धि में बुनियादी ढांचे (Infrastructure) की भूमिका को सर्वोत्तम रूप से स्पष्ट करता है?", ["Infrastructure reduces the need for industries / बुनियादी ढांचा उद्योगों की आवश्यकता को कम करता है", "Infrastructure improves efficiency of economic activities / बुनियादी ढांचा आर्थिक गतिविधियों की दक्षता में सुधार करता है", "Infrastructure only benefits urban population / यह केवल शहरी आबादी को लाभ पहुंचाता है", "Infrastructure replaces the need for natural resources / यह प्राकृतिक संसाधनों की आवश्यकता को प्रतिस्थापित करता है"], 1, "Robust infrastructure (power, roads, ports, digital networks) lowers logistics costs, increases productivity, and improves the overall efficiency of economic activities.", "मजबूत बुनियादी ढांचा (सड़क, बिजली, संचार, परिवहन) उत्पादन और वितरण को सुगम बनाकर आर्थिक गतिविधियों की दक्षता में सुधार करता है।"],
+            [20, 1, "Which new initiative was announced in the 2026-27 Union Budget to specifically strengthen the Khadi, Handloom, and Handicraft sectors in India?", "भारत में विशेष रूप से खादी, हथकरघा और हस्तशिल्प क्षेत्रों को सुदृढ़ करने के लिए 2026-27 के केंद्रीय बजट में किस नई पहल की घोषणा की गई?", ["Atmanirbhar Shilpkar Yojana / आत्मनिर्भर शिल्पकार योजना", "Mahatma Gandhi Gram Swaraj Initiative / महात्मा गांधी ग्राम स्वराज पहल", "PM MITRA 2.0 / पीएम मित्र 2.0", "Khadi Vikas Abhiyan / खादी विकास अभियान"], 1, "The Union Budget 2026-27 announced the 'Mahatma Gandhi Gram Swaraj Initiative' to empower rural artisans and strengthen the Khadi, Handloom, and Handicraft sectors.", "केंद्रीय बजट 2026-27 में खादी, हथकरघा और हस्तशिल्प क्षेत्रों को मजबूत करने के लिए 'महात्मा गांधी ग्राम स्वराज पहल' की घोषणा की गई।"],
+
+            // ================= SET 2 (Q21 - Q40) =================
+            [21, 2, "The 'Bharat VISTAR' platform launched by the Ministry of Agriculture & Farmers Welfare provides real-time advisory, market rates, and weather updates through a multilingual interface using which primary technology?", "कृषि एवं किसान कल्याण मंत्रालय द्वारा लॉन्च किया गया 'भारत विस्तार' प्लेटफॉर्म किस प्राथमिक तकनीक का उपयोग करके किसानों को बहुभाषी परामर्श और जानकारी प्रदान करता है?", ["Satellite-based Remote Sensing System / उपग्रह आधारित रिमोट सेंसिंग", "Artificial Intelligence-based Digital Platform / आर्टिफिशियल इंटेलिजेंस (AI) आधारित डिजिटल प्लेटफॉर्म", "Internet of Things Sensor Network / इंटरनेट ऑफ थिंग्स सेंसर नेटवर्क", "Blockchain-enabled Agriculture Database / ब्लॉकचेन सक्षम कृषि डेटाबेस"], 1, "Bharat VISTAR leverages an Artificial Intelligence (AI)-based multilingual digital platform to deliver real-time crop advisory, market prices, and government scheme updates to farmers.", "'भारत विस्तार' प्लेटफॉर्म आर्टिफिशियल इंटेलिजेंस (AI) आधारित डिजिटल तकनीक का उपयोग करके किसानों को उनकी भाषा में वास्तविक समय पर सलाह देता है।"],
+            [22, 2, "Which Indian state was declared free from extreme poverty, becoming the first in the country to achieve this milestone in November 2025?", "नवंबर 2025 में किस भारतीय राज्य को अत्यधिक गरीबी (Extreme Poverty) से मुक्त घोषित किया गया, जो यह उपलब्धि प्राप्त करने वाला पहला राज्य बन गया?", ["Karnataka / कर्नाटक", "Maharashtra / महाराष्ट्र", "Tamil Nadu / तमिलनाडु", "Kerala / केरल"], 3, "On November 1, 2025 (Kerala Piravi), Kerala became the first state in India to declare itself free from extreme poverty through its Extreme Poverty Eradication Project.", "नवंबर 2025 में केरल सूक्ष्म स्तर की योजनाओं के माध्यम से अत्यधिक गरीबी (Extreme Poverty) से मुक्त होने वाला देश का पहला राज्य बना।"],
+            [23, 2, "If a scientist blocks the phloem in the stem of a healthy plant, which of the following is the most likely immediate consequence?", "यदि कोई वैज्ञानिक एक स्वस्थ पादप के तने में पोषवाह (Phloem) को अवरुद्ध करता है, तो निम्नलिखित में से कौन सा संभावित तत्काल परिणाम होगा?", ["Photosynthesis will immediately stop / प्रकाश संश्लेषण तुरंत रुक जाएगा", "Food produced in leaves will not reach roots / पत्तियों में बना भोजन जड़ों तक नहीं पहुंचेगा", "Minerals will not be absorbed from the soil / मिट्टी से खनिज अवशोषित नहीं होंगे", "Water from roots cannot reach leaves / जड़ों से पानी पत्तियों तक नहीं पहुंचेगा"], 1, "Phloem is the vascular tissue responsible for translocating organic food (sugars) synthesized in the leaves down to the roots and storage organs.", "फ्लोएम (पोषवाह) पत्तियों में बने भोजन को पौधे के अन्य भागों और जड़ों तक पहुंचाता है; इसे अवरुद्ध करने पर भोजन जड़ों तक नहीं पहुंचेगा।"],
+            [24, 2, "Which of the following is a famous collection of poems written by Sarojini Naidu?", "सरोजिनी नायडू द्वारा लिखा गया प्रसिद्ध कविता संग्रह निम्नलिखित में से कौन सा है?", ["The Golden Threshold / द गोल्डन थ्रेशोल्ड", "Gitanjali / गीतांजलि", "Gitabitan / गीतवितान", "Toward Freedom / टुवर्ड फ्रीडम"], 0, "Published in 1905, 'The Golden Threshold' is the celebrated debut collection of poems by Sarojini Naidu ('Nightingale of India'). Gitanjali & Gitabitan are by Rabindranath Tagore; Toward Freedom is by Jawaharlal Nehru.", "'द गोल्डन थ्रेशोल्ड' (1905) सरोजिनी नायडू का प्रसिद्ध कविता संग्रह है, जबकि गीतांजलि रवींद्रनाथ टैगोर की और टुवर्ड फ्रीडम जवाहरलाल नेहरू की रचना है।"],
+            [25, 2, "Which city hosted the World Economic Forum (WEF) Annual Meeting in January 2026, drawing political and business leaders from around the world?", "जनवरी 2026 में किस शहर ने विश्व आर्थिक मंच (WEF) की वार्षिक बैठक की मेजबानी की?", ["Paris / पेरिस", "Basel / बेसल", "Davos / दावोस", "Geneva / जिनेवा"], 2, "The World Economic Forum (WEF) Annual Meeting 2026 was held in January 2026 at Davos-Klosters, Switzerland.", "विश्व आर्थिक मंच (WEF) की वार्षिक बैठक जनवरी 2026 में स्विट्जरलैंड के दावोस (Davos) में आयोजित की गई।"],
+            [26, 2, "The theme of World Health Day 2026 is:", "विश्व स्वास्थ्य दिवस 2026 (World Health Day 2026) की थीम क्या है?", ["Health for All: Global Access / समस्त वैश्विक पहुंच के लिए स्वास्थ्य", "Together for Health: Stand with Science / स्वास्थ्य के लिए एकजुट: विज्ञान के साथ खड़े रहें", "Building a Resilient Health System / लचीली स्वास्थ्य प्रणालियों का निर्माण", "Universal Health Equity / सार्वभौमिक स्वास्थ्य समता"], 1, "World Health Day 2026 (celebrated on 7 April) carries the theme 'Together for Health: Stand with Science' to champion scientific collaboration and evidence-based healthcare.", "विश्व स्वास्थ्य दिवस 2026 की थीम 'Together for Health: Stand with Science' (स्वास्थ्य के लिए एकजुट: विज्ञान के साथ खड़े रहें) है।"],
+            [27, 2, "Who was the famous Indian writer who translated/adapted the epic Ramayana into Tamil?", "तमिल में रामायण महाकाव्य का अनुवाद/रूपांतरण करने वाले प्रसिद्ध भारतीय लेखक कौन थे?", ["Kamban / कंबन", "Valmiki / वाल्मीकि", "Tulsidas / तुलसीदास", "Bankim Chandra Chattopadhyay / बंकिम चंद्र चट्टोपाध्याय"], 0, "The 12th-century Tamil poet Kambar (Kamban) composed the 'Ramavataram' (popularly known as Kamba Ramayanam) in Tamil during the Chola period.", "12वीं शताब्दी के महान तमिल कवि कंबन (Kamban) ने तमिल भाषा में 'कंब रामायणम' (रामावतारम) की रचना की थी।"],
+            [28, 2, "Which process would be most suitable for verifying whether a physical equation involving derived units is dimensionally consistent?", "व्युत्पन्न मात्रकों से संबंधित भौतिक समीकरण की विमीय संगतता (Dimensional Consistency) को सत्यापित करने के लिए कौन सी प्रक्रिया सबसे उपयुक्त होगी?", ["Multiplying all derived units by a universal scaling constant / सभी व्युत्पन्न मात्रकों को सार्वभौमिक स्थिरांक से गुणा करना", "Applying dimensional analysis to the equation / समीकरण पर विमीय विश्लेषण लागू करना", "Checking the number of significant figures / सार्थक अंकों की संख्या की जांच करना", "Resolving vectors into perpendicular axes / सदिशों को लंबवत अक्षों में वियोजित करना"], 1, "Applying Dimensional Analysis (Principle of Homogeneity of Dimensions) checks whether the dimensions of all terms on both sides of a physical equation are identical.", "समीकरण पर 'विमीय विश्लेषण' (Dimensional Analysis) लागू करके यह जांचा जाता है कि समीकरण के दोनों पक्षों की विमाएं समान हैं या नहीं।"],
+            [29, 2, "In March 2026, Prime Minister Narendra Modi urged state governments to establish special monitoring systems. Which challenge prompted this appeal to protect poor laborers and migrant workers?", "मार्च 2026 में प्रधानमंत्री नरेंद्र मोदी ने राज्य सरकारों से विशेष निगरानी तंत्र स्थापित करने का आग्रह किया। किस चुनौती ने श्रमिकों की सुरक्षा के लिए इस अपील को प्रेरित किया?", ["A sudden spike in internal communal riots / आंतरिक सांप्रदायिक दंगों में अचानक वृद्धि", "A nationwide drought affecting agricultural wages / कृषि मजदूरी को प्रभावित करने वाला राष्ट्रव्यापी सूखा", "The ongoing West Asia conflict and its economic ripple effects / चल रहा पश्चिम एशिया संघर्ष और उसके आर्थिक प्रभाव", "The implementation of the New National Education Policy / नई राष्ट्रीय शिक्षा नीति का कार्यान्वयन"], 2, "In March 2026, amidst the escalating West Asia conflict and global energy/supply chain disruptions, PM Modi urged states to set up monitoring mechanisms to shield citizens and workers.", "मार्च 2026 में पश्चिम एशिया (West Asia) संघर्ष और उसके आर्थिक प्रभावों के मद्देनजर पीएम मोदी ने राज्यों से विशेष निगरानी तंत्र बनाने का आग्रह किया।"],
+            [30, 2, "Which award field is associated with Shri Prosenjit Chatterjee, who was conferred the Padma Shri in 2026 from West Bengal?", "पश्चिम बंगाल के श्री प्रसेनजीत चटर्जी, जिन्हें 2026 में पद्मश्री से सम्मानित किया गया, किस पुरस्कार क्षेत्र से संबंधित हैं?", ["Art / कला", "Public Affairs / सार्वजनिक कार्य", "Social Work / सामाजिक कार्य", "Literature and Education / साहित्य और शिक्षा"], 0, "Renowned Bengali film actor Prosenjit Chatterjee was awarded the Padma Shri in 2026 in the field of Art.", "प्रसिद्ध बंगाली अभिनेता प्रसेनजीत चटर्जी को 2026 में 'कला' (Art - सिनेमा) के क्षेत्र में पद्मश्री से सम्मानित किया गया।"],
+            [31, 2, "Tambourine (डफली) is an example of a:", "डफली (Tambourine) निम्नलिखित में से किसका एक उदाहरण है?", ["Wind instrument / सुषिर वाद्य (हवा से बजने वाला)", "Percussion instrument / ताल वाद्य (अवनद्ध/घन वाद्य)", "String instrument / तंतु वाद्य", "Electronic instrument / इलेक्ट्रॉनिक वाद्य"], 1, "A tambourine (Daphli) produces rhythmic sound when struck or shaken, making it a percussion (ताल/अवनद्ध) musical instrument.", "डफली (Tambourine) को थाप देकर या हिलाकर बजाया जाता है, इसलिए यह एक 'ताल वाद्य' (Percussion instrument) है।"],
+            [32, 2, "Where was the venue of the 60th National Cross Country Championship 2026?", "60वीं राष्ट्रीय क्रॉस कंट्री चैंपियनशिप 2026 कहाँ आयोजित की गई?", ["Kalinga Stadium / कलिंगा स्टेडियम", "Jawaharlal Nehru Stadium / जवाहरलाल नेहरू स्टेडियम", "Salt Lake Stadium / सॉल्ट लेक स्टेडियम", "Prabhat Tara Maidan / प्रभात तारा मैदान"], 3, "The 60th National Cross Country Championship 2026 was held at Prabhat Tara Maidan in Ranchi, Jharkhand.", "60वीं राष्ट्रीय क्रॉस कंट्री चैंपियनशिप 2026 का आयोजन झारखंड के रांची स्थित 'प्रभात तारा मैदान' में किया गया था।"],
+            [33, 2, "In February 2026, the launch of ICT labs in Delhi schools under initiatives like the Digital Equalizer Program primarily aims to address which challenge?", "फरवरी 2026 में डिजिटल इक्वलाइजर प्रोग्राम जैसी पहलों के माध्यम से दिल्ली के स्कूलों में ICT लैब स्थापित करने का मुख्य लक्ष्य किस समस्या को दूर करना है?", ["Examination reforms / परीक्षा सुधार", "Cultural barriers and stigma / सांस्कृतिक बाधाएं", "Digital divide in education / शिक्षा में डिजिटल विभाजन", "Language barriers / भाषा संबंधी बाधाएं"], 2, "Equipping government schools with modern ICT computer labs bridges the 'Digital Divide in Education' by providing digital literacy to underprivileged students.", "सरकारी स्कूलों में ICT लैब स्थापित करने का मुख्य उद्देश्य 'शिक्षा में डिजिटल विभाजन' (Digital divide in education) को समाप्त करना है।"],
+            [34, 2, "Which Union Territory hosted the ice skating competition during the Khelo India Winter Games 2026?", "खेलो इंडिया विंटर गेम्स 2026 के दौरान किस केंद्र शासित प्रदेश ने आइस स्केटिंग प्रतियोगिताओं की मेजबानी की?", ["Ladakh / लद्दाख", "Dadra and Nagar Haveli / दादरा और नगर हवेली", "Chandigarh / चंडीगढ़", "Jammu and Kashmir / जम्मू और कश्मीर"], 0, "The Union Territory of Ladakh (Leh) hosted the ice events—Ice Skating and Ice Hockey—of the Khelo India Winter Games 2026.", "खेलो इंडिया विंटर गेम्स 2026 के दौरान आइस स्केटिंग और आइस हॉकी प्रतियोगिताओं की मेजबानी लद्दाख (लेह) ने की।"],
+            [35, 2, "Which factor best explains the de-industrialization of India during the colonial period?", "कौन सा कारक औपनिवेशिक काल के दौरान भारत के वि-औद्योगीकरण (De-industrialization) की सबसे अच्छी व्याख्या करता है?", ["Competition from imported British manufactured goods / आयातित ब्रिटिश निर्मित वस्तुओं से प्रतिस्पर्धा", "Expansion of indigenous industrial entrepreneurship / स्वदेशी औद्योगिक उद्यमिता का विस्तार", "Strong state support for modern industries / आधुनिक उद्योगों के लिए मजबूत सरकारी समर्थन", "Increase in domestic demand for local products / स्थानीय उत्पादों की घरेलू मांग में वृद्धि"], 0, "During British rule, cheap machine-made textiles imported duty-free from Britain destroyed traditional Indian handicraft and handloom industries.", "ब्रिटेन की मशीनों से बने सस्ते कपड़ों और वस्तुओं के शुल्क-मुक्त आयात से भारतीय पारंपरिक हस्तशिल्प उद्योग नष्ट हो गए, जिसे वि-औद्योगीकरण कहा जाता है।"],
+            [36, 2, "In 2025, which Japanese politician made history by becoming the country's first female Prime Minister?", "2025 में जापान की पहली महिला प्रधानमंत्री बनकर किस राजनीतिज्ञ ने इतिहास रचा?", ["Shinzo Abe / शिंजो आबे", "Yuriko Koike / यूरिको कोइके", "Yoko Kamikawa / योको कामिकावा", "Sanae Takaichi / साने ताकाइची"], 3, "Sanae Takaichi made history in 2025 by becoming Japan's first female Prime Minister.", "साने ताकाइची (Sanae Takaichi) ने 2025 में जापान की पहली महिला प्रधानमंत्री बनकर इतिहास रचा।"],
+            [37, 2, "ICAR–Indian Institute of Oilseeds Research (IIOR), Hyderabad launched India's first nationwide WhatsApp-based AI advisory service for oilseed farmers. What is the name of this service?", "ICAR-भारतीय तिलहन अनुसंधान संस्थान, हैदराबाद ने तिलहन किसानों के लिए भारत की पहली राष्ट्रव्यापी WhatsApp आधारित AI सलाहकार सेवा शुरू की। इस सेवा का नाम क्या है?", ["Oilseed Kisan Mitra / ऑयलसीड किसान मित्र", "Oilseed Digital Saathi / ऑयलसीड डिजिटल साथी", "Oilseed Kisan Sahayak / ऑयलसीड किसान सहायक", "Oilseed Mitra / ऑयलसीड मित्र"], 0, "ICAR-IIOR Hyderabad launched 'Oilseed Kisan Mitra', a WhatsApp-based AI chatbot advisory service to assist oilseed farmers across India.", "हैदराबाद स्थित भारतीय तिलहन अनुसंधान संस्थान ने तिलहन किसानों की सहायता के लिए 'ऑयलसीड किसान मित्र' नामक WhatsApp AI सेवा शुरू की।"],
+            [38, 2, "During a science exhibition, a student creates an electromagnet by wrapping insulated wire around an iron nail and connecting it to a battery. What is the main factor that can increase the strength of the electromagnet?", "एक विज्ञान प्रदर्शनी के दौरान एक छात्र लोहे की कील के चारों ओर विद्युत रोधी तार लपेटकर उसे बैटरी से जोड़कर विद्युत चुंबक बनाता है। कौन सा मुख्य कारक विद्युत चुंबक की सामर्थ्य को बढ़ा सकता है?", ["Reducing the voltage of the battery used / बैटरी के वोल्टेज को कम करना", "Using thinner wire for the coil / कुंडली के लिए पतले तार का उपयोग करना", "Using a wooden nail instead of an iron nail / लोहे की कील के स्थान पर लकड़ी की कील का उपयोग करना", "Increasing turns of wire around the nail / कील के चारों ओर तार के फेरों की संख्या बढ़ाना"], 3, "The magnetic field strength of an electromagnet (B = μ₀nI) increases directly when you increase the number of turns of wire wound around the soft iron core.", "लोहे की कील के चारों ओर तार के फेरों (Turns of wire) की संख्या बढ़ाने और धारा बढ़ाने से विद्युत चुंबक की चुंबकीय शक्ति बढ़ जाती है।"],
+            [39, 2, "The Government of India signed agreements with the Government of Goa and the Cochin Port Authority for the adoption of which flagship digital pension and financial management platform of the Department of Telecommunications?", "भारत सरकार ने दूरसंचार विभाग के किस फ्लैगशिप डिजिटल पेंशन और वित्तीय प्रबंधन प्लेटफॉर्म को अपनाने के लिए गोवा सरकार और कोचीन पत्तन प्राधिकरण के साथ समझौते पर हस्ताक्षर किए?", ["PRAGATI / प्रगति", "e-Office / ई-ऑफिस", "SPARROW / स्पैरो", "SAMPANN / संपन्न"], 3, "SAMPANN (System for Accounting and Management of Pension) is the flagship digital pension platform developed by the Department of Telecommunications.", "संपन्न (SAMPANN - System for Accounting and Management of Pension) दूरसंचार विभाग का प्रमुख डिजिटल पेंशन प्रबंधन प्लेटफॉर्म है।"],
+            [40, 2, "Which of the following types of forests are also known as 'Monsoon Forests'?", "निम्नलिखित में से किस प्रकार के वनों को 'मानसून वन' (Monsoon Forests) भी कहा जाता है?", ["Montane Forests / पर्वतीय वन", "Tropical Evergreen Forests / उष्णकटिबंधीय सदाबहार वन", "Tropical Deciduous Forests / उष्णकटिबंधीय पर्णपाती वन", "Tropical Thorn Forests / उष्णकटिबंधीय कंटीले वन"], 2, "Tropical Deciduous Forests are called Monsoon Forests because they are the most widespread forests in India (70-200 cm rainfall) and shed their leaves in the dry summer season.", "उष्णकटिबंधीय पर्णपाती वनों (Tropical Deciduous Forests) को 'मानसून वन' भी कहा जाता है। ये भारत में सबसे अधिक क्षेत्रफल पर फैले हैं।"],
+
+            // ================= SET 3 (Q41 - Q60) =================
+            [41, 3, "Which of the following is the largest inland salt lake in India and an important source of commercial salt production?", "भारत में कौन सी भारत की सबसे बड़ी अंतर्देशीय खारे पानी (लवण) की झील है और वाणिज्यिक नमक उत्पादन का एक प्रमुख स्रोत है?", ["Wular Lake / वुलर झील", "Vembanad Lake / वेम्बनाड झील", "Sambhar Lake / सांभर झील", "Dal Lake / डल झील"], 2, "Sambhar Lake in Rajasthan is India's largest inland salt lake and produces around 9% of India's total salt production.", "राजस्थान में स्थित सांभर झील भारत की सबसे बड़ी अंतर्देशीय खारे पानी (लवण) की झील है।"],
+            [42, 3, "Which of the following statements regarding the Rajya Sabha is true?", "राज्यसभा के संदर्भ में निम्नलिखित में से कौन सा कथन सत्य है?", ["Members of the House are directly elected by citizens / सदन के सदस्य नागरिकों द्वारा प्रत्यक्ष रूप से चुने जाते हैं", "The Speaker of the Lok Sabha presides over it / लोकसभा अध्यक्ष इसकी अध्यक्षता करता है", "It is dissolved after every five years / यह प्रत्येक 5 वर्ष बाद भंग कर दी जाती है", "It is a permanent body and is not subject to dissolution / यह एक स्थायी निकाय है और इसका विघटन (भंग) नहीं होता है"], 3, "Under Article 83(1), the Rajya Sabha is a permanent chamber that is never dissolved; one-third of its members retire every second year.", "अनुच्छेद 83(1) के अनुसार राज्यसभा एक स्थायी सदन है जिसे कभी भंग नहीं किया जा सकता; इसके एक-तिहाई सदस्य प्रत्येक दो वर्ष में सेवानिवृत्त होते हैं।"],
+            [43, 3, "With whom did Mahatma Gandhi tour extensively in 1920 to garner widespread support for the Non-Cooperation Movement?", "असहयोग आंदोलन के लिए व्यापक समर्थन जुटाने हेतु महात्मा गांधी ने 1920 में किसके साथ देश भर की व्यापक यात्राएं कीं?", ["Shaukat Ali / शौकत अली", "Khan Abdul Ghaffar Khan / खान अब्दुल गफ्फार खान", "Badruddin Tyabji / बदरुद्दीन तैयबजी", "Muhammad Barkatullah / मुहम्मद बरकतुल्लाह"], 0, "Mahatma Gandhi toured across India in 1920 along with Khilafat leader Maulana Shaukat Ali (one of the Ali Brothers) to mobilize masses for the Non-Cooperation-Khilafat Movement.", "महात्मा गांधी ने खिलाफत नेता मौलाना शौकत अली के साथ 1920 में असहयोग आंदोलन के लिए समर्थन जुटाने हेतु देश भर का दौरा किया था।"],
+            [44, 3, "Prithviraj Chauhan defeated Sultan Muhammad Ghori in the First Battle of Tarain, but in which year did he lose to Ghori in the Second Battle?", "पृथ्वीराज चौहान ने तराइन के पहले युद्ध में सुल्तान मोहम्मद गौरी को हराया था, लेकिन किस वर्ष दूसरे युद्ध में वे गौरी से हार गए?", ["1206", "1192", "1194", "1191"], 1, "Prithviraj Chauhan defeated Muhammad Ghori in the First Battle of Tarain in 1191 AD, but Ghori defeated Prithviraj Chauhan in the Second Battle of Tarain in 1192 AD.", "तराइन का प्रथम युद्ध 1191 ई. में पृथ्वीराज चौहान ने जीता था, किंतु 1192 ई. में तराइन के द्वितीय युद्ध में मोहम्मद गौरी की विजय हुई।"],
+            [45, 3, "The First Anglo-Sikh War between the British East India Company and the Sikh Empire was fought during which of the following years?", "ब्रिटिश ईस्ट इंडिया कंपनी और सिख साम्राज्य के बीच पहला आंग्ल-सिख युद्ध किन वर्षों के दौरान लड़ा गया?", ["1838-39", "1848-49", "1856-57", "1845-46"], 3, "The First Anglo-Sikh War was fought between 1845 and 1846, concluding with the Treaty of Lahore in March 1846 (the Second Anglo-Sikh War was fought in 1848-49).", "प्रथम आंग्ल-सिख युद्ध 1845-46 के दौरान लड़ा गया था और मार्च 1846 की लाहौर की संधि के साथ समाप्त हुआ।"],
+            [46, 3, "Which of the following most accurately explains the growth of Multinational Corporations (MNCs) in India after the reforms introduced in 1991?", "निम्नलिखित में से कौन सा विकल्प 1991 में लागू किए गए सुधारों के बाद भारत में बहुराष्ट्रीय निगमों (MNCs) की वृद्धि की सबसे सटीक व्याख्या करता है?", ["India imposed strict controls on foreign trade and capital / भारत ने विदेशी व्यापार और पूंजी पर कड़े नियंत्रण लगाए", "Public enterprises completely replaced private industries / सार्वजनिक उपक्रमों ने निजी उद्योगों का स्थान ले लिया", "Nationwide economic reforms restricted collaboration with foreign companies / आर्थिक सुधारों ने विदेशी सहयोग को प्रतिबंधित कर दिया", "Removal of trade barriers increased opportunities for foreign companies / व्यापार बाधाओं को हटाने से विदेशी कंपनियों के लिए अवसर बढ़े"], 3, "The 1991 LPG (Liberalization, Privatization, Globalization) reforms dismantled licensing and removed trade/investment barriers, enabling MNCs to expand in India.", "1991 के उदारीकरण और वैश्वीकरण सुधारों में व्यापार और निवेश की बाधाओं को हटाया गया, जिससे भारत में बहुराष्ट्रीय कंपनियों (MNCs) को विस्तार के अवसर मिले।"],
+            [47, 3, "The Extremist leaders saw 'Swadeshi' primarily as a means to:", "चरमपंथी (गरमपंथी) नेताओं ने 'स्वदेशी' को मुख्य रूप से किसके साधन के रूप में देखा?", ["Expand the power of British legislative councils / ब्रिटिश विधान परिषदों की शक्ति का विस्तार करना", "Promote national self-reliance and resist colonial rule / राष्ट्रीय आत्मनिर्भरता को बढ़ावा देना और औपनिवेशिक शासन का प्रतिरोध करना", "Increase British investment in Indian industries / भारतीय उद्योगों में ब्रिटिश निवेश बढ़ाना", "Increase the import of foreign manufactured goods / विदेशी निर्मित वस्तुओं का आयात बढ़ाना"], 1, "Extremist leaders (Lal-Bal-Pal and Aurobindo Ghosh) viewed Swadeshi as a potent mass movement to build Atmashakti (national self-reliance) and actively resist British colonial rule.", "गरमपंथी नेताओं (लाल-बाल-पाल) ने स्वदेशी को राष्ट्रीय आत्मनिर्भरता (आत्मशक्ति) को बढ़ावा देने और ब्रिटिश औपनिवेशिक शासन का विरोध करने के प्रमुख हथियार के रूप में देखा।"],
+            [48, 3, "Which of the following is a Constitutional Body in India?", "निम्नलिखित में से कौन सा भारत में एक संवैधानिक निकाय (Constitutional Body) है?", ["Election Commission of India / भारत निर्वाचन आयोग", "NITI Aayog / नीति आयोग", "Central Bureau of Investigation / केंद्रीय अन्वेषण ब्यूरो (CBI)", "National Human Rights Commission / राष्ट्रीय मानवाधिकार आयोग (NHRC)"], 0, "The Election Commission of India is a Constitutional Body established directly under Article 324 of the Constitution. NITI Aayog is an executive body, and NHRC is a statutory body.", "भारत निर्वाचन आयोग (अनुच्छेद 324) एक संवैधानिक निकाय है, जबकि नीति आयोग गैर-संवैधानिक निकाय और मानवाधिकार आयोग वैधानिक निकाय है।"],
+            [49, 3, "Which of the following Articles of the Indian Constitution guarantees the 'Right to Equality'?", "भारतीय संविधान का निम्नलिखित में से कौन सा अनुच्छेद 'समानता के अधिकार' (Right to Equality) की गारंटी देता है?", ["Article 19 / अनुच्छेद 19", "Article 32 / अनुच्छेद 32", "Article 21 / अनुच्छेद 21", "Article 14 / अनुच्छेद 14"], 3, "Article 14 guarantees to every person equality before the law and equal protection of the laws within the territory of India.", "संविधान का अनुच्छेद 14 भारत के राज्यक्षेत्र में विधि के समक्ष समता और विधियों के समान संरक्षण (Right to Equality) की गारंटी देता है।"],
+            [50, 3, "The Terai region in the Northern Plains is known for its:", "उत्तरी मैदान में 'तराई क्षेत्र' (Terai region) किसके लिए जाना जाता है?", ["Coastal mangroves / तटीय मैंग्रोव", "Desertification / मरुस्थलीकरण", "Marshy grasslands and high water table / दलदली घास के मैदान और उच्च जल स्तर", "Arid conditions / शुष्क परिस्थितियां"], 2, "Located south of the Bhabar belt, the Terai zone is where underground streams re-surface, creating wet, marshy grasslands, thick forests, and a high water table.", "भाबर पट्टी के दक्षिण में स्थित तराई क्षेत्र में नदियां पुनः धरातल पर प्रकट होती हैं, जिससे यहाँ दलदली घास के मैदान और ऊंचा जल स्तर पाया जाता है।"],
+            [51, 3, "Who was the only female ruler to sit on the throne of the Delhi Sultanate?", "दिल्ली सल्तनत

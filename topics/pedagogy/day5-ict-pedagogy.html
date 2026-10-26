@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5: ICT & Digital Pedagogy | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 5: ICT & Digital Pedagogy
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 5: ICT & Digital Pedagogy</h1>
+            <div class="subtitle">Blended Learning, CAI, DIKSHA & SWAYAM | Bilingual Notes</div>
+            
+            <h2>1. Modern Learning Environments (आधुनिक अधिगम परिवेश)</h2>
+            <ul>
+                <li><strong>Blended Learning (मिश्रित अधिगम):</strong> Combines traditional face-to-face classroom instruction with online digital learning components. Students have some control over time, place, path, or pace.</li>
+                <li><strong>Flipped Classroom (फ्लिप्ड क्लासरूम):</strong> Inverts traditional teaching methods. 
+                    <br><em>At Home:</em> Students watch video lectures (Instruction/LOTS).
+                    <br><em>In Class:</em> Students engage in problem-solving, projects, and discussions with the teacher's active scaffolding (HOTS).
+                </li>
+            </ul>
+
+            <h2>2. Synchronous vs. Asynchronous Learning (तुल्यकालिक बनाम अतुल्यकालिक अधिगम)</h2>
+            <table>
+                <tr>
+                    <th>Feature (विशेषता)</th>
+                    <th>Synchronous Learning (तुल्यकालिक)</th>
+                    <th>Asynchronous Learning (अतुल्यकालिक)</th>
+                </tr>
+                <tr>
+                    <td><strong>Timing (समय)</strong></td>
+                    <td>Real-time, live interaction (वास्तविक समय में).</td>
+                    <td>Self-paced, not in real-time (स्व-गति, कभी भी).</td>
+                </tr>
+                <tr>
+                    <td><strong>Tools/Examples (उदाहरण)</strong></td>
+                    <td>Zoom, Google Meet, Live Webinars, Live Chat.</td>
+                    <td>Pre-recorded video lectures, Emails, Discussion Forums, Blogs.</td>
+                </tr>
+                <tr>
+                    <td><strong>Advantage (लाभ)</strong></td>
+                    <td>Immediate feedback and direct engagement.</td>
+                    <td>Flexibility, highly convenient for remote learners.</td>
+                </tr>
+            </table>
+
+            <h2>3. Computer-Assisted Instruction (CAI / कंप्यूटर-सहायक अनुदेशन)</h2>
+            <p>CAI uses computers to provide interactive instruction directly to students. Types of CAI modes include:</p>
+            <ul>
+                <li><strong>Drill & Practice (अभ्यास):</strong> Helps learners master previously taught concepts through repetitive exercises (e.g., math flashcards).</li>
+                <li><strong>Tutorials (ट्यूटोरियल):</strong> Teaches new concepts directly through text, audio, video, and quizzes. Acts like a virtual teacher.</li>
+                <li><strong>Simulation (सिमुलेशन / अनुरूपण):</strong> Replicates real-life situations virtually (e.g., flight simulators, virtual science labs). Excellent for dangerous or expensive experiments.</li>
+                <li><strong>Instructional Games (शैक्षिक खेल):</strong> Adds competition and rules to make learning fun and motivating.</li>
+            </ul>
+
+            <h2>4. Key Government Digital Initiatives (भारत सरकार की प्रमुख डिजिटल पहलें)</h2>
+            <div class="bilingual-box">
+                • <strong>SWAYAM:</strong> Study Webs of Active-Learning for Young Aspiring Minds. India's national MOOC (Massive Open Online Courses) platform providing free education from Class 9 to Post-Graduation.<br>
+                <em>4 Quadrants of SWAYAM:</em> 1. Video lectures 2. Specially prepared reading material 3. Self-assessment tests/quizzes 4. Online discussion forum.<br><br>
+                • <strong>DIKSHA:</strong> Digital Infrastructure for Knowledge Sharing. Offers 'Energized Textbooks' via QR codes.<br><br>
+                • <strong>NISHTHA:</strong> National Initiative for School Heads' and Teachers' Holistic Advancement. A capacity-building program for improving quality of school education through Integrated Teacher Training.<br><br>
+                • <strong>SWAYAM PRABHA:</strong> A group of DTH channels devoted to telecasting high-quality educational programs 24x7 using the GSAT-15 satellite.
+            </div>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (20 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 20</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. A pedagogical model in which typical lecture and homework elements of a course are reversed—where students watch video lectures at home and solve problems in class—is called:<br><br>वह शैक्षणिक मॉडल जिसमें छात्र घर पर वीडियो व्याख्यान देखते हैं और कक्षा में समस्याओं का समाधान करते हैं, क्या कहलाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Traditional Classroom</button>
+                        <button class="opt-btn" value="B">B) Flipped Classroom (फ्लिप्ड क्लासरूम)</button>
+                        <button class="opt-btn" value="C">C) Distance Education</button>
+                        <button class="opt-btn" value="D">D) Programmed Instruction</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Flipped Classroom inverts traditional teaching. Lower-order thinking (listening to lectures) is done at home, while higher-order thinking (application, analysis) is done in class with teacher support.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q2. Which of the following is the BEST example of 'Synchronous' online learning?<br><br>निम्नलिखित में से 'तुल्यकालिक' (Synchronous) ऑनलाइन अधिगम का सबसे अच्छा उदाहरण कौन-सा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Replying to an email sent by a teacher</button>
+                        <button class="opt-btn" value="B">B) Attending a live Google Meet class (लाइव गूगल मीट कक्षा में भाग लेना)</button>
+                        <button class="opt-btn" value="C">C) Watching a pre-recorded YouTube video</button>
+                        <button class="opt-btn" value="D">D) Posting a comment on a discussion forum</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Synchronous learning happens in real-time. Live classes, Zoom meetings, and live chats are synchronous because participants are engaged simultaneously.</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q3. MOOC stands for:<br><br>MOOC का पूर्ण रूप क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Massive Open Online Course</button>
+                        <button class="opt-btn" value="B">B) Multiple Open Online Curriculum</button>
+                        <button class="opt-btn" value="C">C) Modern Online Objective Course</button>
+                        <button class="opt-btn" value="D">D) Mandatory Offline Orientation Class</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> MOOC stands for Massive Open Online Course, which are free online courses available for anyone to enroll in, providing an affordable and flexible way to learn new skills.</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q4. In the context of CAI (Computer Assisted Instruction), which mode is most suitable for providing a safe environment to practice dangerous science experiments (like radioactive material handling)?<br><br>CAI के संदर्भ में, खतरनाक विज्ञान प्रयोगों का अभ्यास करने के लिए सबसे उपयुक्त मोड कौन-सा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Drill & Practice (अभ्यास)</button>
+                        <button class="opt-btn" value="B">B) Simulation (सिमुलेशन / अनुरूपण)</button>
+                        <button class="opt-btn" value="C">C) Tutorial (ट्यूटोरियल)</button>
+                        <button class="opt-btn" value="D">D) Gaming (गेमिंग)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Simulation models real-life or hazardous situations virtually, allowing students to learn through safe experimentation without real-world risks.</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q5. What is the primary purpose of the 'DIKSHA' portal launched by the Ministry of Education?<br><br>शिक्षा मंत्रालय द्वारा शुरू किए गए 'DIKSHA' पोर्टल का मुख्य उद्देश्य क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To track mid-day meal distribution</button>
+                        <button class="opt-btn" value="B">B) To provide university degrees online</button>
+                        <button class="opt-btn" value="C">C) To serve as a National Digital Infrastructure for Teachers, providing QR-coded energized textbooks (शिक्षक डिजिटल बुनियादी ढांचा और QR-कोडित पाठ्यपुस्तकें)</button>
+                        <button class="opt-btn" value="D">D) To conduct nationwide medical entrance exams</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> DIKSHA (Digital Infrastructure for Knowledge Sharing) offers highly interactive digital content linked to physical textbooks via QR codes for teachers and students across India.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q6. Which of the following is NOT one of the 4 Quadrants of the SWAYAM MOOC platform?<br><br>निम्नलिखित में से कौन-सा SWAYAM MOOC प्लेटफॉर्म के 4 चतुर्थांशों (Quadrants) में से एक नहीं है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Video Lectures</button>
+                        <button class="opt-btn" value="B">B) Mandatory physical attendance tracking (अनिवार्य भौतिक उपस्थिति ट्रैकिंग)</button>
+                        <button class="opt-btn" value="C">C) Specially prepared reading material (E-content)</button>
+                        <button class="opt-btn" value="D">D) Online Discussion Forum</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 4 Quadrants of SWAYAM are: 1) Video lecture, 2) Specially prepared reading material, 3) Self-assessment tests through quizzes, and 4) Online discussion forums. It does not track physical attendance.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q7. An educational setup that integrates face-to-face classroom teaching with digital online activities is known as:<br><br>वह शैक्षिक व्यवस्था जो पारंपरिक कक्षा शिक्षण को डिजिटल ऑनलाइन गतिविधियों के साथ एकीकृत करती है, क्या कहलाती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Blended Learning (मिश्रित अधिगम)</button>
+                        <button class="opt-btn" value="B">B) Distance Learning (दूरस्थ अधिगम)</button>
+                        <button class="opt-btn" value="C">C) Fully Online Learning</button>
+                        <button class="opt-btn" value="D">D) Programmed Instruction</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Blended learning (Hybrid learning) combines the best of both worlds: face-to-face teacher interaction and online self-paced digital tasks.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q8. What does 'NISHTHA' stand for in the context of Indian educational initiatives?<br><br>भारतीय शैक्षिक पहलों के संदर्भ में 'NISHTHA' का पूर्ण रूप क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) National Institute for Students' Health and Testing</button>
+                        <button class="opt-btn" value="B">B) National Initiative for School Heads' and Teachers' Holistic Advancement (स्कूल प्रमुखों और शिक्षकों की समग्र उन्नति के लिए राष्ट्रीय पहल)</button>
+                        <button class="opt-btn" value="C">C) National Information System for Higher Technology</button>
+                        <button class="opt-btn" value="D">D) New India Scheme for Teachers' Help</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> NISHTHA is the world's largest teacher training program designed to build the capacities of school heads and elementary teachers across India.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q9. Which mode of CAI is designed to help students master basic facts (like multiplication tables) through repetitive question-and-answer cycles?<br><br>CAI का कौन-सा मोड बार-बार प्रश्न-उत्तर चक्रों के माध्यम से बुनियादी तथ्यों में महारत हासिल करने के लिए बनाया गया है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Tutorial</button>
+                        <button class="opt-btn" value="B">B) Simulation</button>
+                        <button class="opt-btn" value="C">C) Drill & Practice (अभ्यास और पुनरावृत्ति)</button>
+                        <button class="opt-btn" value="D">D) Intelligent Tutoring</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Drill & Practice software assumes the concept is already taught, and provides repetitive practice to increase speed, accuracy, and fluency.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q10. Under the TPACK framework for effective technology integration in classrooms, what does 'PK' stand for?<br><br>कक्षाओं में प्रभावी तकनीकी एकीकरण के लिए TPACK ढांचे में, 'PK' का क्या अर्थ है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Programming Knowledge</button>
+                        <button class="opt-btn" value="B">B) Pedagogical Knowledge (शैक्षणिक ज्ञान)</button>
+                        <button class="opt-btn" value="C">C) Practical Knowledge</button>
+                        <button class="opt-btn" value="D">D) Primary Knowledge</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> TPACK stands for Technological Pedagogical Content Knowledge. PK (Pedagogical Knowledge) refers to the teacher's deep knowledge about the processes and practices of teaching and learning.</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q11. Which government initiative utilizes GSAT-15 satellite to telecast high-quality educational programs 24x7 through DTH channels?<br><br>कौन-सी सरकारी पहल GSAT-15 उपग्रह का उपयोग करके 24x7 DTH चैनलों के माध्यम से शैक्षिक कार्यक्रमों का प्रसारण करती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) DIKSHA</button>
+                        <button class="opt-btn" value="B">B) SWAYAM PRABHA (स्वयं प्रभा)</button>
+                        <button class="opt-btn" value="C">C) E-Pathshala</button>
+                        <button class="opt-btn" value="D">D) Shagun</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> SWAYAM PRABHA is a group of DTH channels broadcasting educational content directly to homes, ensuring students without high-speed internet can still learn.</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q12. What is the fundamental difference between CAI (Computer-Assisted Instruction) and CMI (Computer-Managed Instruction)?<br><br>CAI और CMI के बीच मूलभूत अंतर क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) CAI is for students; CMI is for parents only.</button>
+                        <button class="opt-btn" value="B">B) There is no difference.</button>
+                        <button class="opt-btn" value="C">C) CAI directly delivers instructional content to the learner, whereas CMI manages student records, testing, and grading without directly teaching (CAI सीधे पढ़ाता है, जबकि CMI रिकॉर्ड और परीक्षण का प्रबंधन करता है).</button>
+                        <button class="opt-btn" value="D">D) CMI uses robots while CAI uses screens.</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> CAI interacts with the student to teach concepts (like a tutorial). CMI is an administrative tool used by teachers to manage tests, track progress, and organize the curriculum.</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q13. E-Pathshala is an initiative developed by which organization to provide educational e-resources?<br><br>ई-पाठशाला शैक्षिक ई-संसाधन प्रदान करने के लिए किस संगठन द्वारा विकसित एक पहल है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) NITI Aayog</button>
+                        <button class="opt-btn" value="B">B) NCERT & MoE (NCERT और शिक्षा मंत्रालय)</button>
+                        <button class="opt-btn" value="C">C) AICTE</button>
+                        <button class="opt-btn" value="D">D) CBSE only</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> E-Pathshala is a joint initiative of the Ministry of Education (MoE) and NCERT to showcase and disseminate all educational e-resources including textbooks, audio, video, and periodicals.</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q14. In a Flipped Classroom environment, how does Bloom’s Taxonomy map to the learning phases?<br><br>फ्लिप्ड क्लासरूम परिवेश में, ब्लूम की टैक्सोनॉमी को कैसे लागू किया जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Lower-order skills (Remember/Understand) are done at home, while Higher-order skills (Apply/Analyze/Create) are done in class (निम्न-स्तर के कौशल घर पर, और उच्च-स्तर के कौशल कक्षा में)</button>
+                        <button class="opt-btn" value="B">B) Higher-order skills are done at home independently.</button>
+                        <button class="opt-btn" value="C">C) All skills are developed exclusively via homework.</button>
+                        <button class="opt-btn" value="D">D) Bloom's taxonomy is irrelevant in digital pedagogy.</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The major advantage of the flipped classroom is that the teacher is physically present to scaffold complex, high-level problem solving (Apply, Analyze) during class time, leaving the easy passive listening for home.</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q15. The 'Station Rotation Model' is a highly popular implementation of which type of learning?<br><br>'स्टेशन रोटेशन मॉडल' किस प्रकार के अधिगम का एक लोकप्रिय तरीका है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Fully remote distance learning</button>
+                        <button class="opt-btn" value="B">B) Blended Learning (मिश्रित अधिगम)</button>
+                        <button class="opt-btn" value="C">C) Traditional Lecture</button>
+                        <button class="opt-btn" value="D">D) Asynchronous MOOCs</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> In the Station Rotation model of Blended Learning, students rotate on a fixed schedule between different learning stations, at least one of which is an online learning station.</div>
+                </div>
+                
+                <!-- Q16 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q16. Which ICT tool is most appropriate for 'Asynchronous' discussion among learners?<br><br>शिक्षार्थियों के बीच 'अतुल्यकालिक' (Asynchronous) चर्चा के लिए कौन-सा ICT उपकरण सबसे उपयुक्त है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Video Conferencing</button>
+                        <button class="opt-btn" value="B">B) Live Chat Rooms</button>
+                        <button class="opt-btn" value="C">C) Discussion Forums / Message Boards (चर्चा मंच)</button>
+                        <button class="opt-btn" value="D">D) Audio calling</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Discussion forums allow students to read and reply to messages at their own convenience (not in real-time), making them asynchronous.</div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q17. In the TPACK model introduced by Mishra and Koehler (2006), the intersection of all three knowledge bases (TCK, TPK, PCK) results in:<br><br>TPACK मॉडल में, सभी तीनों ज्ञान आधारों (Technological, Pedagogical, Content) के प्रतिच्छेदन (intersection) से क्या प्राप्त होता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Effective integration of technology in teaching (शिक्षण में प्रौद्योगिकी का प्रभावी एकीकरण)</button>
+                        <button class="opt-btn" value="B">B) Replacement of the teacher by AI</button>
+                        <button class="opt-btn" value="C">C) Purely traditional teaching</button>
+                        <button class="opt-btn" value="D">D) Extinction of textbooks</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> TPACK represents the 'sweet spot' where a teacher knows their subject matter (Content), knows how to teach it (Pedagogy), and knows the best digital tools to enhance that specific lesson (Technology).</div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q18. What is the main characteristic of 'Tutorial' software in CAI?<br><br>CAI में 'ट्यूटोरियल' सॉफ्टवेयर की मुख्य विशेषता क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) It only tests students without teaching</button>
+                        <button class="opt-btn" value="B">B) It acts as a substitute for a teacher by presenting new concepts step-by-step and assessing understanding (यह नए विषयों को चरण-दर-चरण प्रस्तुत करता है)</button>
+                        <button class="opt-btn" value="C">C) It is only used for playing games</button>
+                        <button class="opt-btn" value="D">D) It is an administrative tool for grading</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Tutorials are designed to teach new material directly to the student from start to finish, complete with information delivery and formative quizzes.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q19. Under the SWAYAM platform, which quadrant focuses on 'Web Resources' (further reading, Wikipedia links, open source content)?<br><br>SWAYAM प्लेटफॉर्म के अंतर्गत, कौन-सा चतुर्थांश (Quadrant) 'वेब संसाधन' (अतिरिक्त पठन, लिंक) पर केंद्रित है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Quadrant 1 (Video)</button>
+                        <button class="opt-btn" value="B">B) Quadrant 3 (Web Resources / References)</button>
+                        <button class="opt-btn" value="C">C) Quadrant 4 (Self-Assessment)</button>
+                        <button class="opt-btn" value="D">D) Quadrant 2 (E-Content)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Quadrant 1: e-Tutorial (Video). Quadrant 2: e-Content (PDFs). Quadrant 3: Web Resources (links, further reading). Quadrant 4: Self-Assessment (Quizzes).</div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q20. Which term refers to the disparity in access to digital tools, internet connectivity, and computer literacy among different socio-economic groups?<br><br>विभिन्न सामाजिक-आर्थिक समूहों के बीच डिजिटल उपकरणों, इंटरनेट और कंप्यूटर साक्षरता तक पहुंच में असमानता को क्या कहा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Digital Divide (डिजिटल डिवाइड)</button>
+                        <button class="opt-btn" value="B">B) Digital Citizenship</button>
+                        <button class="opt-btn" value="C">C) Cyber Bullying</button>
+                        <button class="opt-btn" value="D">D) E-Governance</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Digital Divide is a major challenge in implementing pure online education, as it highlights the gap between those who have ready access to computers/internet and those who do not.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+            });
+        });
+    </script>
+</body>
+</html>

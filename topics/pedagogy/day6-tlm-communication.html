@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6: TLM & Classroom Communication | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 6: TLM & Classroom Communication
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 6: TLM & Classroom Communication</h1>
+            <div class="subtitle">Edgar Dale's Cone, FIAC & Discourse | Bilingual Notes</div>
+            
+            <h2>1. Teaching Learning Materials (TLM / शिक्षण अधिगम सामग्री)</h2>
+            <p>TLMs are instructional aids that facilitate learning by engaging different senses.</p>
+            <ul>
+                <li><strong>Audio Aids (श्रव्य सामग्री):</strong> Radio, Podcasts, Gramophone. Good for auditory learners.</li>
+                <li><strong>Visual Aids (दृश्य सामग्री):</strong> Charts, Maps, Flashcards, OHP (Overhead Projectors), Blackboards. Good for visual learners.</li>
+                <li><strong>Audio-Visual Aids (श्रव्य-दृश्य सामग्री):</strong> Television, Smartboards, Educational Videos, Multimedia software. <em>Highly effective as they engage multiple senses simultaneously.</em></li>
+            </ul>
+
+            <h2>2. Edgar Dale's Cone of Experience (एडगर डेल का अनुभव शंकु)</h2>
+            <p>Introduced in 1946, the Cone of Experience maps instructional methods from the most concrete (at the base) to the most abstract (at the apex).</p>
+            <div class="bilingual-box">
+                <strong>Base to Apex Hierarchy (नीचे से ऊपर की ओर):</strong><br>
+                1. <strong>Direct Purposeful Experiences (प्रत्यक्ष उद्देश्यपूर्ण अनुभव):</strong> Hands-on practice, coding a real app, field trips (Most Effective / सबसे प्रभावी).<br>
+                2. <strong>Contrived Experiences (कृत्रिम अनुभव):</strong> Working with models/simulations.<br>
+                3. <strong>Dramatized Experiences (नाटकीय अनुभव):</strong> Role plays.<br>
+                ... moving up through Demonstrations, Exhibits, Motion Pictures, Still Pictures, Radio ...<br>
+                10. <strong>Visual Symbols (दृश्य प्रतीक):</strong> Charts, Graphs.<br>
+                11. <strong>Verbal Symbols (शाब्दिक प्रतीक):</strong> Reading plain text, listening to a pure lecture (Most Abstract & Least Effective / सबसे कम प्रभावी).
+            </div>
+            <p><em>Rule of thumb:</em> "People generally remember 10% of what they read, 20% of what they hear, 30% of what they see, and <strong>90% of what they do</strong>."</p>
+
+            <h2>3. FIAC: Flanders Interaction Analysis Category System (फ्लैंडर्स की अंतःक्रिया विश्लेषण प्रणाली)</h2>
+            <p>Developed by Ned Flanders, FIAC is an observational tool used to analyze and improve classroom communication, specifically focusing on <strong>verbal behavior</strong> (मौखिक व्यवहार).</p>
+            <ul>
+                <li>It comprises exactly <strong>10 Categories</strong> observed every 3 seconds.</li>
+                <li><strong>Teacher Talk (शिक्षक वार्ता): Categories 1 to 7</strong> (e.g., Accepting feelings, praising, asking questions, lecturing, criticizing).</li>
+                <li><strong>Pupil Talk (छात्र वार्ता): Categories 8 to 9</strong> (Pupil-response and Pupil-initiation).</li>
+                <li><strong>Silence or Confusion (मौन या भ्रांति): Category 10</strong>.</li>
+            </ul>
+
+            <h2>4. Classroom Communication Barriers (कक्षा संचार की बाधाएं)</h2>
+            <table>
+                <tr>
+                    <th>Barrier Type (बाधा का प्रकार)</th>
+                    <th>Description (विवरण)</th>
+                    <th>Examples (उदाहरण)</th>
+                </tr>
+                <tr>
+                    <td><strong>Physical/Environmental</strong><br>(भौतिक / पर्यावरणीय)</td>
+                    <td>External disturbances in the classroom setup.</td>
+                    <td>Loud traffic noise, poor lighting, extreme heat, faulty mic.</td>
+                </tr>
+                <tr>
+                    <td><strong>Semantic/Language</strong><br>(शब्दार्थ / भाषा संबंधी)</td>
+                    <td>Misunderstanding of words, jargon, or symbols.</td>
+                    <td>Using complex college-level vocabulary for primary kids, ambiguous words.</td>
+                </tr>
+                <tr>
+                    <td><strong>Psychological</strong><br>(मनोवैज्ञानिक)</td>
+                    <td>Mental state of the sender or receiver hindering message processing.</td>
+                    <td>Student anxiety, lack of interest, prejudice, fear of the teacher.</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (20 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 20</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q1. According to Edgar Dale’s 'Cone of Experience', which of the following activities forms the base of the cone and provides the most effective learning?<br><br>एडगर डेल के 'अनुभव शंकु' के अनुसार, निम्नलिखित में से कौन-सी गतिविधि शंकु का आधार (base) बनाती है और सबसे प्रभावी अधिगम प्रदान करती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Listening to a pure lecture (Verbal Symbols)</button>
+                        <button class="opt-btn" value="B">B) Watching a documentary video</button>
+                        <button class="opt-btn" value="C">C) Direct purposeful experiences, like conducting a lab experiment (प्रत्यक्ष उद्देश्यपूर्ण अनुभव)</button>
+                        <button class="opt-btn" value="D">D) Looking at a static diagram</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The base of Dale's Cone consists of 'Direct Purposeful Experiences' (hands-on doing), which yield the highest retention and conceptual clarity.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q2. In the Flanders Interaction Analysis Category (FIAC) system, how many categories are specifically dedicated to 'Teacher Talk'?<br><br>फ्लैंडर्स अंतःक्रिया विश्लेषण प्रणाली (FIAC) में, 'शिक्षक वार्ता' (Teacher Talk) के लिए विशेष रूप से कितनी श्रेणियां समर्पित हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 5 Categories</button>
+                        <button class="opt-btn" value="B">B) 7 Categories (श्रेणियां 1 से 7)</button>
+                        <button class="opt-btn" value="C">C) 10 Categories</button>
+                        <button class="opt-btn" value="D">D) 2 Categories</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> FIAC has 10 categories in total: Categories 1-7 measure Teacher Talk, Categories 8-9 measure Pupil Talk, and Category 10 records Silence or Confusion.</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q3. FIAC (Flanders Interaction Analysis) is primarily designed to observe and analyze which type of behavior in the classroom?<br><br>FIAC मुख्य रूप से कक्षा में किस प्रकार के व्यवहार का निरीक्षण और विश्लेषण करने के लिए डिज़ाइन किया गया है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Students' writing speed</button>
+                        <button class="opt-btn" value="B">B) Teacher's physical gestures and body language</button>
+                        <button class="opt-btn" value="C">C) Non-verbal communication only</button>
+                        <button class="opt-btn" value="D">D) Verbal communication/behavior (मौखिक संचार / व्यवहार)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Flanders explicitly designed FIAC to record ONLY verbal interactions (what the teacher and students are saying) to evaluate classroom climate. Non-verbal actions are ignored in FIAC.</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q4. A teacher uses highly technical jargon and complex vocabulary that the students fail to understand. This creates which type of communication barrier?<br><br>एक शिक्षक अत्यधिक तकनीकी और जटिल शब्दावली का उपयोग करता है जिसे छात्र समझने में विफल रहते हैं। यह किस प्रकार की संचार बाधा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Physical barrier</button>
+                        <button class="opt-btn" value="B">B) Psychological barrier</button>
+                        <button class="opt-btn" value="C">C) Semantic barrier (शब्दार्थ संबंधी बाधा)</button>
+                        <button class="opt-btn" value="D">D) Physiological barrier</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Semantic barriers occur when there is a misunderstanding regarding the meaning of words, symbols, or language (e.g., using jargon or ambiguous terms).</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q5. According to Edgar Dale, which of the following is considered the MOST abstract form of educational experience (located at the very apex of the cone)?<br><br>एडगर डेल के अनुसार, निम्नलिखित में से किसे शैक्षिक अनुभव का सबसे 'अमूर्त' (abstract) रूप माना जाता है (जो शंकु के बिल्कुल शीर्ष पर स्थित है)?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Field trips</button>
+                        <button class="opt-btn" value="B">B) Verbal Symbols / Spoken Words (शाब्दिक प्रतीक / बोले गए शब्द)</button>
+                        <button class="opt-btn" value="C">C) Contrived experiences (models)</button>
+                        <button class="opt-btn" value="D">D) Educational television</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Verbal symbols (reading text or listening to spoken words without visuals) sit at the very top of the cone because they are the most abstract and furthest from direct physical reality.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q6. Which of the following is a classic example of an Audio-Visual Teaching Learning Material (TLM)?<br><br>निम्नलिखित में से कौन-सा 'श्रव्य-दृश्य' (Audio-Visual) शिक्षण अधिगम सामग्री का उत्कृष्ट उदाहरण है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Interactive Smartboard showing a documentary (डॉक्यूमेंट्री दिखाने वाला स्मार्टबोर्ड)</button>
+                        <button class="opt-btn" value="B">B) Radio broadcast</button>
+                        <button class="opt-btn" value="C">C) Traditional Blackboard</button>
+                        <button class="opt-btn" value="D">D) Printed textbook</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Audio-Visual aids engage both the eyes and ears simultaneously, like a video documentary on a Smartboard or TV.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q7. If a student cannot concentrate on the lesson because they are feeling extremely anxious about an upcoming exam, this represents a:<br><br>यदि कोई छात्र आगामी परीक्षा को लेकर अत्यधिक चिंतित (anxious) होने के कारण पाठ पर ध्यान केंद्रित नहीं कर पाता है, तो यह दर्शाता है:</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Physical barrier</button>
+                        <button class="opt-btn" value="B">B) Mechanical barrier</button>
+                        <button class="opt-btn" value="C">C) Psychological barrier (मनोवैज्ञानिक बाधा)</button>
+                        <button class="opt-btn" value="D">D) Semantic barrier</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Anxiety, fear, lack of interest, and prejudice are psychological states of the receiver's mind that block effective communication.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q8. In FIAC, Category 10 represents:<br><br>FIAC में, श्रेणी 10 (Category 10) क्या दर्शाती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Teacher asking questions</button>
+                        <button class="opt-btn" value="B">B) Silence or Confusion (मौन या भ्रांति)</button>
+                        <button class="opt-btn" value="C">C) Pupil initiating talk</button>
+                        <button class="opt-btn" value="D">D) Teacher praising a student</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 10th and final category of Flanders Interaction Analysis accounts for periods of silence, pauses, or noisy confusion where communication cannot be understood.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q9. Which of the following is the most effective way to overcome 'semantic barriers' in a diverse classroom?<br><br>विविधता वाली कक्षा में 'शब्दार्थ संबंधी बाधाओं' (semantic barriers) को दूर करने का सबसे प्रभावी तरीका कौन-सा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Shouting louder so everyone hears</button>
+                        <button class="opt-btn" value="B">B) Using more complex vocabulary to force learning</button>
+                        <button class="opt-btn" value="C">C) Ignoring the students who don't understand</button>
+                        <button class="opt-btn" value="D">D) Using simple, clear language supported by visual aids and examples (दृश्य सामग्री और उदाहरणों द्वारा समर्थित सरल, स्पष्ट भाषा का उपयोग करना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Semantic barriers arise from language and word meanings. Using clear, simple language reinforced with visuals (TLMs) ensures the message is decoded accurately.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q10. When a teacher uses a 3D physical model of a DNA strand instead of just drawing it on the board, they are moving from a more ________ experience to a more ________ experience on Dale's Cone.<br><br>जब एक शिक्षक बोर्ड पर चित्र बनाने के बजाय DNA के 3D भौतिक मॉडल का उपयोग करता है, तो वह डेल के शंकु पर ________ अनुभव से ________ अनुभव की ओर बढ़ रहा है।</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Concrete ; Abstract</button>
+                        <button class="opt-btn" value="B">B) Abstract ; Concrete (अमूर्त से मूर्त)</button>
+                        <button class="opt-btn" value="C">C) Verbal ; Visual</button>
+                        <button class="opt-btn" value="D">D) Direct ; Contrived</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A 2D drawing is highly symbolic/abstract (top of the cone). A physical 3D model is a "Contrived Experience" which is much more concrete (towards the bottom of the cone).</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q11. The primary purpose of using Teaching Learning Materials (TLM) is to:<br><br>शिक्षण अधिगम सामग्री (TLM) का उपयोग करने का प्राथमिक उद्देश्य क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Make the classroom look beautiful</button>
+                        <button class="opt-btn" value="B">B) Keep students busy so the teacher can rest</button>
+                        <button class="opt-btn" value="C">C) Facilitate effective learning by making abstract concepts concrete and engaging multiple senses (अमूर्त अवधारणाओं को मूर्त बनाकर और कई इंद्रियों को शामिल करके प्रभावी अधिगम को सुगम बनाना)</button>
+                        <button class="opt-btn" value="D">D) Replace the teacher entirely</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> TLMs are instructional aids designed to clarify concepts, capture attention, and bridge the gap between abstract theory and concrete understanding.</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q12. What does Category 9 represent in the FIAC system?<br><br>FIAC प्रणाली में 'श्रेणी 9' (Category 9) क्या दर्शाती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Teacher lecturing</button>
+                        <button class="opt-btn" value="B">B) Pupil-Initiation / Student volunteering an idea or asking a new question (छात्र द्वारा पहल / छात्र द्वारा नए विचार या प्रश्न प्रस्तुत करना)</button>
+                        <button class="opt-btn" value="C">C) Pupil-Response (answering teacher's direct question)</button>
+                        <button class="opt-btn" value="D">D) Teacher criticizing</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Category 8 is 'Pupil Response' (answering when asked). Category 9 is 'Pupil Initiation' (when the student proactively asks a question or shares an original thought).</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q13. Noise from a nearby construction site disrupting the teacher's voice is an example of a:<br><br>पास के निर्माण स्थल से आ रहा शोर जो शिक्षक की आवाज़ को बाधित कर रहा है, किसका उदाहरण है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Physical / Environmental Barrier (भौतिक / पर्यावरणीय बाधा)</button>
+                        <button class="opt-btn" value="B">B) Psychological Barrier</button>
+                        <button class="opt-btn" value="C">C) Semantic Barrier</button>
+                        <button class="opt-btn" value="D">D) Cultural Barrier</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Physical or environmental barriers include external noises, poor lighting, extreme room temperatures, or faulty equipment that physically block the transmission of the message.</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q14. In classroom communication, which model emphasizes that both teacher and student act as senders and receivers simultaneously, continuously giving feedback to each other?<br><br>कक्षा संचार में, कौन-सा मॉडल इस बात पर जोर देता है कि शिक्षक और छात्र दोनों एक साथ प्रेषक (sender) और प्राप्तकर्ता (receiver) के रूप में कार्य करते हैं, और लगातार प्रतिक्रिया (feedback) देते हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Linear Model (रैखिक मॉडल)</button>
+                        <button class="opt-btn" value="B">B) Transactional Model (लेन-देन / संवादात्मक मॉडल)</button>
+                        <button class="opt-btn" value="C">C) Authoritarian Model</button>
+                        <button class="opt-btn" value="D">D) Monologue Model</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Transactional Model of communication is highly dynamic; it views communication as a simultaneous, two-way interactive process with constant feedback (verbal and non-verbal).</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q15. According to Dale's Cone, "Dramatized Experiences" (like a classroom role-play of a historical event) are less abstract and more effective than:<br><br>डेल के शंकु के अनुसार, "नाटकीय अनुभव" (जैसे ऐतिहासिक घटना का रोल-प्ले) किससे कम अमूर्त और अधिक प्रभावी होते हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Direct Purposeful Experiences (e.g., actually visiting a historical site)</button>
+                        <button class="opt-btn" value="B">B) Motion Pictures / Videos (चलचित्र / वीडियो)</button>
+                        <button class="opt-btn" value="C">C) Contrived Experiences (Models)</button>
+                        <button class="opt-btn" value="D">D) Actually performing a real-life task</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Dramatized experiences involve active physical participation, placing them lower (more concrete/effective) on the cone than merely passively watching a Motion Picture (video).</div>
+                </div>
+                
+                <!-- Q16 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q16. The EDUSAT satellite was primarily launched by ISRO to support which of the following?<br><br>इसरो (ISRO) द्वारा EDUSAT उपग्रह मुख्य रूप से किसके समर्थन के लिए लॉन्च किया गया था?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Distance education and interactive satellite-based classrooms (दूरस्थ शिक्षा और उपग्रह-आधारित कक्षाएं)</button>
+                        <button class="opt-btn" value="B">B) Military communication only</button>
+                        <button class="opt-btn" value="C">C) Weather forecasting</button>
+                        <button class="opt-btn" value="D">D) GPS navigation for cars</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> GSAT-3, known as EDUSAT, was India's first exclusive satellite dedicated to the educational sector to provide interactive satellite-based distance education.</div>
+                </div>
+                
+                <!-- Q17 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q17. Which of the following is considered a limitation of the FIAC system?<br><br>निम्नलिखित में से किसे FIAC प्रणाली की एक सीमा (कमी) माना जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) It provides too much focus on student behavior</button>
+                        <button class="opt-btn" value="B">B) It entirely ignores non-verbal communication like facial expressions and gestures (यह चेहरे के भावों और इशारों जैसे गैर-मौखिक संचार की पूरी तरह अनदेखी करता है)</button>
+                        <button class="opt-btn" value="C">C) It only works for written exams</button>
+                        <button class="opt-btn" value="D">D) It cannot be used in primary schools</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A major critique of Flanders Interaction Analysis is that it codes only verbal talk, completely missing the crucial non-verbal cues (smiles, frowns, nods) that shape classroom climate.</div>
+                </div>
+                
+                <!-- Q18 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q18. Overhead Projectors (OHP) and Epidiascopes belong to which category of TLM?<br><br>ओवरहेड प्रोजेक्टर (OHP) और एपिडायस्कोप TLM की किस श्रेणी में आते हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Audio Aids</button>
+                        <button class="opt-btn" value="B">B) Visual Aids / Projected Aids (दृश्य सामग्री / प्रक्षेपित सामग्री)</button>
+                        <button class="opt-btn" value="C">C) Audio-Visual Aids</button>
+                        <button class="opt-btn" value="D">D) Experiential Aids</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> OHPs project transparent slides onto a screen, and epidiascopes project opaque objects. Since they do not have built-in sound, they are strictly Visual/Projected Aids.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q19. When a teacher praises a student's answer by saying "Excellent point!", which FIAC category does this fall under?<br><br>जब एक शिक्षक किसी छात्र के उत्तर की प्रशंसा करते हुए कहता है "बहुत बढ़िया!", तो यह FIAC की किस श्रेणी के अंतर्गत आता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Category 1: Accepting feelings</button>
+                        <button class="opt-btn" value="B">B) Category 4: Asking questions</button>
+                        <button class="opt-btn" value="C">C) Category 2: Praising or encouraging (श्रेणी 2: प्रशंसा या प्रोत्साहन)</button>
+                        <button class="opt-btn" value="D">D) Category 7: Criticizing</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> In FIAC, Category 2 records instances where the teacher praises or encourages pupil action or behavior.</div>
+                </div>
+                
+                <!-- Q20 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q20. Dale's Cone of Experience operates on the principle that learning becomes more effective when it progresses from:<br><br>डेल का अनुभव शंकु इस सिद्धांत पर कार्य करता है कि अधिगम तब अधिक प्रभावी हो जाता है जब वह बढ़ता है:</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Abstract symbols to concrete direct experiences (अमूर्त प्रतीकों से मूर्त प्रत्यक्ष अनुभवों की ओर)</button>
+                        <button class="opt-btn" value="B">B) Direct experiences to abstract symbols</button>
+                        <button class="opt-btn" value="C">C) Visual to Audio</button>
+                        <button class="opt-btn" value="D">D) Doing to Reading</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The core philosophy of the cone is that concrete, direct experiences (doing) yield much higher retention and understanding than abstract, passive experiences (reading/hearing symbols).</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+            });
+        });
+    </script>
+</body>
+</html>

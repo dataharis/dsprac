@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: Teaching Methods & Maxims | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 3: Teaching Methods
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 3: Teaching Methods & Maxims (शिक्षण विधियां एवं सूत्र)</h1>
+            <div class="subtitle">DSSSB TGT Section B | Detailed Bilingual Study Notes</div>
+            
+            <h2>1. Teacher-Centered vs. Learner-Centered Methods (शिक्षक-केंद्रित बनाम शिक्षार्थी-केंद्रित विधियां)</h2>
+            <table>
+                <tr>
+                    <th>Dimension (आधार)</th>
+                    <th>Teacher-Centered Methods (शिक्षक-केंद्रित विधियां)</th>
+                    <th>Learner-Centered Methods (बाल/शिक्षार्थी-केंद्रित विधियां)</th>
+                </tr>
+                <tr>
+                    <td><strong>Core Focus (केंद्र बिंदु)</strong></td>
+                    <td>Teacher is the active authority ('Sage on the Stage'); students are passive listeners (शिक्षक सक्रिय वक्ता होता है और छात्र निष्क्रिय श्रोता).</td>
+                    <td>Learner is active explorer; teacher acts as a facilitator ('Guide on the Side' / सुगमकर्ता).</td>
+                </tr>
+                <tr>
+                    <td><strong>Psychological Base (मनोवैज्ञानिक आधार)</strong></td>
+                    <td>Behaviorism & Traditional Idealism (व्यवहारवाद एवं परंपरागत आदर्शवाद — ज्ञान का सीधा हस्तांतरण).</td>
+                    <td>Constructivism & Pragmatism (रचनावाद, प्रयोजनवाद — करके सीखना / Learning by Doing).</td>
+                </tr>
+                <tr>
+                    <td><strong>Key Examples (प्रमुख उदाहरण)</strong></td>
+                    <td>Lecture Method (व्याख्यान विधि), Demonstration Method (प्रदर्शन विधि), Direct Instruction.</td>
+                    <td>Heuristic Method (ह्यूरिस्टिक विधि), Project Method (प्रायोजना विधि), Problem-Solving (समस्या-समाधान).</td>
+                </tr>
+            </table>
+
+            <h2>2. Deep-Dive: 5 Core Teaching Methods (5 प्रमुख शिक्षण विधियों का विस्तृत विश्लेषण)</h2>
+            <ul>
+                <li><strong>1. Lecture Method (व्याख्यान विधि):</strong> Oldest, autocratic, one-way verbal presentation. <em>Merits:</em> Economical, covers vast syllabus fast. <em>Demerits:</em> Passive learners, ignores individual differences.</li>
+                <li><strong>2. Demonstration Method (प्रदर्शन विधि):</strong> Teacher performs an experiment/skill while explaining. Combines audio + visual senses. <em>Merits:</em> Concrete & clear, safe for hazardous equipment. <em>Demerits:</em> Limits pure hands-on practice for students.</li>
+                <li><strong>3. Heuristic Method (ह्यूरिस्टिक / अन्वेषण विधि - H.E. Armstrong):</strong> Derived from Greek <strong>'Heurisko' (I find out)</strong>. Student acts as an independent discoverer/scientist. Builds scientific attitude but is very slow.</li>
+                <li><strong>4. Project Method (प्रायोजना विधि - W.H. Kilpatrick, 1918):</strong> Based on John Dewey's Pragmatism. Definition: <em>"A whole-hearted purposeful activity proceeding in a social environment."</em><br>
+                <strong>6 Steps:</strong> 1. Creating Situation → 2. Selecting Project → 3. Planning → 4. Executing (Longest) → 5. Evaluating → 6. Recording.</li>
+                <li><strong>5. Problem-Solving Method (समस्या-समाधान विधि - John Dewey):</strong> Scientific investigation of a challenging obstacle. Key steps include Identifying Problem → Analyzing Data → Formulating Hypotheses → Testing → Conclusion.</li>
+            </ul>
+
+            <h2>3. Inductive vs. Deductive Method (आगमन बनाम निगमन विधि)</h2>
+            <table>
+                <tr>
+                    <th>Feature (विशेषता)</th>
+                    <th>Inductive Method (आगमन विधि)</th>
+                    <th>Deductive Method (निगमन विधि)</th>
+                </tr>
+                <tr>
+                    <td><strong>Direction of Logic (तर्क की दिशा)</strong></td>
+                    <td><strong>Examples to Rule (उदाहरण से नियम की ओर)</strong><br>Specific to General, Concrete to Abstract, Known to Unknown.</td>
+                    <td><strong>Rule to Examples (नियम/सूत्र से उदाहरण की ओर)</strong><br>General to Specific, Abstract to Concrete, Unknown to Known.</td>
+                </tr>
+                <tr>
+                    <td><strong>Classroom Application (कक्षा में उपयोग)</strong></td>
+                    <td>Best for introducing grammar rules, math theorems, or new concepts. Conceptual discovery.</td>
+                    <td>Best for fast practice, applying established formulas, and revision. Speed and drill.</td>
+                </tr>
+            </table>
+
+            <h2>4. 7 Golden Maxims of Teaching (प्रमुख शिक्षण सूत्र)</h2>
+            <ol>
+                <li><strong>Known to Unknown (ज्ञात से अज्ञात की ओर):</strong> Link new lessons with prior knowledge/schemas.</li>
+                <li><strong>Simple to Complex (सरल से जटिल की ओर):</strong> Teach basic concepts before advanced topics.</li>
+                <li><strong>Concrete to Abstract (मूर्त से अमूर्त की ओर):</strong> Start with physical objects before abstract math/logic.</li>
+                <li><strong>Particular to General (विशिष्ट से सामान्य की ओर):</strong> Basis of Inductive teaching (उदाहरण देकर नियम निकलवाना).</li>
+                <li><strong>Whole to Part (पूर्ण से अंश की ओर):</strong> Based on <strong>Gestalt Psychology</strong>. Overview first, modules next.</li>
+                <li><strong>Psychological to Logical (मनोवैज्ञानिक से तार्किक की ओर):</strong> Start according to child's interest/age, then organize logically by subject structure.</li>
+                <li><strong>Analysis to Synthesis (विश्लेषण से संश्लेषण की ओर):</strong> Breaking a complex problem into smaller parts (Analysis), then combining known parts to build the solution (Synthesis).</li>
+            </ol>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (20 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 20</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. Who propounded the 'Heuristic Method' of teaching, and from which Greek word is the term 'Heuristic' derived?<br><br>शिक्षण की 'ह्यूरिस्टिक विधि' (अन्वेषण विधि) का प्रतिपादन किसने किया था, और 'Heuristic' शब्द की उत्पत्ति किस ग्रीक शब्द से हुई है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) W.H. Kilpatrick; 'Pragikos' (डब्ल्यू.एच. किलपैट्रिक; 'प्रैगिकोस')</button>
+                        <button class="opt-btn" value="B">B) Prof. H.E. Armstrong; 'Heurisko' meaning 'I find out / discover' (प्रो. एच.ई. आर्मस्ट्रांग; 'ह्यूरिस्को' जिसका अर्थ है 'मैं खोजता हूँ')</button>
+                        <button class="opt-btn" value="C">C) John Dewey; 'Logikos' (जॉन डीवी; 'लॉजिकोस')</button>
+                        <button class="opt-btn" value="D">D) Jerome Bruner; 'Episteme' (जेरोम ब्रूनर; 'एपिस्टेम')</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Prof. H.E. Armstrong developed the Heuristic Method for science teaching. The word comes from Greek 'Heurisko', meaning "I find out", placing the student in the role of a discoverer.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q2. The 'Project Method' of teaching was formally developed by W.H. Kilpatrick in 1918. On which philosophical school of thought and philosopher's ideas is it based?<br><br>शिक्षण की 'प्रायोजना विधि' (Project Method) को 1918 में डब्ल्यू.एच. किलपैट्रिक द्वारा विकसित किया गया था। यह किस दार्शनिक विचारधारा पर आधारित है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Idealism of Plato (प्लेटो का आदर्शवाद)</button>
+                        <button class="opt-btn" value="B">B) Naturalism of Rousseau (रूसो का प्रकृतिवाद)</button>
+                        <button class="opt-btn" value="C">C) Pragmatism of John Dewey (जॉन डीवी का प्रयोजनवाद)</button>
+                        <button class="opt-btn" value="D">D) Existentialism of Sartre (सार्त्र का अस्तित्ववाद)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Kilpatrick was a student of John Dewey. The Project Method is firmly rooted in Dewey's Pragmatism (प्रयोजनवाद) and the principle of 'Learning by Doing'.</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q3. What is the correct sequential order of steps involved in executing the Project Method in a classroom?<br><br>कक्षा में प्रायोजना विधि (Project Method) को लागू करने के चरणों का सही क्रम क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Planning → Selecting → Creating Situation → Executing → Evaluating → Recording</button>
+                        <button class="opt-btn" value="B">B) Creating Situation → Selecting Project → Planning → Executing → Evaluating → Recording (परिस्थिति निर्माण → चयन → योजना → क्रियान्वयन → मूल्यांकन → लेखा-जोखा)</button>
+                        <button class="opt-btn" value="C">C) Executing → Planning → Evaluating → Selecting → Creating Situation → Recording</button>
+                        <button class="opt-btn" value="D">D) Selecting Project → Recording → Planning → Executing → Evaluating</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 6 standard steps of the Project Method are: 1. Creating Situation, 2. Selection, 3. Planning, 4. Execution (the longest and main step), 5. Evaluation, and 6. Recording.</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q4. A Computer Science teacher shows three different Python programs where variables inside a function cannot be accessed outside it, and then guides the students to formulate the general rule of 'Local vs. Global Scope'. Which method is being used?<br><br>शिक्षक पहले उदाहरण दिखाता है और फिर छात्रों को सामान्य नियम निकालने के लिए प्रेरित करता है। शिक्षक किस विधि का उपयोग कर रहा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Deductive Method (निगमन विधि)</button>
+                        <button class="opt-btn" value="B">B) Inductive Method (आगमन विधि)</button>
+                        <button class="opt-btn" value="C">C) Lecture Method (व्याख्यान विधि)</button>
+                        <button class="opt-btn" value="D">D) Autocratic Drill Method (सत्तावादी अभ्यास विधि)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Presenting Specific Examples first and leading students to discover a General Rule is the Inductive Method (आगमन विधि).</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q5. Which of the following sequences of teaching maxims correctly characterizes the 'Deductive Method' (निगमन विधि)?<br><br>निम्नलिखित में से शिक्षण सूत्रों का कौन-सा समूह 'निगमन विधि' (Deductive Method) की सही विशेषता बताता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Specific to General, Concrete to Abstract, Examples to Rule</button>
+                        <button class="opt-btn" value="B">B) General to Specific, Abstract to Concrete, Rule/Formula to Examples (सामान्य से विशिष्ट, अमूर्त से मूर्त, नियम/सूत्र से उदाहरण)</button>
+                        <button class="opt-btn" value="C">C) Psychological to Logical, Whole to Part</button>
+                        <button class="opt-btn" value="D">D) Empirical to Rational only</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Deductive Method starts with a General Rule or Formula (Abstract) and applies it to Specific Examples (Concrete).</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q6. Why is the 'Inductive-Deductive Method' considered the best approach for teaching Mathematics and Grammar?<br><br>गणित और व्याकरण पढ़ाने के लिए 'आगमन-निगमन संयुक्त विधि' को सबसे उत्तम दृष्टिकोण क्यों माना जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Induction builds conceptual discovery, and Deduction provides speed and practice (आगमन विधि से छात्र नियम खोजते हैं, और निगमन विधि से गति और अभ्यास प्राप्त होता है)</button>
+                        <button class="opt-btn" value="B">B) Because it eliminates the need for a teacher</button>
+                        <button class="opt-btn" value="C">C) Because it relies 100% on rote memorization</button>
+                        <button class="opt-btn" value="D">D) Because it avoids solving numerical problems</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A combination is best: Induction is used first for deep conceptual understanding and rule discovery, followed by Deduction for rapid practice and application.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q7. When a teacher gives an overview of the entire computer architecture (Input-CPU-Output) before teaching the internal working of the ALU, which maxim of teaching is followed?<br><br>शिक्षक ALU पढ़ाने से पहले पूरे कंप्यूटर सिस्टम का समग्र परिचय देता है। वह किस शिक्षण सूत्र का पालन कर रहा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Part to Whole (अंश से पूर्ण की ओर)</button>
+                        <button class="opt-btn" value="B">B) Whole to Part — based on Gestalt Psychology (पूर्ण से अंश की ओर — गेस्टाल्ट मनोविज्ञान पर आधारित)</button>
+                        <button class="opt-btn" value="C">C) Abstract to Concrete</button>
+                        <button class="opt-btn" value="D">D) Complex to Simple</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Gestalt psychology dictates that learners perceive the "Whole" before analyzing the individual "Parts" (पूर्ण से अंश की ओर).</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q8. Breaking down a complex problem into smaller parts to understand the unknown is called __________, whereas combining known elements to construct the final solution is called ________.<br><br>समस्या को छोटे घटकों में विभाजित करना __________ कहलाता है, जबकि ज्ञात तथ्यों को जोड़कर अंतिम समाधान का निर्माण करना __________ कहलाता है।</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Synthesis; Analysis (संश्लेषण; विश्लेषण)</button>
+                        <button class="opt-btn" value="B">B) Analysis (विश्लेषण); Synthesis (संश्लेषण)</button>
+                        <button class="opt-btn" value="C">C) Deduction; Induction</button>
+                        <button class="opt-btn" value="D">D) Lecture; Demonstration</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Analysis (विश्लेषण) is breaking down a whole into parts to study it. Synthesis (संश्लेषण) is putting parts together to form a whole.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q9. In problem-solving, if a student fails to realize a metallic paperclip can be used as an electrical conductor because they only see it as a tool to hold papers, this cognitive barrier is called:<br><br>समस्या-समाधान में, यदि कोई छात्र कागज़ पिन का उपयोग विद्युत चालक के रूप में नहीं सोच पाता क्योंकि वह इसे केवल कागज़ जोड़ने की वस्तु मानता है, तो इस बाधा को क्या कहते हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Functional Fixedness (प्रकार्यात्मक स्थिरता / अड़िगता)</button>
+                        <button class="opt-btn" value="B">B) Divergent Thinking (अपसारी चिंतन)</button>
+                        <button class="opt-btn" value="C">C) Scaffolding</button>
+                        <button class="opt-btn" value="D">D) Positive Transfer of Learning</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Functional Fixedness (coined by Karl Duncker) is a cognitive bias that limits a person to using an object only in the way it is traditionally used.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q10. What is the main limitation of the 'Lecture-cum-Demonstration Method' if used without subsequent lab work?<br><br>यदि बिना प्रयोगशाला कार्य के केवल 'व्याख्यान-सह-प्रदर्शन विधि' का उपयोग किया जाए, तो इसकी मुख्य कमी क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) It is too expensive</button>
+                        <button class="opt-btn" value="B">B) It limits 'Learning by Doing' because students only observe the teacher rather than developing hands-on practical skills (छात्र स्वयं व्यावहारिक कौशल करने के बजाय केवल शिक्षक को प्रयोग करते हुए देखते हैं)</button>
+                        <button class="opt-btn" value="C">C) It cannot be used in science</button>
+                        <button class="opt-btn" value="D">D) It takes more time than Heuristic method</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> While demonstration engages visual and auditory senses, it deprives students of actual physical practice (Learning by Doing).</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q11. Who defined a Project as "a whole-hearted purposeful activity proceeding in a social environment"?<br><br>प्रोजेक्ट को "सामाजिक वातावरण में पूर्ण संलग्नता के साथ किया जाने वाला एक उद्देश्यपूर्ण कार्य" किसने परिभाषित किया है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) J.A. Stevenson</button>
+                        <button class="opt-btn" value="B">B) W.H. Kilpatrick (डब्ल्यू.एच. किलपैट्रिक)</button>
+                        <button class="opt-btn" value="C">C) Ballard</button>
+                        <button class="opt-btn" value="D">D) H.E. Armstrong</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> This is W.H. Kilpatrick's famous definition of the Project Method. Stevenson defined it as a "problematic act carried to completion in its natural setting."</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q12. In the scientific Problem-Solving Method, what step immediately follows "Analyzing the Problem / Collecting Data"?<br><br>वैज्ञानिक समस्या-समाधान विधि में, "तथ्यों का संकलन व विश्लेषण" करने के तुरंत बाद अगला चरण कौन-सा होता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Publishing a textbook</button>
+                        <button class="opt-btn" value="B">B) Formulating Tentative Hypotheses (संभावित परिकल्पनाओं का निर्माण करना)</button>
+                        <button class="opt-btn" value="C">C) Memorizing the answer key</button>
+                        <button class="opt-btn" value="D">D) Assigning punishment</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> After data collection and analysis, the next logical step is to form a Tentative Hypothesis (a proposed explanation or solution) to be tested.</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q13. Alex Osborn developed the 'Brainstorming' technique primarily to foster which type of thinking?<br><br>एलेक्स ओसबोर्न ने मुख्य रूप से किस प्रकार के चिंतन को विकसित करने के लिए 'ब्रेनस्टॉर्मिंग' (मस्तिष्क उद्वेलन) का विकास किया?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Rote Convergent Recall</button>
+                        <button class="opt-btn" value="B">B) Creative & Divergent Thinking (सृजनात्मक एवं अपसारी चिंतन)</button>
+                        <button class="opt-btn" value="C">C) Passive Listening</button>
+                        <button class="opt-btn" value="D">D) Rigid Algorithmic Copying</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Brainstorming encourages generating multiple, diverse ideas without immediate criticism (Deferred Judgment), which fosters Divergent Thinking and creativity.</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q14. What is the difference between 'Psychological Order' and 'Logical Order' in teaching?<br><br>"मनोवैज्ञानिक से तार्किक की ओर" शिक्षण सूत्र में क्या अंतर है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Psychological order is based on learner's interest/readiness, whereas Logical order is based on the systematic structure of the subject (मनोवैज्ञानिक क्रम छात्र की रुचि अनुसार है, जबकि तार्किक क्रम विषय की संरचना अनुसार)</button>
+                        <button class="opt-btn" value="B">B) Psychological order is only for college professors</button>
+                        <button class="opt-btn" value="C">C) Both mean teaching alphabetically</button>
+                        <button class="opt-btn" value="D">D) Logical order ignores rules</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A teacher should initiate a topic based on the child's psychological readiness and curiosity, and slowly transition into the logical, structured facts of the discipline.</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q15. Which teaching method is most suitable for collaboratively designing and coding a working 'Library Management System' over two weeks?<br><br>दो सप्ताह में 'लाइब्रेरी मैनेजमेंट सिस्टम' का निर्माण करने के लिए कौन-सी शिक्षण विधि सबसे उपयुक्त है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Pure Lecture Method</button>
+                        <button class="opt-btn" value="B">B) Project Method (प्रायोजना / प्रोजेक्ट विधि)</button>
+                        <button class="opt-btn" value="C">C) Deductive Dictation</button>
+                        <button class="opt-btn" value="D">D) Silent Reading</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Building a software system requires planning, execution over time, teamwork, and results in a tangible product—the perfect use case for the Project Method.</div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q16. Linking a new lesson with a student's prior schemas and previous experiences follows which maxim of teaching?<br><br>नए पाठ को छात्र के पूर्व-ज्ञान और अनुभवों से जोड़ना किस शिक्षण सूत्र का पालन करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Known to Unknown (ज्ञात से अज्ञात की ओर)</button>
+                        <button class="opt-btn" value="B">B) Abstract to Concrete (अमूर्त से मूर्त की ओर)</button>
+                        <button class="opt-btn" value="C">C) Complex to Simple (जटिल से सरल की ओर)</button>
+                        <button class="opt-btn" value="D">D) Unknown to Known (अज्ञात से ज्ञात की ओर)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The maxim "From Known to Unknown" ensures that students anchor new, unfamiliar concepts to their existing, familiar knowledge base.</div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q17. Teaching basic variables and loops in programming before teaching advanced recursion follows which maxim?<br><br>प्रोग्रामिंग में जटिल रिकर्सन सिखाने से पहले बुनियादी चर (variables) और लूप (loops) सिखाना किस सूत्र का पालन करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Simple to Complex (सरल से जटिल की ओर)</button>
+                        <button class="opt-btn" value="B">B) Complex to Simple</button>
+                        <button class="opt-btn" value="C">C) General to Specific</button>
+                        <button class="opt-btn" value="D">D) Part to Whole</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Information should be sequenced by difficulty, presenting simple, fundamental ideas before complex, layered concepts (Simple to Complex).</div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q18. The 'Lecture Method' is heavily rooted in which psychological base?<br><br>'व्याख्यान विधि' मुख्य रूप से किस मनोवैज्ञानिक/दार्शनिक आधार से जुड़ी है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Radical Constructivism</button>
+                        <button class="opt-btn" value="B">B) Pragmatism (प्रयोजनवाद)</button>
+                        <button class="opt-btn" value="C">C) Traditional Idealism and Behaviorism (ज्ञान का सीधा हस्तांतरण)</button>
+                        <button class="opt-btn" value="D">D) Existentialism</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Lecture Method assumes knowledge can be directly transmitted from an active teacher to passive students, a hallmark of traditional idealism and behaviorist conditioning.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q19. Under Kilpatrick's classification, a project where students build an actual wooden model or software app falls under which category?<br><br>किलपैट्रिक के अनुसार, वह प्रोजेक्ट जिसमें छात्र वास्तविक लकड़ी का मॉडल या सॉफ्टवेयर ऐप बनाते हैं, किस श्रेणी में आता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Consumer Type Project (आस्वादन)</button>
+                        <button class="opt-btn" value="B">B) Producer / Constructive Type Project (निर्माणात्मक प्रायोजना)</button>
+                        <button class="opt-btn" value="C">C) Problem Type Project (समस्यात्मक)</button>
+                        <button class="opt-btn" value="D">D) Drill Type Project (अभ्यास)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Building a tangible product, model, or app constitutes a 'Producer' or 'Constructive' project.</div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q20. Using physical apples or visual diagrams to teach addition before introducing abstract numbers (2+2) applies the maxim:<br><br>अमूर्त संख्याएं (2+2) सिखाने से पहले वास्तविक सेब या चित्रों का उपयोग करके जोड़ना सिखाना किस सूत्र का प्रयोग है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Unknown to Known</button>
+                        <button class="opt-btn" value="B">B) Concrete to Abstract (मूर्त से अमूर्त की ओर)</button>
+                        <button class="opt-btn" value="C">C) Abstract to Concrete</button>
+                        <button class="opt-btn" value="D">D) General to Specific</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Physical, touchable objects are 'Concrete'. Abstract numbers and formulas are 'Abstract'. Moving from tangible aids to mental logic is Concrete to Abstract.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                // Prevent multiple answers for the same question
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                // Disable all buttons in this question box
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                // Check if correct
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    // Highlight the actual correct option
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                // Show Explanation
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                // Update Score Display
+                totalAnswered++;
+                scoreSpan.textContent = score;
+            });
+        });
+    </script>
+</body>
+</html>

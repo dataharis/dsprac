@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: Bloom's Taxonomy & Lesson Planning | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 4: Bloom's Taxonomy
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 4: Taxonomy & Lesson Planning</h1>
+            <div class="subtitle">Bloom's Taxonomy, Domains, 5E Model & Micro-Teaching | Bilingual Notes</div>
+            
+            <h2>1. Bloom’s Taxonomy: 1956 (Original) vs. 2001 (Revised) (ब्लूम का वर्गीकरण)</h2>
+            <p><strong>Core Objective:</strong> Classification of educational learning objectives into hierarchical cognitive levels (शैक्षिक उद्देश्यों को संज्ञानात्मक स्तरों में वर्गीकृत करना).</p>
+            <p><strong>Key Shifts (2001 by Anderson & Krathwohl):</strong><br>
+            1. Changed from Nouns to Verbs (संज्ञा से क्रिया में बदलाव).<br>
+            2. Swapped the top two levels: <strong>Evaluation</strong> was the highest in 1956, whereas <strong>Create (रचना करना)</strong> became the highest level in 2001.</p>
+            
+            <table>
+                <tr>
+                    <th>Level (स्तर)</th>
+                    <th>1956 Original (Noun)</th>
+                    <th>2001 Revised (Verb)</th>
+                    <th>Keywords (मुख्य क्रियाएं)</th>
+                </tr>
+                <tr>
+                    <td><strong>1 (Lowest)</strong></td>
+                    <td>Knowledge (ज्ञान)</td>
+                    <td><strong>Remember (स्मरण करना)</strong></td>
+                    <td>Define, list, recall, memorize.</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>Comprehension (अवबोध)</td>
+                    <td><strong>Understand (समझना)</strong></td>
+                    <td>Explain, summarize, classify, illustrate.</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>Application (अनुप्रयोग)</td>
+                    <td><strong>Apply (प्रयोग करना)</strong></td>
+                    <td>Execute, solve, use, implement.</td>
+                </tr>
+                <tr>
+                    <td><strong>4</strong></td>
+                    <td>Analysis (विश्लेषण)</td>
+                    <td><strong>Analyze (विश्लेषण करना)</strong></td>
+                    <td>Differentiate, compare, debug, test.</td>
+                </tr>
+                <tr>
+                    <td><strong>5</strong></td>
+                    <td>Synthesis (संश्लेषण)</td>
+                    <td><strong>Evaluate (मूल्यांकन करना)</strong></td>
+                    <td>Critique, judge, defend, assess.</td>
+                </tr>
+                <tr>
+                    <td><strong>6 (Highest)</strong></td>
+                    <td>Evaluation (मूल्यांकन)</td>
+                    <td><strong>Create (सृजन करना)</strong></td>
+                    <td>Design, construct, author, build.</td>
+                </tr>
+            </table>
+
+            <h2>2. Affective & Psychomotor Domains (भावात्मक एवं मनोगत्यात्मक डोमेन)</h2>
+            <ul>
+                <li><strong>Affective Domain (Krathwohl, 1964):</strong> Focuses on emotions, values, and attitudes.<br>
+                <em>Hierarchy:</em> 1. Receiving (ग्रहण करना) → 2. Responding (अनुक्रिया करना) → 3. Valuing (मूल्यांकन करना) → 4. Organization (संगठन) → 5. <strong>Characterization (चरित्रिकरण)</strong>.</li>
+                <li><strong>Psychomotor Domain (Simpson, 1972):</strong> Focuses on physical coordination and motor skills.<br>
+                <em>Hierarchy:</em> 1. Perception (प्रत्यक्षीकरण) → 2. Set (तैयारी) → 3. Guided Response (निर्देशित प्रतिक्रिया) → 4. Mechanism (आदत/यांत्रिकी) → 5. Complex Overt Response → 6. Adaptation → 7. <strong>Origination (उद्भव/नया सृजन)</strong>.</li>
+            </ul>
+
+            <h2>3. Instructional Models & Lesson Planning (शिक्षण मॉडल एवं सूक्ष्म शिक्षण)</h2>
+            <ul>
+                <li><strong>5E Instructional Model (Constructivist / BSCS):</strong><br>
+                1. <strong>Engage (संलग्न करना):</strong> Hook students' interest, connect to prior knowledge.<br>
+                2. <strong>Explore (अन्वेषण करना):</strong> Hands-on inquiry and investigation.<br>
+                3. <strong>Explain (व्याख्या करना):</strong> Concepts introduced; teacher explains technical terms.<br>
+                4. <strong>Elaborate (विस्तार करना):</strong> Apply knowledge to new situations.<br>
+                5. <strong>Evaluate (मूल्यांकन करना):</strong> Assessment of student understanding.</li>
+                
+                <li><strong>Herbartian 5 Steps of Lesson Planning (हर्बर्ट के 5 पद):</strong><br>
+                1. Introduction (प्रस्तावना) → 2. Presentation (प्रस्तुतिकरण) → 3. Comparison (तुलना) → 4. Generalization (सामान्यीकरण) → 5. Application (प्रयोग).</li>
+                
+                <li><strong>Micro-Teaching Cycle (सूक्ष्म शिक्षण चक्र - D.W. Allen, Stanford):</strong><br>
+                Designed to train teachers in specific micro-skills. <strong>Total time = 36 minutes.</strong><br>
+                <em>Teach (6 min) → Feedback (6 min) → Re-plan (12 min) → Re-teach (6 min) → Re-feedback (6 min).</em></li>
+            </ul>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (20 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 20</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. In the 2001 Revised Bloom’s Taxonomy by Anderson and Krathwohl, which cognitive level replaced 'Synthesis' at the apex (highest level) of the pyramid?<br><br>2001 के संशोधित ब्लूम वर्गीकरण में, पिरामिड के शीर्ष (सर्वोच्च स्तर) पर 'संश्लेषण' की जगह किस संज्ञानात्मक स्तर ने ली?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Evaluation replaced Synthesis</button>
+                        <button class="opt-btn" value="B">B) Create replaced Evaluation at the apex (Create ने शीर्ष पर Evaluation की जगह ली)</button>
+                        <button class="opt-btn" value="C">C) Remember became the highest level</button>
+                        <button class="opt-btn" value="D">D) Application became the highest level</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> In 1956, 'Evaluation' was the highest. In 2001, Anderson and Krathwohl moved 'Evaluate' to level 5 and made 'Create' (formerly Synthesis) the highest level 6.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q2. A Computer Science teacher asks students to write a complete Python script to automate a file-backup task. According to Revised Bloom’s Taxonomy, which cognitive level does this task target?<br><br>फ़ाइल-बैकअप कार्य को स्वचालित करने के लिए पूर्ण Python स्क्रिप्ट लिखना किस संज्ञानात्मक स्तर को लक्षित करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Remember (स्मरण करना)</button>
+                        <button class="opt-btn" value="B">B) Understand (समझना)</button>
+                        <button class="opt-btn" value="C">C) Apply (प्रयोग करना)</button>
+                        <button class="opt-btn" value="D">D) Create (रचना करना / सृजन करना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Designing, building, or writing an entirely new script or project from scratch falls under the highest cognitive domain: Create.</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q3. Match the learning domains with their primary focus: I. Cognitive (Mental skills), II. Affective (Emotions/Values), III. Psychomotor (Physical skills).<br><br>सीखने के क्षेत्रों को उनके फोकस से सुमेलित करें: I. संज्ञानात्मक (मानसिक कौशल), II. भावात्मक (भावनाएं/मूल्य), III. मनोगत्यात्मक (शारीरिक कौशल)। कौन-से सही हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Only I and II are correct</button>
+                        <button class="opt-btn" value="B">B) Only II and III are correct</button>
+                        <button class="opt-btn" value="C">C) Only I and III are correct</button>
+                        <button class="opt-btn" value="D">D) All I, II, and III are correct (सभी सही हैं)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> This is the 3H Framework of education: Cognitive (Head), Affective (Heart), and Psychomotor (Hand). All three are correctly matched.</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q4. What is the correct hierarchical order of the lowest to highest levels in the 2001 Revised Bloom’s Taxonomy?<br><br>2001 के संशोधित ब्लूम वर्गीकरण में सबसे निचले स्तर से सर्वोच्च स्तर का सही क्रम क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Remember → Understand → Apply → Analyze → Evaluate → Create</button>
+                        <button class="opt-btn" value="B">B) Create → Evaluate → Analyze → Apply → Understand → Remember</button>
+                        <button class="opt-btn" value="C">C) Understand → Remember → Apply → Create → Evaluate → Analyze</button>
+                        <button class="opt-btn" value="D">D) Apply → Remember → Understand → Create → Analyze → Evaluate</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 2001 revision uses verbs and goes from bottom to top: Remember (1), Understand (2), Apply (3), Analyze (4), Evaluate (5), and Create (6).</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q5. Which of the following represents the highest level in David Krathwohl’s 'Affective Domain' hierarchy?<br><br>डेविड क्राथवोहल के 'भावात्मक क्षेत्र' पदानुक्रम में सर्वोच्च स्तर कौन-सा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Receiving (ग्रहण करना)</button>
+                        <button class="opt-btn" value="B">B) Responding (अनुक्रिया करना)</button>
+                        <button class="opt-btn" value="C">C) Organization (संगठन)</button>
+                        <button class="opt-btn" value="D">D) Characterization (चरित्रिकरण)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The stages of the Affective Domain are: Receiving, Responding, Valuing, Organization, and finally Characterization (acting consistently in accordance with internalized values).</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q6. In Elizabeth Simpson’s classification of the 'Psychomotor Domain', what is the initial foundational stage of skill acquisition?<br><br>एलिजाबेथ सिम्पसन के 'मनोगत्यात्मक क्षेत्र' वर्गीकरण में कौशल अर्जन का प्रारंभिक चरण कौन-सा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Perception (प्रत्यक्षीकरण)</button>
+                        <button class="opt-btn" value="B">B) Mechanism (यांत्रिकी)</button>
+                        <button class="opt-btn" value="C">C) Complex Overt Response (जटिल स्पष्ट प्रतिक्रिया)</button>
+                        <button class="opt-btn" value="D">D) Origination (उद्भव)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Perception is the first level of the psychomotor domain, which involves using sensory cues to guide motor activity (e.g., estimating where a ball will land to catch it).</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q7. The '5E Instructional Model' (Engage, Explore, Explain, Elaborate, Evaluate) is primarily rooted in which educational philosophy?<br><br>'5E शिक्षण मॉडल' मुख्य रूप से किस शैक्षिक दर्शन पर आधारित है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Strict Behaviorism (कठोर व्यवहारवाद)</button>
+                        <button class="opt-btn" value="B">B) Constructivism (रचनावाद / निर्मितिवाद)</button>
+                        <button class="opt-btn" value="C">C) Classical Conditioning (शास्त्रीय अनुबंधन)</button>
+                        <button class="opt-btn" value="D">D) Teacher-Centered Authoritarianism</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 5E model developed by BSCS is heavily rooted in Constructivism, where learners build their own understanding through experience and reflection.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q8. What is the correct sequence of the 5 Herbartian Steps in traditional lesson planning?<br><br>पारंपरिक पाठ योजना में हर्बर्ट के 5 पदों का सही क्रम क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Presentation → Introduction → Application → Generalization → Comparison</button>
+                        <button class="opt-btn" value="B">B) Introduction (प्रस्तावना) → Presentation (प्रस्तुतिकरण) → Comparison (तुलना) → Generalization (सामान्यीकरण) → Application (प्रयोग)</button>
+                        <button class="opt-btn" value="C">C) Evaluation → Application → Presentation → Introduction → Generalization</button>
+                        <button class="opt-btn" value="D">D) Generalization → Introduction → Presentation → Application → Comparison</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> J.F. Herbart's formal steps are: Introduction/Preparation, Presentation, Comparison/Association, Generalization, and Application.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q9. What is the exact total time duration of a standard 'Micro-Teaching Cycle' developed by D.W. Allen at Stanford University?<br><br>स्टैनफोर्ड में डी.डब्ल्यू. एलन द्वारा विकसित 'सूक्ष्म शिक्षण चक्र' (Micro-Teaching Cycle) की कुल अवधि कितनी होती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 30 Minutes</button>
+                        <button class="opt-btn" value="B">B) 36 Minutes</button>
+                        <button class="opt-btn" value="C">C) 45 Minutes</button>
+                        <button class="opt-btn" value="D">D) 60 Minutes</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A standard cycle takes 36 minutes: Teach (6m), Feedback (6m), Re-plan (12m), Re-teach (6m), and Re-feedback (6m).</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q10. In which phase of the 5E Instructional Model does the teacher formally introduce scientific terms and definitions after students have investigated the concept?<br><br>5E मॉडल के किस चरण में शिक्षक अन्वेषण के बाद वैज्ञानिक शब्दावली और परिभाषाओं का औपचारिक परिचय देता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Engage (संलग्न करना)</button>
+                        <button class="opt-btn" value="B">B) Explore (अन्वेषण करना)</button>
+                        <button class="opt-btn" value="C">C) Explain (व्याख्या करना)</button>
+                        <button class="opt-btn" value="D">D) Elaborate (विस्तार करना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> During the 'Explain' phase, learners articulate their ideas, and the teacher clarifies concepts, formally introducing vocabulary and definitions.</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q11. A multiple-choice question that asks students to identify the correct syntax of a Python function from four options belongs to which cognitive level of Bloom’s Taxonomy?<br><br>बहुविकल्पीय प्रश्न जो छात्रों से सही सिंटैक्स की पहचान करने के लिए कहता है, ब्लूम वर्गीकरण के किस स्तर से संबंधित है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Remember / Knowledge (स्मरण करना / ज्ञान)</button>
+                        <button class="opt-btn" value="B">B) Create (रचना करना)</button>
+                        <button class="opt-btn" value="C">C) Evaluate (मूल्यांकन करना)</button>
+                        <button class="opt-btn" value="D">D) Analyze (विश्लेषण करना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Simply recalling or identifying factual knowledge (like syntax rules) requires only the lowest cognitive level: Remember (Knowledge).</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q12. Which cognitive level involves breaking down material into constituent parts, determining how parts relate to one another, and identifying underlying motives or fallacies (e.g., debugging code)?<br><br>सामग्री को छोटे भागों में तोड़ने और उनके आपसी संबंधों को समझने (जैसे कोड डीबग करना) से संबंधित स्तर कौन-सा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Understand (समझना)</button>
+                        <button class="opt-btn" value="B">B) Analyze (विश्लेषण करना)</button>
+                        <button class="opt-btn" value="C">C) Apply (लागू करना)</button>
+                        <button class="opt-btn" value="D">D) Evaluate (मूल्यांकन करना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Breaking a complex system into its components to see how they work together (like finding a bug in code) is Analysis (विश्लेषण).</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q13. In Micro-Teaching, what is the primary purpose of the 'Feedback' (पुनर्भरण) phase?<br><br>सूक्ष्म शिक्षण में 'फीडबैक' चरण का मुख्य उद्देश्य क्या होता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To assign final board exam grades</button>
+                        <button class="opt-btn" value="B">B) To inform the student-teacher about their teaching strengths and specific areas of improvement regarding micro-skills (छात्र-शिक्षक को सूक्ष्म कौशलों में सुधार के क्षेत्रों से अवगत कराना)</button>
+                        <button class="opt-btn" value="C">C) To humiliate the trainee</button>
+                        <button class="opt-btn" value="D">D) To skip the re-planning stage</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Feedback is diagnostic. It helps the trainee teacher identify what went well and what micro-skill needs refinement before they Re-plan.</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q14. A student judges the validity and logical consistency of two conflicting software design architectures based on given evaluation criteria. Which cognitive level is demonstrated?<br><br>दिए गए मानदंडों के आधार पर दो सॉफ्टवेयर डिज़ाइन की वैधता की समीक्षा (judge) करना किस स्तर को दर्शाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Remember (स्मरण करना)</button>
+                        <button class="opt-btn" value="B">B) Understand (समझना)</button>
+                        <button class="opt-btn" value="C">C) Evaluate (मूल्यांकन करना)</button>
+                        <button class="opt-btn" value="D">D) Create (रचना करना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Making judgments, critiquing, or assessing the value of ideas/materials against specific criteria is Evaluation (मूल्यांकन).</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q15. Which of the following is an example of an objective set in the 'Psychomotor Domain' for a Computer Lab practical session?<br><br>कंप्यूटर लैब प्रैक्टिकल के लिए 'मनोगत्यात्मक क्षेत्र' (Psychomotor Domain) का उद्देश्य कौन-सा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Memorizing the definition of an algorithm</button>
+                        <button class="opt-btn" value="B">B) Appreciating the importance of open-source software</button>
+                        <button class="opt-btn" value="C">C) Proficiently connecting hardware peripherals and typing code with proper touch-typing ergonomics (कुशलतापूर्वक हार्डवेयर जोड़ना और टच-टाइपिंग करना)</button>
+                        <button class="opt-btn" value="D">D) Listing the history of computers</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Physical skills, motor coordination, and manual manipulation (like typing and assembling hardware) fall strictly under the Psychomotor Domain.</div>
+                </div>
+                
+                <!-- Q16 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q16. In the 5E model, which phase is explicitly designed to capture students' attention, activate prior knowledge, and stimulate curiosity?<br><br>5E मॉडल के किस चरण का उद्देश्य छात्रों का ध्यान आकर्षित करना और उनके पूर्व-ज्ञान को सक्रिय करना है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Engage (संलग्न करना)</button>
+                        <button class="opt-btn" value="B">B) Explain (व्याख्या करना)</button>
+                        <button class="opt-btn" value="C">C) Elaborate (विस्तार करना)</button>
+                        <button class="opt-btn" value="D">D) Evaluate (मूल्यांकन करना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Engage phase acts as a 'hook'—it raises questions and connects what students already know to the new concepts they are about to learn.</div>
+                </div>
+                
+                <!-- Q17 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q17. The Herbartian step where the teacher actually delivers the new learning material using various teaching aids is called:<br><br>हर्बर्ट का वह पद जहाँ शिक्षक विभिन्न सहायक सामग्रियों का उपयोग करके नई पाठ्य सामग्री प्रस्तुत करता है, क्या कहलाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Preparation (प्रस्तावना)</button>
+                        <button class="opt-btn" value="B">B) Presentation (प्रस्तुतिकरण)</button>
+                        <button class="opt-btn" value="C">C) Generalization (सामान्यीकरण)</button>
+                        <button class="opt-btn" value="D">D) Application (प्रयोग)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Presentation (प्रस्तुतिकरण) is the core stage where the actual subject matter is introduced to the students.</div>
+                </div>
+                
+                <!-- Q18 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q18. According to Anderson and Krathwohl's taxonomy, writing a summary of a chapter in your own words demonstrates which cognitive level?<br><br>अध्यायों का सारांश अपने शब्दों में लिखना किस संज्ञानात्मक स्तर को दर्शाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Remember (स्मरण)</button>
+                        <button class="opt-btn" value="B">B) Understand (समझ/अवबोध)</button>
+                        <button class="opt-btn" value="C">C) Analyze (विश्लेषण)</button>
+                        <button class="opt-btn" value="D">D) Create (सृजन)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Paraphrasing, summarizing, and translating information into one's own words indicates Comprehension/Understanding, as it goes beyond mere rote memorization.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q19. Micro-teaching is a scaled-down teaching encounter. What is the typical number of students (usually peers) in a micro-teaching session?<br><br>सूक्ष्म शिक्षण एक सीमित शिक्षण प्रक्रिया है। इसमें आमतौर पर कितने छात्र (सहपाठी) होते हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 30 to 40 students</button>
+                        <button class="opt-btn" value="B">B) 5 to 10 students</button>
+                        <button class="opt-btn" value="C">C) 1 to 2 students</button>
+                        <button class="opt-btn" value="D">D) 50+ students</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Micro-teaching scales down the complexities of normal teaching. Class size is reduced to 5-10 pupils, and lesson duration is reduced to 5-10 minutes per teach session.</div>
+                </div>
+                
+                <!-- Q20 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q20. In the Psychomotor domain, the stage where learned responses become habitual and movements can be performed with confidence and proficiency is called:<br><br>मनोगत्यात्मक क्षेत्र में वह अवस्था जहाँ सीखी गई प्रतिक्रियाएं आदत बन जाती हैं और गतियाँ आत्मविश्वास के साथ की जा सकती हैं, क्या कहलाती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Set (तैयारी)</button>
+                        <button class="opt-btn" value="B">B) Mechanism (यांत्रिकी / आदत)</button>
+                        <button class="opt-btn" value="C">C) Origination (उद्भव)</button>
+                        <button class="opt-btn" value="D">D) Perception (प्रत्यक्षीकरण)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Mechanism is the intermediate stage in learning a complex skill where learned responses have become habitual and the movements can be performed with some confidence and proficiency.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+            });
+        });
+    </script>
+</body>
+</html>
