@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 11: Adolescent Psychology & Motivation | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; position: sticky; top: 20px; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 11: Adolescent Psychology
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 11: Adolescent Psychology & Motivation</h1>
+            <div class="subtitle">Storm & Stress, Erikson, Kohlberg, Maslow | Bilingual Notes</div>
+            
+            <h2>1. Adolescence & G. Stanley Hall (किशोरावस्था)</h2>
+            <p>Adolescence (ages 11-18) is the transitional stage from childhood to adulthood. <strong>G. Stanley Hall</strong> (Father of Adolescent Psychology) famously coined the term <strong>"Storm and Stress" (तूफान और तनाव की अवस्था)</strong> to describe this period due to intense emotional upheavals, biological changes, and mood swings.</p>
+
+            <h2>2. Erik Erikson's Psychosocial Theory (मनोसामाजिक विकास सिद्धांत)</h2>
+            <p>Erikson proposed 8 stages of life. The 5th stage corresponds to adolescence:</p>
+            <div class="bilingual-box">
+                <strong>Stage 5: Identity vs. Role Confusion (पहचान बनाम भूमिका भ्रम) (12 to 18 years)</strong><br>
+                • <em>Key Question:</em> "Who am I?" (मैं कौन हूँ?)<br>
+                • <em>Crisis:</em> Teenagers explore independence, career choices, and values. Success leads to an 'Ego Identity' (knowing who they are). Failure leads to 'Role Confusion' (uncertainty about the future).
+            </div>
+
+            <h2>3. Lawrence Kohlberg's Moral Development (लॉरेंस कोहलबर्ग का नैतिक विकास)</h2>
+            <p>Tested using moral dilemmas like the <strong>Heinz Dilemma</strong>. It has 3 Levels and 6 Stages:</p>
+            <ul>
+                <li><strong>Level 1: Pre-Conventional (पूर्व-रूढ़िगत):</strong> Morality is external.
+                    <br>• <em>Stage 1:</em> Obedience & Punishment (दंड और आज्ञापालन).
+                    <br>• <em>Stage 2:</em> Individualism & Exchange / Tit-for-Tat (जैसे को तैसा / आदान-प्रदान).
+                </li>
+                <li><strong>Level 2: Conventional (रूढ़िगत / परंपरागत):</strong> Morality is tied to society.
+                    <br>• <em>Stage 3:</em> Good Boy-Good Girl (अच्छा लड़का-अच्छी लड़की).
+                    <br>• <em>Stage 4:</em> Authority & Social Order (कानून और व्यवस्था बनाए रखना).
+                </li>
+                <li><strong>Level 3: Post-Conventional (उत्तर-रूढ़िगत):</strong> Morality is internalized.
+                    <br>• <em>Stage 5:</em> Social Contract & Individual Rights (सामाजिक अनुबंध - Laws can change for the greater good).
+                    <br>• <em>Stage 6:</em> Universal Ethical Principles (सार्वभौमिक नैतिक सिद्धांत - Conscious driven).
+                </li>
+            </ul>
+
+            <h2>4. Motivation (अभिप्रेरणा)</h2>
+            <ul>
+                <li><strong>Intrinsic Motivation (आंतरिक अभिप्रेरणा):</strong> Doing something because it is inherently interesting, enjoyable, or satisfies curiosity (e.g., painting for the joy of it). <em>Highest form of motivation.</em></li>
+                <li><strong>Extrinsic Motivation (बाह्य अभिप्रेरणा):</strong> Doing something to earn a reward or avoid punishment (e.g., studying just to get a bicycle from parents).</li>
+            </ul>
+
+            <h2>5. Abraham Maslow’s Hierarchy of Needs (मास्लो का पदानुक्रम)</h2>
+            <p>Human needs are arranged in a pyramid. Lower needs must be met before higher needs.</p>
+            <ol>
+                <li><strong>Physiological (शारीरिक):</strong> Food, water, sleep.</li>
+                <li><strong>Safety (सुरक्षा):</strong> Physical and emotional security.</li>
+                <li><strong>Love and Belongingness (प्रेम और संबंध):</strong> Friendship, family, peer groups.</li>
+                <li><strong>Esteem (सम्मान):</strong> Self-respect, recognition, status.</li>
+                <li><strong>Self-Actualization (आत्म-सिद्धि):</strong> Achieving one's full potential and creativity (Growth Need).</li>
+            </ol>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (20 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 20</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. Who characterized adolescence as a period of "Storm and Stress" (तूफान और तनाव की अवस्था)?<br><br>किशोरावस्था को "तूफान और तनाव की अवस्था" के रूप में किसने चित्रित किया?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Jean Piaget</button>
+                        <button class="opt-btn" value="B">B) G. Stanley Hall (जी. स्टैनले हॉल)</button>
+                        <button class="opt-btn" value="C">C) Lev Vygotsky</button>
+                        <button class="opt-btn" value="D">D) Sigmund Freud</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> G. Stanley Hall is known as the father of adolescent psychology. He coined "Storm and Stress" in his 1904 book due to the biological and emotional turbulence of the teenage years.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q2. According to Erik Erikson’s psychosocial stages, which core crisis do adolescents (ages 12–18) typically experience?<br><br>एरिक एरिक्सन के मनोसामाजिक विकास सिद्धांतों के अनुसार, किशोरावस्था (12–18 वर्ष) में कौन-सा संकट (crisis) होता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Trust vs. Mistrust</button>
+                        <button class="opt-btn" value="B">B) Autonomy vs. Shame & Doubt</button>
+                        <button class="opt-btn" value="C">C) Identity vs. Role Confusion (पहचान बनाम भूमिका भ्रम)</button>
+                        <button class="opt-btn" value="D">D) Generativity vs. Stagnation</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Adolescents are trying to figure out "Who am I?" If successful, they form a strong identity. If they fail to explore their options, they experience role confusion.</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q3. A student obeys school rules primarily to avoid getting punished by the teacher. According to Lawrence Kohlberg, this student is at which stage?<br><br>एक छात्र दंड से बचने के लिए नियमों का पालन करता है। कोहलबर्ग के अनुसार यह छात्र किस चरण पर है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Post-Conventional Level</button>
+                        <button class="opt-btn" value="B">B) Conventional Level</button>
+                        <button class="opt-btn" value="C">C) Pre-Conventional Level: Obedience and Punishment (पूर्व-रूढ़िगत स्तर: दंड और आज्ञापालन)</button>
+                        <button class="opt-btn" value="D">D) Social Contract Orientation</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Stage 1 (Pre-conventional) is purely about avoiding negative consequences (punishment).</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q4. A teenager behaves well simply to be regarded as a "good boy" or "good girl" by peers and teachers to gain social approval. This is:<br><br>एक किशोर समाज और सहपाठियों की नज़रों में "अच्छा लड़का" या "अच्छी लड़की" बनने के लिए अच्छा व्यवहार करता है। यह है:</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Pre-Conventional Level</button>
+                        <button class="opt-btn" value="B">B) Conventional Level (रूढ़िगत स्तर / परंपरागत नैतिकता)</button>
+                        <button class="opt-btn" value="C">C) Post-Conventional Level</button>
+                        <button class="opt-btn" value="D">D) Universal Ethical Principles</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The "Good Boy-Good Girl" orientation is Stage 3 (Conventional Level), where morality is driven by interpersonal relationships and the desire for social approval.</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q5. Which of the following is the classic example of 'Intrinsic Motivation' (आंतरिक अभिप्रेरणा)?<br><br>निम्नलिखित में से कौन-सा 'आंतरिक अभिप्रेरणा' का सबसे अच्छा उदाहरण है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Practicing coding because you genuinely love solving logical puzzles (शुद्ध रूप से पहेलियाँ सुलझाने के प्रेम के कारण कोडिंग अभ्यास करना)</button>
+                        <button class="opt-btn" value="B">B) Studying hard solely to win a cash prize</button>
+                        <button class="opt-btn" value="C">C) Completing homework only to avoid detention</button>
+                        <button class="opt-btn" value="D">D) Working overtime strictly for extra wages</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Intrinsic motivation comes from within—doing an activity for its own inherent joy, curiosity, and satisfaction, without any external reward.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q6. In Abraham Maslow’s Hierarchy of Needs, which need occupies the absolute peak of the pyramid representing the realization of full potential?<br><br>अब्रहम मास्लो की आवश्यकताओं के पदानुक्रम में, पिरामिड का सर्वोच्च शिखर कौन-सी आवश्यकता दर्शाती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Safety Needs</button>
+                        <button class="opt-btn" value="B">B) Belongingness and Love Needs</button>
+                        <button class="opt-btn" value="C">C) Esteem Needs</button>
+                        <button class="opt-btn" value="D">D) Self-Actualization (आत्म-सिद्धि / आत्म-यथार्थीकरण)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Self-actualization is the peak of Maslow's pyramid. It is the desire to become everything one is capable of becoming (maximizing one's potential).</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q7. According to Maslow, physiological needs and safety needs are classified as:<br><br>मास्लो के अनुसार, शारीरिक आवश्यकताओं और सुरक्षा आवश्यकताओं को किस श्रेणी में रखा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Deficiency Needs / D-needs (कमी संबंधी आवश्यकताएं)</button>
+                        <button class="opt-btn" value="B">B) Growth Needs / B-needs</button>
+                        <button class="opt-btn" value="C">C) Aesthetic Needs</button>
+                        <button class="opt-btn" value="D">D) Transcendence Needs</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The first four levels (Physiological, Safety, Belonging, Esteem) are Deficiency Needs (D-needs). If they are unmet, a person feels anxious and tense. Self-actualization is a Growth Need (B-need).</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q8. What is the primary educational implication of Heinz’s Dilemma used by Kohlberg in his research?<br><br>कोहलबर्ग द्वारा उपयोग किए गए 'हेंज की दुविधा' (Heinz's Dilemma) का मुख्य शैक्षिक निहितार्थ क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To teach students how to commit theft safely</button>
+                        <button class="opt-btn" value="B">B) To assess and understand the stages of moral reasoning and ethical decision-making in individuals (व्यक्तियों में नैतिक तर्क और नैतिक निर्णय लेने के चरणों का आकलन करना)</button>
+                        <button class="opt-btn" value="C">C) To prove that laws should never be broken</button>
+                        <button class="opt-btn" value="D">D) To test reading comprehension speed</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Kohlberg was not interested in whether subjects said "yes" or "no" to Heinz stealing the drug; he analyzed the *reasoning* behind their answer to determine their stage of moral development.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q9. Fostering 'Critical Thinking' in students primarily involves encouraging them to:<br><br>छात्रों में 'आलोचनात्मक चिंतन' (Critical Thinking) को बढ़ावा देने में क्या शामिल है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Memorize textbooks without questioning</button>
+                        <button class="opt-btn" value="B">B) Accept every statement made by authority figures</button>
+                        <button class="opt-btn" value="C">C) Analyze arguments, evaluate evidence, and question underlying assumptions (तर्कों का विश्लेषण करना, साक्ष्यों का मूल्यांकन करना, और मान्यताओं पर सवाल उठाना)</button>
+                        <button class="opt-btn" value="D">D) Avoid complex problems</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Critical thinking is the objective analysis and evaluation of an issue. It requires questioning assumptions, identifying biases, and logically testing evidence rather than accepting things at face value.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q10. According to Kohlberg, at which stage do individuals view laws as flexible instruments that can be modified for the greatest good of society (e.g., amending the Constitution)?<br><br>कोहलबर्ग के अनुसार, किस चरण में व्यक्ति कानूनों को ऐसे लचीले साधनों के रूप में देखता है जिन्हें समाज के बड़े हित के लिए संशोधित किया जा सकता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Obedience & Punishment</button>
+                        <button class="opt-btn" value="B">B) Authority & Social Order</button>
+                        <button class="opt-btn" value="C">C) Social Contract and Individual Rights (सामाजिक अनुबंध और व्यक्तिगत अधिकार - Stage 5)</button>
+                        <button class="opt-btn" value="D">D) Universal Ethical Principles</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> In Stage 5 (Post-conventional), individuals realize laws are social contracts. If a law is unjust or doesn't serve the greater good, it should be changed democratically.</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q11. A teacher who connects abstract scientific principles to real-world community problems and allows students to express their creativity is addressing which level of Maslow's hierarchy?<br><br>एक शिक्षक जो पाठ को वास्तविक दुनिया की समस्याओं से जोड़ता है और छात्रों की रचनात्मकता को बढ़ावा देता है, वह मास्लो के पदानुक्रम के किस स्तर को संबोधित कर रहा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Physiological needs</button>
+                        <button class="opt-btn" value="B">B) Self-Actualization needs (आत्म-सिद्धि की आवश्यकताएं)</button>
+                        <button class="opt-btn" value="C">C) Basic hunger and thirst</button>
+                        <button class="opt-btn" value="D">D) Safety needs</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Creativity, problem-solving, and realizing one's inner potential correspond directly to Self-Actualization (the top of the pyramid).</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q12. The tendency of an external reward (like money or prizes) to decrease a person's intrinsic motivation to perform a task they already enjoy is known in psychology as:<br><br>किसी ऐसे कार्य के लिए बाह्य इनाम (जैसे पैसे) देना जिसे व्यक्ति पहले से ही पसंद करता है, जिससे उसकी आंतरिक अभिप्रेरणा कम हो जाती है। इसे मनोविज्ञान में क्या कहा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Placebo Effect</button>
+                        <button class="opt-btn" value="B">B) Overjustification Effect (अति-औचित्य प्रभाव)</button>
+                        <button class="opt-btn" value="C">C) Halo Effect</button>
+                        <button class="opt-btn" value="D">D) Pygmalion Effect</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Overjustification Effect occurs when an expected external incentive decreases a person's intrinsic motivation to perform a task. (e.g. paying a child to read a book they already loved reading).</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q13. In the context of adolescent development, what does "Imaginary Audience" mean?<br><br>किशोर विकास के संदर्भ में, "काल्पनिक दर्शक" (Imaginary Audience) का क्या अर्थ है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Adolescents love to watch movies</button>
+                        <button class="opt-btn" value="B">B) The adolescent's belief that everyone around them is constantly watching and judging their appearance and behavior (यह विश्वास कि हर कोई लगातार उनके रूप और व्यवहार को देख रहा है और आंक रहा है)</button>
+                        <button class="opt-btn" value="C">C) Having imaginary friends</button>
+                        <button class="opt-btn" value="D">D) Hearing voices that aren't there</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Coined by David Elkind, Imaginary Audience is a form of adolescent egocentrism where teens feel they are constantly on a "stage", leading to high self-consciousness.</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q14. Which stage of Kohlberg's theory is often referred to as the "Tit-for-Tat" stage (I'll scratch your back if you scratch mine)?<br><br>कोहलबर्ग के सिद्धांत के किस चरण को अक्सर "जैसे को तैसा" (Tit-for-Tat) चरण कहा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Stage 1: Punishment and Obedience</button>
+                        <button class="opt-btn" value="B">B) Stage 2: Individualism and Exchange (व्यक्तिवाद और विनिमय)</button>
+                        <button class="opt-btn" value="C">C) Stage 3: Good boy-Good girl</button>
+                        <button class="opt-btn" value="D">D) Stage 4: Law and Order</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Stage 2 (Pre-conventional) is driven by self-interest and fair exchange. "If I share my lunch with you today, you must share yours tomorrow."</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q15. According to Erikson, if an adolescent fails to successfully resolve the "Identity vs. Role Confusion" crisis, they may experience:<br><br>एरिक्सन के अनुसार, यदि कोई किशोर "पहचान बनाम भूमिका भ्रम" संकट को सफलतापूर्वक हल करने में विफल रहता है, तो उसे क्या अनुभव हो सकता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Inferiority complex</button>
+                        <button class="opt-btn" value="B">B) Stagnation</button>
+                        <button class="opt-btn" value="C">C) A lack of direction, uncertainty about their future, and difficulty committing to goals (दिशा की कमी, भविष्य के बारे में अनिश्चितता)</button>
+                        <button class="opt-btn" value="D">D) Trust issues with parents</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Role confusion leaves adolescents unsure of their place in society, their career path, and their core values, making them drift without purpose.</div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q16. Algorithmic / Logical Reasoning in computer science education relies heavily on:<br><br>कंप्यूटर विज्ञान शिक्षा में एल्गोरिदमिक / तार्किक तर्क मुख्य रूप से किस पर निर्भर करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Problem decomposition, pattern recognition, and systematic step-by-step logic (समस्या अपघटन, पैटर्न पहचान, और व्यवस्थित चरण-दर-चरण तर्क)</button>
+                        <button class="opt-btn" value="B">B) Memorizing large chunks of code</button>
+                        <button class="opt-btn" value="C">C) Emotional intelligence</button>
+                        <button class="opt-btn" value="D">D) Guessing answers without verification</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Algorithmic thinking (Computational Thinking) requires breaking a complex problem into smaller parts (decomposition) and designing a step-by-step sequential solution.</div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q17. Carol Gilligan criticized Kohlberg’s theory of moral development primarily because:<br><br>कैरल गिलिगन ने कोहलबर्ग के नैतिक विकास के सिद्धांत की मुख्य रूप से आलोचना क्यों की?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) It had too few stages</button>
+                        <button class="opt-btn" value="B">B) It was biased against women, emphasizing a male-centric 'ethics of justice' over a female-centric 'ethics of care' (यह महिलाओं के खिलाफ पक्षपाती था)</button>
+                        <button class="opt-btn" value="C">C) It was only tested on animals</button>
+                        <button class="opt-btn" value="D">D) It ignored cognitive development</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Gilligan argued that Kohlberg's research sample was entirely male, leading to a bias that valued abstract justice (male norm) higher than interpersonal care and compassion (female norm).</div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q18. According to Maslow, before a teacher can expect a student to actively engage in group activities and form friendships (Love & Belongingness), the school must first ensure:<br><br>मास्लो के अनुसार, इससे पहले कि शिक्षक छात्रों से समूह गतिविधियों (प्रेम और जुड़ाव) में शामिल होने की उम्मीद करे, स्कूल को पहले क्या सुनिश्चित करना चाहिए?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) The student achieves self-actualization</button>
+                        <button class="opt-btn" value="B">B) The student's physiological (food) and safety needs (bullying-free environment) are met (छात्र की शारीरिक और सुरक्षा आवश्यकताएं पूरी हों)</button>
+                        <button class="opt-btn" value="C">C) The student is given a leadership role</button>
+                        <button class="opt-btn" value="D">D) The student is intrinsically motivated</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Maslow's hierarchy requires lower deficiency needs (food, safety, physical security) to be fulfilled before a person can focus on higher social and emotional needs.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q19. A student who believes that their intelligence can be developed through hard work, good strategies, and input from others possesses a:<br><br>एक छात्र जो मानता है कि उसकी बुद्धिमत्ता (intelligence) को कड़ी मेहनत और रणनीतियों के माध्यम से विकसित किया जा सकता है, उसमें क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Fixed Mindset</button>
+                        <button class="opt-btn" value="B">B) Extrinsic Motivation</button>
+                        <button class="opt-btn" value="C">C) Growth Mindset (विकास की मानसिकता)</button>
+                        <button class="opt-btn" value="D">D) Cognitive Dissonance</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Coined by Carol Dweck, a 'Growth Mindset' is the belief that abilities are not innate or fixed, but can be improved with effort and perseverance.</div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q20. When an adolescent refuses to wear a specific shirt because "everyone will laugh at me", this behavior is best explained by Elkind's concept of:<br><br>जब कोई किशोर किसी विशिष्ट शर्ट को पहनने से मना कर देता है क्योंकि "सब मुझ पर हँसेंगे", तो इस व्यवहार को किस अवधारणा द्वारा सबसे अच्छी तरह समझाया जा सकता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Personal Fable</button>
+                        <button class="opt-btn" value="B">B) Imaginary Audience (काल्पनिक दर्शक)</button>
+                        <button class="opt-btn" value="C">C) Identity Foreclosure</button>
+                        <button class="opt-btn" value="D">D) Moral Dilemma</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> This is the 'Imaginary Audience' effect. The teen assumes they are the center of everyone else's attention and hyper-focuses on perceived flaws.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const totalQuestions = 20;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+
+                // Final Score Celebration
+                if (totalAnswered === totalQuestions) {
+                    const percentage = (score / totalQuestions) * 100;
+                    const scoreDisplay = document.querySelector('.score-display');
+                    if (percentage >= 75) {
+                        scoreDisplay.style.background = "#dcfce7";
+                        scoreDisplay.style.color = "#166534";
+                        scoreDisplay.innerHTML += ` (Excellent! ${percentage}%)`;
+                    } else {
+                        scoreDisplay.style.background = "#fee2e2";
+                        scoreDisplay.style.color = "#991b1b";
+                        scoreDisplay.innerHTML += ` (Review Notes! ${percentage}%)`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

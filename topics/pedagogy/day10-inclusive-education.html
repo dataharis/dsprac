@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10: Inclusive Education & RPwD Act | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; position: sticky; top: 20px; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 10: Inclusive Education
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 10: Inclusive Education & RPwD Act</h1>
+            <div class="subtitle">SLDs, UDL, Gifted Learners & Disabilities | Bilingual Notes</div>
+            
+            <h2>1. Inclusive Education (समावेशी शिक्षा)</h2>
+            <p>Inclusive Education means all children, regardless of physical, intellectual, social, or emotional differences, learn together in the same mainstream classroom. It is based on the <strong>Salamanca Statement (1994)</strong>.</p>
+            <ul>
+                <li><strong>Segregation (अलगाव):</strong> Special schools for disabled children (System excludes them).</li>
+                <li><strong>Integration (एकीकरण):</strong> Disabled children in mainstream schools, but they must adapt to the existing system (System does not change).</li>
+                <li><strong>Inclusion (समावेशन):</strong> The system and curriculum adapt to meet the diverse needs of EVERY child (System changes for the child).</li>
+            </ul>
+
+            <h2>2. The RPwD Act, 2016 (दिव्यांगजन अधिकार अधिनियम, 2016)</h2>
+            <p>Replaced the PwD Act of 1995. Key highlights include:</p>
+            <ul>
+                <li><strong>Expanded List:</strong> Increased recognized disabilities from 7 to <strong>21 conditions</strong> (including Acid Attack Victims, Parkinson's, Blood disorders like Thalassemia, and Specific Learning Disabilities).</li>
+                <li><strong>Benchmark Disability:</strong> Defined as at least <strong>40%</strong> of any specified disability.</li>
+                <li><strong>Reservation:</strong> Increased from 3% to <strong>4% in government jobs</strong> and <strong>5% in higher education</strong>.</li>
+                <li><strong>Free Education:</strong> Guaranteed for children with benchmark disabilities between <strong>6 to 18 years</strong>.</li>
+            </ul>
+
+            <h2>3. Specific Learning Disabilities (SLDs) (विशिष्ट अधिगम अक्षमताएं)</h2>
+            <table>
+                <tr>
+                    <th>Disability (विकार)</th>
+                    <th>Description & Symptoms (लक्षण)</th>
+                </tr>
+                <tr>
+                    <td><strong>Dyslexia (डिस्लेक्सिया)</strong></td>
+                    <td>Reading & reading-comprehension disorder. Confusing 'b' and 'd', 'saw' and 'was'.</td>
+                </tr>
+                <tr>
+                    <td><strong>Dysgraphia (डिस्ग्राफिया)</strong></td>
+                    <td>Writing disorder. Poor handwriting, difficulty holding a pen, spelling issues.</td>
+                </tr>
+                <tr>
+                    <td><strong>Dyscalculia (डिस्कैल्कुलिया)</strong></td>
+                    <td>Mathematical disorder. Difficulty with numbers, calculations, and math symbols.</td>
+                </tr>
+                <tr>
+                    <td><strong>Dyspraxia (डिस्प्रेक्सिया)</strong></td>
+                    <td>Motor-coordination disorder. Clumsiness, difficulty tying shoelaces or catching a ball.</td>
+                </tr>
+                <tr>
+                    <td><strong>Dysphasia / Aphasia (डिस्फेजिया)</strong></td>
+                    <td>Language/Speech impairment. Difficulty expressing or comprehending spoken language.</td>
+                </tr>
+            </table>
+
+            <h2>4. Neurodevelopmental Disorders (तंत्रिका-विकासात्मक विकार)</h2>
+            <ul>
+                <li><strong>ADHD (Attention Deficit Hyperactivity Disorder):</strong> Inattention, impulsivity, and hyperactivity. (Requires short tasks, clear rules, and movement breaks).</li>
+                <li><strong>Autism Spectrum Disorder (ASD / स्वलीनता):</strong> Deficits in social communication and interaction. Highly repetitive behaviors, extreme reliance on routines, and hypersensitivity to sensory inputs (loud noises).</li>
+            </ul>
+
+            <h2>5. Gifted Learners & UDL (प्रतिभाशाली शिक्षार्थी एवं UDL)</h2>
+            <div class="bilingual-box">
+                • <strong>Joseph Renzulli’s 3-Ring Model:</strong> Giftedness is the intersection of: 1) Above-average ability, 2) Creativity (Divergent thinking), and 3) Task Commitment.<br>
+                • <strong>Educational Strategy:</strong> Acceleration (skipping grades) and <strong>Enrichment</strong> (providing complex, higher-order thinking tasks). Avoid giving them "more of the same easy work."<br><br>
+                • <strong>UDL (Universal Design for Learning):</strong> An approach to teaching that gives all students equal opportunities to learn. It provides: Multiple means of <em>Representation</em> (What), <em>Action/Expression</em> (How), and <em>Engagement</em> (Why).
+            </div>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (20 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 20</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. A student frequently writes 'b' instead of 'd', and reads 'saw' as 'was'. This specific learning difficulty is formally known as:<br><br>एक छात्र अक्सर 'd' के बजाय 'b' लिखता है, और 'saw' को 'was' पढ़ता है। सीखने की इस विशिष्ट कठिनाई को क्या कहा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Dysgraphia</button>
+                        <button class="opt-btn" value="B">B) Dyslexia (डिस्लेक्सिया)</button>
+                        <button class="opt-btn" value="C">C) Dyscalculia</button>
+                        <button class="opt-btn" value="D">D) Dyspraxia</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Dyslexia is primarily a reading disorder where the brain struggles to process graphic symbols, leading to letter reversals and decoding issues.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q2. The Rights of Persons with Disabilities (RPwD) Act, 2016 expanded the list of officially recognized disabilities from 7 to:<br><br>दिव्यांगजन अधिकार (RPwD) अधिनियम, 2016 ने आधिकारिक तौर पर मान्यता प्राप्त अक्षमताओं की सूची को 7 से बढ़ाकर कितना कर दिया है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 11</button>
+                        <button class="opt-btn" value="B">B) 14</button>
+                        <button class="opt-btn" value="C">C) 21</button>
+                        <button class="opt-btn" value="D">D) 25</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The RPwD Act 2016 recognizes 21 disabilities, adding conditions like Acid Attack Victims, Parkinson's, Dwarfism, and Specific Learning Disabilities (SLDs).</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q3. A child showing signs of clumsiness, poor hand-eye coordination, and difficulty in physical tasks like tying shoelaces or catching a ball is likely suffering from:<br><br>एक बच्चा जिसमें भद्दापन, खराब हाथ-आंख समन्वय, और जूते के फीते बांधने या गेंद पकड़ने जैसे शारीरिक कार्यों में कठिनाई के लक्षण दिखाई देते हैं, वह संभवतः किससे पीड़ित है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Dysphasia</button>
+                        <button class="opt-btn" value="B">B) Dyslexia</button>
+                        <button class="opt-btn" value="C">C) Dyspraxia (डिस्प्रेक्सिया)</button>
+                        <button class="opt-btn" value="D">D) Autism</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Dyspraxia (also known as Developmental Coordination Disorder) specifically impacts fine and gross motor skills and physical coordination.</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q4. Which landmark international declaration established the framework and principles for 'Inclusive Education' globally in 1994?<br><br>1994 में किस ऐतिहासिक अंतर्राष्ट्रीय घोषणा ने विश्व स्तर पर 'समावेशी शिक्षा' के ढांचे और सिद्धांतों की स्थापना की?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Salamanca Statement (सलामांका सम्मेलन)</button>
+                        <button class="opt-btn" value="B">B) Kyoto Protocol</button>
+                        <button class="opt-btn" value="C">C) Geneva Convention</button>
+                        <button class="opt-btn" value="D">D) Jomtien Declaration</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Salamanca Statement (UNESCO, 1994) is the foundational global document advocating that all children should learn together in mainstream schools regardless of differences.</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q5. According to the RPwD Act 2016, a person with a 'Benchmark Disability' is defined as someone who has at least ______ of a specified disability.<br><br>RPwD अधिनियम 2016 के अनुसार, 'बेंचमार्क विकलांगता' वाले व्यक्ति को ऐसे व्यक्ति के रूप में परिभाषित किया गया है, जिसमें किसी निर्दिष्ट विकलांगता का कम से कम ______ हो।</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 30%</button>
+                        <button class="opt-btn" value="B">B) 40% (40 प्रतिशत)</button>
+                        <button class="opt-btn" value="C">C) 50%</button>
+                        <button class="opt-btn" value="D">D) 60%</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A benchmark disability is strictly defined as not less than 40% of a specified disability, certified by a medical authority, to avail government benefits and reservations.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q6. Which of the following is the most defining characteristic of Autism Spectrum Disorder (ASD)?<br><br>स्वलीनता (Autism Spectrum Disorder) की सबसे विशिष्ट विशेषता निम्नलिखित में से कौन-सी है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Highly aggressive and violent behavior</button>
+                        <button class="opt-btn" value="B">B) Inability to see colors</button>
+                        <button class="opt-btn" value="C">C) Severe deficits in social communication, eye contact, and repetitive, restrictive behavior patterns (सामाजिक संचार, आंखों के संपर्क में गंभीर कमी और दोहराव वाले व्यवहार पैटर्न)</button>
+                        <button class="opt-btn" value="D">D) Memory loss</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> ASD is characterized by challenges in social interaction, nonverbal communication (like poor eye contact), and highly restricted, repetitive routines.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q7. What is the fundamental difference between 'Integration' and 'Inclusion' in education?<br><br>शिक्षा में 'एकीकरण' (Integration) और 'समावेशन' (Inclusion) के बीच मूलभूत अंतर क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Integration asks the child to fit into the existing system; Inclusion forces the system to adapt and change to fit the diverse needs of the child. (एकीकरण में बच्चे को सिस्टम के अनुकूल होना पड़ता है; समावेशन में सिस्टम को बच्चे के अनुकूल बदला जाता है)</button>
+                        <button class="opt-btn" value="B">B) Integration is for disabled kids; Inclusion is for normal kids.</button>
+                        <button class="opt-btn" value="C">C) There is no difference, both are identical.</button>
+                        <button class="opt-btn" value="D">D) Inclusion uses special schools, Integration uses mainstream schools.</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Inclusion is systemic change. In an inclusive classroom, the pedagogy, TLMs, and environment are modified so that every child succeeds naturally.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q8. Dyscalculia is a specific learning disability that directly affects a student's ability to:<br><br>डिस्कैल्कुलिया एक विशिष्ट अधिगम अक्षमता है जो सीधे तौर पर छात्र की किस क्षमता को प्रभावित करती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Write elegantly</button>
+                        <button class="opt-btn" value="B">B) Perform mathematical calculations, understand numbers, and process math symbols (गणितीय गणनाएं करना, संख्याओं को समझना और गणित के प्रतीकों को प्रोसेस करना)</button>
+                        <button class="opt-btn" value="C">C) Speak fluently</button>
+                        <button class="opt-btn" value="D">D) Walk properly</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Dyscalculia is "math blindness." It impairs a child's ability to grasp number concepts, memorize math facts, or comprehend time and money.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q9. A student with ADHD (Attention Deficit Hyperactivity Disorder) is in your class. Which of the following is the BEST instructional accommodation?<br><br>आपकी कक्षा में ADHD (अवधान न्यूनता अतिसक्रियता विकार) वाला एक छात्र है। निम्नलिखित में से कौन-सी शिक्षण व्यवस्था सबसे अच्छी है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Giving them extra long, multi-page assignments to keep them busy</button>
+                        <button class="opt-btn" value="B">B) Seating them near the window</button>
+                        <button class="opt-btn" value="C">C) Punishing them for moving</button>
+                        <button class="opt-btn" value="D">D) Breaking tasks into short, manageable chunks and allowing brief physical movement breaks (कार्यों को छोटे, प्रबंधनीय टुकड़ों में बांटना और संक्षिप्त शारीरिक गति (movement breaks) की अनुमति देना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Students with ADHD struggle with sustained attention and impulsivity. Short tasks ('chunking') and controlled movement breaks drastically improve their focus.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q10. Joseph Renzulli proposed a "Three-Ring" definition of Giftedness. Which three traits make up this model?<br><br>जोसेफ रेंज़ुली ने प्रतिभा (Giftedness) की "थ्री-रिंग" परिभाषा प्रस्तावित की। कौन-से तीन गुण इस मॉडल का निर्माण करते हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Above-average ability, Creativity, and Task Commitment (औसत से अधिक क्षमता, रचनात्मकता और कार्य प्रतिबद्धता)</button>
+                        <button class="opt-btn" value="B">B) High IQ, Wealth, and Good Memory</button>
+                        <button class="opt-btn" value="C">C) Introversion, Creativity, and Empathy</button>
+                        <button class="opt-btn" value="D">D) Artistic skill, Musical skill, and Athletic skill</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Renzulli's three-ring conception asserts that true giftedness emerges only when all three traits intersect: High Ability, High Creativity, and High Task Commitment/Motivation.</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q11. Which of the following is NOT categorized as a 'Specific Learning Disability' (SLD)?<br><br>निम्नलिखित में से किसे 'विशिष्ट अधिगम अक्षमता' (SLD) के रूप में वर्गीकृत नहीं किया गया है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Dyslexia</button>
+                        <button class="opt-btn" value="B">B) Dysgraphia</button>
+                        <button class="opt-btn" value="C">C) Cerebral Palsy (प्रमस्तिष्क घात)</button>
+                        <button class="opt-btn" value="D">D) Dyscalculia</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Cerebral Palsy is a neurological and locomotor disability affecting body movement and muscle coordination, not a cognitive/specific learning disability.</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q12. What does UDL stand for in the context of inclusive education pedagogy?<br><br>समावेशी शिक्षा शिक्षाशास्त्र के संदर्भ में UDL का पूर्ण रूप क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Universal Design for Learning (अधिगम के लिए सार्वभौमिक डिजाइन)</button>
+                        <button class="opt-btn" value="B">B) United Development of Learners</button>
+                        <button class="opt-btn" value="C">C) Universal Department of Literacy</button>
+                        <button class="opt-btn" value="D">D) Unilateral Design of Lessons</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> UDL is a framework developed by CAST to improve teaching for ALL people based on scientific insights into how humans learn, offering multiple means of Representation, Action, and Engagement.</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q13. According to the RPwD Act 2016, what is the quantum of reservation for persons with benchmark disabilities in Government jobs?<br><br>RPwD अधिनियम 2016 के अनुसार, सरकारी नौकरियों में बेंचमार्क विकलांगता वाले व्यक्तियों के लिए आरक्षण की मात्रा क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 3%</button>
+                        <button class="opt-btn" value="B">B) 4%</button>
+                        <button class="opt-btn" value="C">C) 5%</button>
+                        <button class="opt-btn" value="D">D) 10%</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 2016 Act increased the quota for government jobs from 3% to 4%, and the quota for higher education admissions to 5%.</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q14. An appropriate educational intervention for a highly 'Gifted' student in a regular classroom is:<br><br>नियमित कक्षा में एक अत्यधिक 'प्रतिभाशाली' छात्र के लिए एक उपयुक्त शैक्षिक हस्तक्षेप क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Giving them more of the same easy homework questions</button>
+                        <button class="opt-btn" value="B">B) Asking them to sit quietly and wait for others</button>
+                        <button class="opt-btn" value="C">C) Providing curriculum enrichment, advanced projects, and opportunities for higher-order divergent thinking (पाठ्यक्रम संवर्धन, उन्नत प्रोजेक्ट, और अपसारी चिंतन के अवसर प्रदान करना)</button>
+                        <button class="opt-btn" value="D">D) Isolating them in a separate room</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Gifted students need 'Enrichment' (deeper, complex exploration of a topic) or 'Acceleration' (moving ahead). Giving them "more" busywork leads to frustration.</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q15. Dysphasia or Aphasia is a learning disability primarily associated with:<br><br>डिस्फेजिया या एफेजिया एक अधिगम अक्षमता है जो मुख्य रूप से किससे जुड़ी है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Poor handwriting</button>
+                        <button class="opt-btn" value="B">B) Inability to calculate math</button>
+                        <button class="opt-btn" value="C">C) Poor hand-eye coordination</button>
+                        <button class="opt-btn" value="D">D) Language and speech comprehension/expression (भाषा और वाक् बोध / अभिव्यक्ति)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Aphasia/Dysphasia affects the brain's language centers, impairing the ability to speak fluently or understand spoken/written language.</div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q16. J.P. Guilford associated 'Creative' learners primarily with which type of thinking?<br><br>जे.पी. गिलफोर्ड ने 'रचनात्मक' (Creative) शिक्षार्थियों को मुख्य रूप से किस प्रकार की सोच से जोड़ा?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Divergent Thinking (अपसारी चिंतन)</button>
+                        <button class="opt-btn" value="B">B) Convergent Thinking (अभिसारी चिंतन)</button>
+                        <button class="opt-btn" value="C">C) Rote Memory</button>
+                        <button class="opt-btn" value="D">D) Conformity</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Divergent thinking involves generating multiple, unique, and out-of-the-box solutions to an open-ended problem, which is the hallmark of creativity.</div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q17. Under the RPwD Act 2016, free and compulsory education for a child with benchmark disability is guaranteed between the ages of:<br><br>RPwD अधिनियम 2016 के तहत, बेंचमार्क विकलांगता वाले बच्चे के लिए निःशुल्क और अनिवार्य शिक्षा किस आयु वर्ग के बीच सुनिश्चित की गई है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 6 to 14 years</button>
+                        <button class="opt-btn" value="B">B) 6 to 18 years (6 से 18 वर्ष)</button>
+                        <button class="opt-btn" value="C">C) 0 to 18 years</button>
+                        <button class="opt-btn" value="D">D) 14 to 18 years</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> While normal RTE covers 6-14 years, the RPwD Act extends the right to free education for children with disabilities up to 18 years of age.</div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q18. The use of a 'Refreshable Braille Display' or 'JAWS Screen Reader' in a computer lab is an assistive technology primarily designed for students with:<br><br>कंप्यूटर लैब में 'रिफ्रेशेबल ब्रेल डिस्प्ले' या 'जाव (JAWS) स्क्रीन रीडर' का उपयोग एक सहायक तकनीक है, जो मुख्य रूप से किन छात्रों के लिए डिज़ाइन की गई है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Hearing impairment (Hearing Loss)</button>
+                        <button class="opt-btn" value="B">B) Locomotor disability</button>
+                        <button class="opt-btn" value="C">C) Visual impairment / Blindness (दृष्टिबाधित / अंधापन)</button>
+                        <button class="opt-btn" value="D">D) Autism</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> JAWS (Job Access With Speech) and Braille displays convert on-screen text into audio or tactile braille dots, serving visually impaired learners.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q19. Which of the following is the most appropriate approach for evaluating a child with Dysgraphia in a final examination?<br><br>अंतिम परीक्षा में 'डिस्ग्राफिया' वाले बच्चे के मूल्यांकन के लिए निम्नलिखित में से कौन-सा दृष्टिकोण सबसे उपयुक्त है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Deduct marks for poor handwriting</button>
+                        <button class="opt-btn" value="B">B) Force the child to write faster</button>
+                        <button class="opt-btn" value="C">C) Expel the child from the exam</button>
+                        <button class="opt-btn" value="D">D) Provide a scribe (writer), allow extra time, or allow oral/typed responses (लेखक (scribe) प्रदान करना, अतिरिक्त समय देना, या मौखिक/टाइप किए गए उत्तरों की अनुमति देना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Dysgraphia physically impairs the ability to write legibly. Providing a scribe (amanuensis), extra time, or a keyboard levels the playing field without penalizing the child's actual cognitive knowledge.</div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q20. When a teacher provides multiple formats (video, audio, text) of the same lesson to ensure all students can access the content, the teacher is applying which pillar of UDL?<br><br>जब एक शिक्षक यह सुनिश्चित करने के लिए कि सभी छात्र सामग्री तक पहुँच सकें, एक ही पाठ के कई प्रारूप (वीडियो, ऑडियो, टेक्स्ट) प्रदान करता है, तो शिक्षक UDL के किस स्तंभ का उपयोग कर रहा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Multiple means of Engagement</button>
+                        <button class="opt-btn" value="B">B) Multiple means of Action and Expression</button>
+                        <button class="opt-btn" value="C">C) Multiple means of Representation (प्रस्तुतीकरण के बहु-साधन)</button>
+                        <button class="opt-btn" value="D">D) Standardized Testing</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> "Representation" (The 'What' of learning) means presenting information in varied formats (visual, auditory, tactile) so every learner can perceive and comprehend it.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const totalQuestions = 20;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+
+                // Final Score Celebration
+                if (totalAnswered === totalQuestions) {
+                    const percentage = (score / totalQuestions) * 100;
+                    const scoreDisplay = document.querySelector('.score-display');
+                    if (percentage >= 75) {
+                        scoreDisplay.style.background = "#dcfce7";
+                        scoreDisplay.style.color = "#166534";
+                        scoreDisplay.innerHTML += ` (Excellent! ${percentage}%)`;
+                    } else {
+                        scoreDisplay.style.background = "#fee2e2";
+                        scoreDisplay.style.color = "#991b1b";
+                        scoreDisplay.innerHTML += ` (Review Notes! ${percentage}%)`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
