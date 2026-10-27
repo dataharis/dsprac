@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 12: Curriculum Design & Action Research | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; position: sticky; top: 20px; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 12: Curriculum & Action Research
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 12: Curriculum Design & Action Research</h1>
+            <div class="subtitle">Spiral Curriculum, Hidden Curriculum, PAOR Cycle | Bilingual Notes</div>
+            
+            <h2>1. Curriculum: Etymology & Meaning (पाठ्यचर्या: शाब्दिक अर्थ एवं परिभाषा)</h2>
+            <ul>
+                <li><strong>Etymology:</strong> Derived from the Latin word <strong>'Currere'</strong>, meaning **"Racecourse" (दौड़ का मैदान)**. Thus, curriculum is the path or course of experiences a student runs through to reach educational goals.</li>
+                <li><strong>Cunningham’s Definition:</strong> <em>"Curriculum is a tool in the hands of the artist (teacher) to mold his material (student) in accordance with his ideals in his studio (school)."</em></li>
+                <li><strong>Curriculum vs. Syllabus:</strong> 
+                    <br>• *Syllabus* is a descriptive outline of topics covered in a specific subject (narrow scope). 
+                    <br>• *Curriculum* is the total planned experiences—co-curriculars, sports, values, and environment—provided by the school (broad scope). Syllabus is a subset of curriculum.
+                </li>
+            </ul>
+
+            <h2>2. Types of Curriculum (पाठ्यचर्या के प्रकार)</h2>
+            <ul>
+                <li><strong>Overt / Explicit Curriculum (स्पष्ट पाठ्यचर्या):</strong> The official, written document and prescribed syllabus taught openly in classrooms.</li>
+                <li><strong>Hidden / Implicit Curriculum (छिपी हुई पाठ्यचर्या):</strong> Unspoken values, cultural norms, and behavioral expectations implicitly taught through school rules and teacher attitudes (Coined by <strong>Philip Jackson, 1968</strong>).</li>
+                <li><strong>Null Curriculum (अव्यक्त / उपेक्षित पाठ्यचर्या):</strong> Topics, values, or perspectives that are intentionally or unintentionally left out of the school curriculum (Coined by <strong>Elliot Eisner, 1979</strong>).</li>
+                <li><strong>Core Curriculum (कोर पाठ्यचर्या):</strong> Essential subjects mandatory for all students to ensure a common foundation of knowledge.</li>
+            </ul>
+
+            <h2>3. Curriculum Models: Tyler vs. Taba (पाठ्यचर्या मॉडल)</h2>
+            <ul>
+                <li><strong>Ralph Tyler Model (1949):</strong> Deductive, Objectives-first, Top-Down model based on 4 fundamental questions: 1. Educational purposes/objectives, 2. Educational experiences, 3. Organization of experiences, 4. Evaluation.</li>
+                <li><strong>Hilda Taba Model (1962):</strong> Inductive, Grassroots, Bottom-Up model. Argued that teachers should design curriculum. Consists of 7 steps starting with diagnosing student needs.</li>
+            </ul>
+
+            <h2>4. Action Research (क्रियात्मक अनुसंधान)</h2>
+            <p>Action Research is conducted by teachers, principals, or school personnel to solve **immediate, practical, localized classroom problems**, unlike fundamental research which seeks universal laws.</p>
+            <ul>
+                <li><strong>Fathers:</strong> Kurt Lewin (coined the term in 1946) and Stephen M. Corey (applied it to education in 1953).</li>
+                <li><strong>PAOR Cycle (पार चक्र):</strong> 
+                    <br>1. <strong>Plan (योजना):</strong> Identify problem and formulate action plan.
+                    <br>2. <strong>Act (कार्यान्वयन):</strong> Implement the plan.
+                    <br>3. <strong>Observe (अवलोकन):</strong> Collect data and evidence on results.
+                    <br>4. <strong>Reflect (चिंतन/समीक्षा):</strong> Evaluate success and plan next iteration.
+                </li>
+            </ul>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (20 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 20</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. The word 'Curriculum' is derived from the Latin root 'Currere', which translates to:<br><br>'Curriculum' शब्द की उत्पत्ति लैटिन शब्द 'Currere' से हुई है, जिसका अर्थ क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) A book of rules</button>
+                        <button class="opt-btn" value="B">B) A racecourse / running track (दौड़ का मैदान / पथ)</button>
+                        <button class="opt-btn" value="C">C) A teaching manual</button>
+                        <button class="opt-btn" value="D">D) A final examination</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> 'Currere' means racecourse. Curriculum is the track of experiences a learner runs through during schooling.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q2. Who famously defined curriculum as "a tool in the hands of the artist (teacher) to mold his material (student) in accordance with his ideals in his studio (school)"?<br><br>किसने कहा था कि "पाठ्यचर्या कलाकार (शिक्षक) के हाथ में अपने आदर्शों के अनुसार अपने छात्र को ढालने का एक उपकरण है"?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) John Dewey</button>
+                        <button class="opt-btn" value="B">B) C.D. Cunningham (सी.डी. कनिंघम)</button>
+                        <button class="opt-btn" value="C">C) Ralph Tyler</button>
+                        <button class="opt-btn" value="D">D) Hilda Taba</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> This is C.D. Cunningham's famous artistic metaphor describing the role of curriculum and teacher.</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q3. What is the fundamental difference between 'Curriculum' and 'Syllabus'?<br><br>'पाठ्यचर्या' (Curriculum) और 'पाठ्यक्रम' (Syllabus) के बीच मूलभूत अंतर क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) There is no difference; they are exact synonyms.</button>
+                        <button class="opt-btn" value="B">B) Syllabus includes sports and co-curriculars, while curriculum only includes books.</button>
+                        <button class="opt-btn" value="C">C) Syllabus is a subject-specific topic outline, whereas curriculum encompasses the total holistic experiences of the school (सिलबस एक विषय का विवरण है, जबकि पाठ्यचर्या संपूर्ण अनुभवों का दायरा है)</button>
+                        <button class="opt-btn" value="D">D) Curriculum is set by teachers, syllabus is set by students.</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Syllabus is a narrow outline of topics for one subject. Curriculum is broad, covering all learning experiences, academic and co-curricular, provided by the institution.</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q4. The unwritten, implicit social rules, values, and cultural norms that students learn simply by attending school are referred to as the:<br><br>विद्यालय जाने मात्र से छात्र जो अनकहे सामाजिक नियम, मूल्य और सांस्कृतिक मानदंड सीखते हैं, उन्हें क्या कहा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">B) Hidden Curriculum (छिपी हुई पाठ्यचर्या - Philip Jackson)</button>
+                        <button class="opt-btn" value="C">C) Null Curriculum</button>
+                        <button class="opt-btn" value="D">D) Core Curriculum</button>
+                        <button class="opt-btn" value="A">A) Explicit Curriculum</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Philip Jackson (1968) coined the term 'Hidden Curriculum' to describe unspoken lessons, values, and routines conveyed in school environments.</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q5. Topics, perspectives, and skills that are intentionally or unintentionally omitted from the school educational experience constitute the:<br><br>वे विषय और दृष्टिकोण जिन्हें जानबूझकर या अनजाने में स्कूली शिक्षा से छोड़ दिया जाता है, क्या कहलाते हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Hidden Curriculum</button>
+                        <button class="opt-btn" value="B">B) Explicit Curriculum</button>
+                        <button class="opt-btn" value="C">C) Null Curriculum (उपेक्षित / व्यक्त-अव्यक्त पाठ्यचर्या - Elliot Eisner)</button>
+                        <button class="opt-btn" value="D">D) Spiral Curriculum</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Elliot Eisner (1979) introduced the 'Null Curriculum' to highlight what schools do *not* teach, which is often as important as what they do teach.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q6. Who proposed the top-down, deductive curriculum design model (1949) based on 4 fundamental questions (Objectives, Experiences, Organization, Evaluation)?<br><br>4 मौलिक प्रश्नों पर आधारित शीर्ष-से-नीचे (top-down) पाठ्यचर्या डिज़ाइन मॉडल (1949) किसने प्रस्तावित किया?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Ralph Tyler (राल्फ टायलर)</button>
+                        <button class="opt-btn" value="B">B) Hilda Taba</button>
+                        <button class="opt-btn" value="C">C) Jerome Bruner</button>
+                        <button class="opt-btn" value="D">D) John Dewey</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Ralph Tyler's objective-centered model (1949) is a deductive framework focusing on educational purposes, experiences, organization, and evaluation.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q7. Hilda Taba advocated for an 'Inductive, Grassroots' curriculum model. What is its distinctive feature?<br><br>हिल्डा टायलर (Hilda Taba) के आगमनात्मक 'ग्रासरूट' मॉडल की मुख्य विशेषता क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) It is designed exclusively by government bureaucrats.</button>
+                        <button class="opt-btn" value="B">B) It is built from the bottom-up by teachers starting with diagnosing student needs (यह शिक्षकों द्वारा छात्रों की जरूरतों के निदान से नीचे से ऊपर बनाया जाता है)</button>
+                        <button class="opt-btn" value="C">C) It completely rejects evaluation.</button>
+                        <button class="opt-btn" value="D">D) It applies only to college universities.</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Taba's 7-step model is a grassroots model where teachers participate actively in designing the curriculum starting with diagnosing student needs.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q8. Who is credited with coining the term 'Action Research' in 1946, later applied to education by Stephen M. Corey?<br><br>1946 में 'क्रियात्मक अनुसंधान' (Action Research) शब्द गढ़ने का श्रेय किसे जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Kurt Lewin (कुर्ट लेविन)</button>
+                        <button class="opt-btn" value="B">B) B.F. Skinner</button>
+                        <button class="opt-btn" value="C">C) Jean Piaget</button>
+                        <button class="opt-btn" value="D">D) Ivan Pavlov</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Kurt Lewin coined 'Action Research' in 1946 to describe research that deals with social action and solving immediate problems.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q9. What is the correct sequence of the cyclical steps in Action Research (the PAOR cycle)?<br><br>क्रियात्मक अनुसंधान चक्र (PAOR चक्र) के चरणों का सही क्रम क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Act → Plan → Reflect → Observe</button>
+                        <button class="opt-btn" value="B">B) Plan → Act → Observe → Reflect (योजना → क्रियान्वयन → अवलोकन → चिंतन/समीक्षा)</button>
+                        <button class="opt-btn" value="C">C) Observe → Reflect → Plan → Act</button>
+                        <button class="opt-btn" value="D">D) Reflect → Plan → Act → Observe</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The standard Action Research cycle is Plan, Act, Observe, and Reflect, which then loops back into a revised plan.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q10. What is the primary purpose of Action Research conducted by a school teacher?<br><br>एक स्कूल शिक्षक द्वारा किए जाने वाले क्रियात्मक अनुसंधान का मुख्य उद्देश्य क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To discover universal laws of psychology applicable globally</button>
+                        <button class="opt-btn" value="B">B) To get promoted to university professor</button>
+                        <button class="opt-btn" value="C">C) To solve immediate, practical, localized problems within their own classroom or school (अपनी कक्षा या स्कूल की तात्कालिक व्यावहारिक समस्याओं का समाधान करना)</button>
+                        <button class="opt-btn" value="D">D) To write a commercial fiction novel</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Unlike fundamental/academic research that seeks broad generalizations, Action Research is localized, practical, and meant to solve immediate classroom issues.</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q11. Which principle of curriculum construction emphasizes that learning content must prepare students for future life challenges and emerging careers?<br><br>पाठ्यचर्या निर्माण का कौन-सा सिद्धांत इस बात पर जोर देता है कि सामग्री छात्रों को भविष्य के जीवन की चुनौतियों के लिए तैयार करे?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Principle of Rote Memorization</button>
+                        <button class="opt-btn" value="B">B) Principle of Forward-Looking / Futurism (भविष्योन्मुखी सिद्धांत)</button>
+                        <button class="opt-btn" value="C">C) Principle of Rigidity</button>
+                        <button class="opt-btn" value="D">D) Principle of Isolation</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The forward-looking principle ensures that the curriculum is futuristic, equipping students with adaptable 21st-century skills.</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q12. The principle of 'Correlation' in curriculum design refers to:<br><br>पाठ्यचर्या डिज़ाइन में 'सहसंबंध' (Correlation) के सिद्धांत का क्या अर्थ है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Linking one subject/topic with another (e.g., Mathematics with Physics) (एक विषय को दूसरे विषय से जोड़ना)</button>
+                        <button class="opt-btn" value="B">B) Isolating every subject into strict separate boxes</button>
+                        <button class="opt-btn" value="C">C) Teaching only one topic per year</button>
+                        <button class="opt-btn" value="D">D) Removing all co-curricular activities</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Correlation prevents compartmentalization of knowledge by linking concepts across subjects (e.g., historical timelines taught alongside literature).</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q13. Jerome Bruner's 'Spiral Curriculum' is best described as:<br><br>जेरोम ब्रूनर के 'सर्पिल पाठ्यक्रम' (Spiral Curriculum) को सबसे अच्छे रूप में कैसे वर्णित किया जा सकता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Teaching a topic only once in high school</button>
+                        <button class="opt-btn" value="B">B) Revisiting basic concepts repeatedly across grade levels with increasing depth and complexity (मूलभूत अवधारणाओं को बार-बार बढ़ती गहराई और जटिलता के साथ दोहराना)</button>
+                        <button class="opt-btn" value="C">C) Writing exams in a spiral shape</button>
+                        <button class="opt-btn" value="D">D) Memorizing formulas in circular order</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Spiral curriculum revisits core ideas across grades, deepening student understanding at each pass in accordance with cognitive growth.</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q14. Which curriculum design centers around real-life problems and social issues rather than traditional academic subjects?<br><br>पारंपरिक विषयों के बजाय वास्तविक जीवन की समस्याओं और सामाजिक मुद्दों के इर्द-गिर्द कौन-सा पाठ्यक्रम डिज़ाइन केंद्रित है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Subject-Centered Curriculum</button>
+                        <button class="opt-btn" value="B">B) Core Curriculum</button>
+                        <button class="opt-btn" value="C">C) Problem-Centered / Activity-Centered Curriculum (समस्या-केंद्रित / गतिविधि-केंद्रित पाठ्यक्रम)</button>
+                        <button class="opt-btn" value="D">D) Null Curriculum</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Problem-centered curriculum focuses on social problems and real-world issues, empowering students to find practical solutions.</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q15. Who applied Action Research specifically to the field of education through his 1953 book "Action Research to Improve School Practices"?<br><br>अपनी 1953 की पुस्तक "Action Research to Improve School Practices" के माध्यम से शिक्षा के क्षेत्र में क्रियात्मक अनुसंधान किसने लागू किया?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Kurt Lewin</button>
+                        <button class="opt-btn" value="B">B) Stephen M. Corey (स्टीफन एम. कोरी)</button>
+                        <button class="opt-btn" value="C">C) Ralph Tyler</button>
+                        <button class="opt-btn" value="D">D) Hilda Taba</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> While Kurt Lewin coined the term, Stephen M. Corey was the pioneer who introduced Action Research to school teachers and educational administration.</div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q16. What is a major limitation of Action Research compared to fundamental academic research?<br><br>मौलिक अनुसंधान की तुलना में क्रियात्मक अनुसंधान की एक प्रमुख सीमा क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Low generalizability to other schools because findings are localized (निष्कर्षों का स्थानीय होने के कारण अन्य स्कूलों में व्यापक सामान्यीकरण कठिन)</button>
+                        <button class="opt-btn" value="B">B) It requires a multi-million dollar budget</button>
+                        <button class="opt-btn" value="C">C) It cannot be done by teachers</button>
+                        <button class="opt-btn" value="D">D) It takes 10 years to complete</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Because Action Research is tailored to solve a specific local problem in one classroom/school, its results cannot be easily generalized to all schools everywhere.</div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q17. The principle of 'Flexibility' in curriculum construction ensures that:<br><br>पाठ्यचर्या निर्माण में 'लचीलेपन' (Flexibility) का सिद्धांत क्या सुनिश्चित करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Students can skip school whenever they want</button>
+                        <button class="opt-btn" value="B">B) The curriculum can adapt to local needs, student differences, and changing societal circumstances (पाठ्यचर्या स्थानीय आवश्यकताओं और बदलती परिस्थितियों के अनुकूल हो सके)</button>
+                        <button class="opt-btn" value="C">C) Teachers do not need lesson plans</button>
+                        <button class="opt-btn" value="D">D) Exams are never conducted</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A flexible curriculum avoids rigidity, allowing teachers to customize pacing, methods, and content to fit student diversity and local contexts.</div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q18. In Ralph Tyler’s model of curriculum design, what is the very first step a curriculum planner must undertake?<br><br>राल्फ टायलर के पाठ्यचर्या डिज़ाइन मॉडल में, योजनाकार को सबसे पहला कदम क्या उठाना चाहिए?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Selecting textbooks</button>
+                        <button class="opt-btn" value="B">B) Designing final exam papers</button>
+                        <button class="opt-btn" value="C">C) Defining educational purposes / objectives (शैक्षिक उद्देश्यों/लक्ष्यों को परिभाषित करना)</button>
+                        <button class="opt-btn" value="D">D) Allocating school budgets</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Tyler's first question is: "What educational purposes should the school seek to attain?" Establishing clear objectives guides all subsequent steps.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q19. Which type of curriculum design organizes content around separate, distinct academic disciplines (e.g., Physics, Chemistry, History taught independently)?<br><br>कौन-सा पाठ्यक्रम डिज़ाइन सामग्री को अलग-अलग शैक्षणिक विषयों (जैसे भौतिकी, रसायन विज्ञान) के इर्द-गिर्द व्यवस्थित करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Broad Fields Curriculum</button>
+                        <button class="opt-btn" value="B">B) Subject-Centered Curriculum (विषय-केंद्रित पाठ्यक्रम)</button>
+                        <button class="opt-btn" value="C">C) Activity-Centered Curriculum</button>
+                        <button class="opt-btn" value="D">D) Core Curriculum</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Subject-centered curriculum is the traditional approach where each subject stands alone with its own syllabus and periods.</div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q20. In the PAOR cycle of Action Research, what is the primary activity performed during the 'Observe' phase?<br><br>क्रियात्मक अनुसंधान के PAOR चक्र में, 'अवलोकन' (Observe) चरण के दौरान मुख्य गतिविधि क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Writing the final textbook chapter</button>
+                        <button class="opt-btn" value="B">B) Brainstorming the initial problem</button>
+                        <button class="opt-btn" value="C">C) Systematically gathering data and evidence on the effects of the action taken (की गई कार्रवाई के प्रभावों पर व्यवस्थित रूप से डेटा और साक्ष्य जुटाना)</button>
+                        <button class="opt-btn" value="D">D) Punishing students who failed</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> After acting on the plan, the researcher systematically observes and collects data (test scores, observation notes, surveys) to see how effective the intervention was.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const totalQuestions = 20;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+
+                // Final Score Celebration
+                if (totalAnswered === totalQuestions) {
+                    const percentage = (score / totalQuestions) * 100;
+                    const scoreDisplay = document.querySelector('.score-display');
+                    if (percentage >= 75) {
+                        scoreDisplay.style.background = "#dcfce7";
+                        scoreDisplay.style.color = "#166534";
+                        scoreDisplay.innerHTML += ` (Excellent! ${percentage}%)`;
+                    } else {
+                        scoreDisplay.style.background = "#fee2e2";
+                        scoreDisplay.style.color = "#991b1b";
+                        scoreDisplay.innerHTML += ` (Review Notes! ${percentage}%)`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

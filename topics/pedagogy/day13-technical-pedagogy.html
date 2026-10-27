@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 13: Technical Pedagogy & Lab Management | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; position: sticky; top: 20px; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 13: Technical Pedagogy
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 13: Pedagogy of Technical & Logical Subjects</h1>
+            <div class="subtitle">Lab Management, Debugging as Diagnostic Learning & Project Evaluation | Bilingual Notes</div>
+            
+            <h2>1. Computer Lab Management & Ergonomics (कंप्यूटर लैब प्रबंधन एवं एर्गोनॉमिक्स)</h2>
+            <ul>
+                <li><strong>Lab Layout:</strong> U-shaped or perimeter desk arrangement allows teachers to walk behind terminals easily to monitor screens and maintain discipline.</li>
+                <li><strong>Ergonomics (कार्यकुशलता विज्ञान):</strong> Proper posture standards—top of monitor at eye level, feet flat on the floor, elbows at 90°, and wrist rests to prevent Repetitive Strain Injury (RSI).</li>
+                <li><strong>Safety Protocols:</strong> Class C fire extinguishers (CO2 or dry powder) for electrical fires. Avoid water near servers.</li>
+                <li><strong>Lab Registers:</strong> Stock Register (Consumable vs. Non-Consumable items), Log Book (tracking system usage hours), and Maintenance Register.</li>
+            </ul>
+
+            <h2>2. Debugging Errors as Diagnostic Learning (निदानात्मक अधिगम के रूप में डिबगिंग)</h2>
+            <p>In programming pedagogy, errors are not mere failures; they are <strong>windows into a student's cognitive mental model</strong> (Seymour Papert's Constructionism).</p>
+            <ul>
+                <li><strong>Syntax Errors (सिंटैक्स त्रुटियां):</strong> Violations of programming language grammar (e.g., missing semicolons, unmatched parentheses). Caught instantly by compilers.</li>
+                <li><strong>Runtime Exceptions (रनटाइम अपवाद):</strong> Errors occurring during execution (e.g., Division by Zero, Null Pointer).</li>
+                <li><strong>Logical / Semantic Errors (तार्किक त्रुटियां):</strong> The program runs without crashing, but produces incorrect results due to flawed human logic. *This requires deep diagnostic questioning.*</li>
+            </ul>
+
+            <h2>3. Instructional Frameworks for Logical Subjects (तार्किक विषयों के लिए शिक्षण फ्रेमवर्क)</h2>
+            <ul>
+                <li><strong>PRIMM Framework (Sue Sentance):</strong> Predict → Run → Investigate → Modify → Make. Structured progression for teaching code comprehension before creation.</li>
+                <li><strong>Parsons Problems:</strong> Jumbled code lines that students must arrange in correct order, reducing cognitive load for beginners.</li>
+                <li><strong>Dry Runs & Trace Tables:</strong> Manually stepping through code line-by-line on paper to track variable states.</li>
+            </ul>
+
+            <h2>4. Project-Based Evaluation Rubrics (प्रोजेक्ट-आधारित मूल्यांकन)</h2>
+            <ul>
+                <li><strong>Process vs. Product Evaluation:</strong> Evaluating both the final working software (Product) and the development journey, git commit history, and algorithmic thinking (Process).</li>
+                <li><strong>Plagiarism Control:</strong> Preventing free-riding via mandatory Live Viva-Voce, on-the-spot code modifications, and individual contribution logs.</li>
+            </ul>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (20 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 20</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. In computer science pedagogy, how are programming 'errors and bugs' viewed from a constructivist perspective (Seymour Papert)?<br><br>कंप्यूटर विज्ञान शिक्षाशास्त्र में, रचनावादी दृष्टिकोण (सीमोर पेपर्ट) से प्रोग्रामिंग 'त्रुटियों और बग्स' को कैसे देखा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) As proof of student incompetence</button>
+                        <button class="opt-btn" value="B">B) As valuable diagnostic windows into a learner's mental model and reasoning process (छात्र की तर्क प्रक्रिया में मूल्यवान निदानात्मक खिड़कियों के रूप में)</button>
+                        <button class="opt-btn" value="C">C) As illegal code violations</button>
+                        <button class="opt-btn" value="D">D) As random glitches to be ignored</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Constructionism views bugs as essential learning milestones. Analyzing *why* a student made a logical error reveals their cognitive misconceptions.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q2. Which type of error occurs when a programmer violates the grammatical and structural rules of a programming language (e.g., missing a closing parenthesis)?<br><br>जब कोई प्रोग्रामर किसी प्रोग्रामिंग भाषा के व्याकरणिक नियमों का उल्लंघन करता है, तो किस प्रकार की त्रुटि होती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Logical Error (तार्किक त्रुटि)</button>
+                        <button class="opt-btn" value="B">B) Runtime Exception</button>
+                        <button class="opt-btn" value="C">C) Syntax Error (सिंटैक्स त्रुटि)</button>
+                        <button class="opt-btn" value="D">D) Semantic Bug</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Syntax errors break the grammar rules of the programming language and are caught immediately by the compiler or interpreter before execution.</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text5">Q3. What is the correct sequence of phases in the 'PRIMM' framework used for teaching programming?<br><br>प्रोग्रामिंग सिखाने के लिए उपयोग किए जाने वाले 'PRIMM' फ्रेमवर्क के चरणों का सही क्रम क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Make → Run → Predict → Investigate → Modify</button>
+                        <button class="opt-btn" value="B">B) Predict → Run → Investigate → Modify → Make (पूर्वानुमान → रन → जांच → संशोधित → निर्माण)</button>
+                        <button class="opt-btn" value="C">C) Investigate → Make → Run → Predict → Modify</button>
+                        <button class="opt-btn" value="D">D) Run → Modify → Make → Predict → Investigate</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> PRIMM (Sue Sentance) stands for Predict what code does, Run it, Investigate how it works, Modify it, and Make a new program.</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q4. A student's program compiles and runs successfully without crashing, but outputs the wrong mathematical answer due to a flawed formula. This is a:<br><br>एक छात्र का प्रोग्राम बिना क्रैश हुए चलता है, लेकिन गलत सूत्र के कारण गलत उत्तर देता है। यह है:</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Syntax Error</button>
+                        <button class="opt-btn" value="B">B) Logical / Semantic Error (तार्किक त्रुटि)</button>
+                        <button class="opt-btn" value="C">C) Hardware Fault</button>
+                        <button class="opt-btn" value="D">D) Compiler Crash</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Logical errors allow the program to run, but the output is incorrect because the human designer's underlying algorithm or formula was flawed.</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q5. Which fire extinguisher type is mandatory for electrical and computer server room fires in a computer lab?<br><br>कंप्यूटर लैब में विद्युत और सर्वर रूम की आग के लिए कौन-सा अग्नि सामक (Fire Extinguisher) अनिवार्य है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Class C / CO2 Extinguisher (क्लास C / CO2 अग्निशामक)</button>
+                        <button class="opt-btn" value="B">B) Water bucket</button>
+                        <button class="opt-btn" value="C">C) Foam extinguisher</button>
+                        <button class="opt-btn" value="D">D) Wet blanket</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Electrical fires (Class C) must never be fought with water (risk of electrocution). CO2 or dry powder extinguishers are used safely.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q6. What are 'Parsons Problems' in programming pedagogy designed to achieve?<br><br>प्रोग्रामिंग शिक्षाशास्त्र में 'पार्सन्स प्रॉब्लम्स' (Parsons Problems) का उद्देश्य क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To test typing speed on keyboards</button>
+                        <button class="opt-btn" value="B">B) To reduce cognitive load by having students arrange jumbled lines of code in correct order (छात्रों द्वारा बिखरी हुई कोड लाइनों को सही क्रम में व्यवस्थित करके संज्ञानात्मक भार को कम करना)</button>
+                        <button class="opt-btn" value="C">C) To translate code into foreign languages</button>
+                        <button class="opt-btn" value="D">D) To find hardware short-circuits</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Parsons Problems provide scrambled code blocks that students must organize, reducing syntax frustration while building algorithmic logic.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q7. Which computer lab seating arrangement is considered optimal for teachers to monitor screens and maintain discipline?<br><br>शिक्षकों के लिए स्क्रीन मॉनिटर करने और अनुशासन बनाए रखने के लिए कौन-सी लैब व्यवस्था सबसे अच्छी मानी जाती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) U-Shape or Perimeter layout (यू-आकार या परिधि लेआउट)</button>
+                        <button class="opt-btn" value="B">B) Facing inward in isolated cubicles</button>
+                        <button class="opt-btn" value="C">C) Random scatter</button>
+                        <button class="opt-btn" value="D">D) Rows facing away from the instructor</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> U-shaped or perimeter desk arrangements allow the teacher to walk along the center or outside to view all monitors simultaneously.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q8. In project-based evaluation of software assignments, how can a teacher effectively prevent plagiarism and free-riding among team members?<br><br>सॉफ्टवेयर असाइनमेंट के प्रोजेक्ट-आधारित मूल्यांकन में, शिक्षक साहित्यिक चोरी (plagiarism) को कैसे रोक सकता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) By grading only the final zip file blindly</button>
+                        <button class="opt-btn" value="B">B) By conducting mandatory live viva-voce and on-the-spot code modifications (अनिवार्य लाइव वाइवा और ऑन-द-स्पॉट कोड संशोधन आयोजित करके)</button>
+                        <button class="opt-btn" value="C">C) By banning group work entirely</button>
+                        <button class="opt-btn" value="D">D) By allowing students to grade each other</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Live viva-voce and asking students to modify their code on the spot instantly reveals whether every team member actually understands and built the project.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q9. What is the primary purpose of a 'Trace Table' in logical debugging?<br><br>तार्किक डिबगिंग में 'ट्रेस टेबल' (Trace Table) का प्राथमिक उद्देश्य क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To check internet speed</button>
+                        <button class="opt-btn" value="B">B) To measure room temperature</button>
+                        <button class="opt-btn" value="C">C) To manually step through code line-by-line and track variable changes on paper (कागज पर लाइन-दर-लाइन कोड चलाकर चर (variables) के बदलावों को ट्रैक करना)</button>
+                        <button class="opt-btn" value="D">D) To format hard disks</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A trace table is a dry-run technique where learners record the changing values of variables step-by-step to catch logical bugs.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q10. What does 'Ergonomics' focus on in a computer laboratory setup?<br><br>कंप्यूटर लैब सेटअप में 'एर्गोनॉमिक्स' (Ergonomics) का मुख्य फोकस किस पर होता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Software licensing costs</button>
+                        <button class="opt-btn" value="B">B) Designing equipment and workstations to fit human posture and prevent physical strain (मानव मुद्रा के अनुकूल उपकरण और वर्कस्टेशन डिजाइन करना ताकि शारीरिक तनाव न हो)</button>
+                        <button class="opt-btn" value="C">C) Internet bandwidth speed</button>
+                        <button class="opt-btn" value="D">D) Printer paper quality</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Ergonomics ensures chairs, desks, monitor heights, and keyboards prevent Repetitive Strain Injuries (RSI) and fatigue.</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q11. Which register in a computer lab records consumable vs. non-consumable items and hardware inventory?<br><br>कंप्यूटर लैब का कौन-सा रजिस्टर उपभोग्य (consumable) और गैर-उपभोग्य वस्तुओं का रिकॉर्ड रखता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Stock Register (स्टॉक रजिस्टर)</button>
+                        <button class="opt-btn" value="B">B) Log Book</button>
+                        <button class="opt-btn" value="C">C) Attendance Register</button>
+                        <button class="opt-btn" value="D">D) Disciplinary Register</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Stock Register maintains the inventory of all permanent equipment (non-consumables like PCs) and supplies (consumables like printer cartridges).</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q12. What is a 'Runtime Exception' (रनटाइम अपवाद)?<br><br>रनटाइम अपवाद (Runtime Exception) क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) A syntax typo caught before compiling</button>
+                        <button class="opt-btn" value="B">B) An error that occurs while the program is actively executing, such as dividing by zero (वह त्रुटि जो प्रोग्राम के चलने के दौरान उत्पन्न होती है, जैसे शून्य से भाग देना)</button>
+                        <button class="opt-btn" value="C">C) A hardware short circuit</button>
+                        <button class="opt-btn" value="D">D) A poor project grading rubric</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Runtime exceptions happen during execution (e.g., attempting to divide by zero or trying to access a file that doesn't exist), crashing the program.</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q13. In project evaluation, what is the advantage of using 'Analytic Rubrics' over 'Holistic Rubrics'?<br><br>प्रोजेक्ट मूल्यांकन में, 'विश्लेषणात्मक रूब्रिक' (Analytic Rubric) का 'समग्र रूब्रिक' (Holistic Rubric) की तुलना में क्या लाभ है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) They take 10 seconds to grade</button>
+                        <button class="opt-btn" value="B">B) They give only one single grade</button>
+                        <button class="opt-btn" value="C">C) They provide detailed diagnostic feedback on specific criteria (e.g., code structure, UI, efficiency) rather than just one score (विशिष्ट मानदंडों पर विस्तृत निदानात्मक फीडबैक प्रदान करते हैं)</button>
+                        <button class="opt-btn" value="D">D) They eliminate student grading entirely</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Analytic rubrics break down performance into distinct criteria (syntax, logic, efficiency), providing targeted feedback for students to improve.</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q14. What is the pedagogical purpose of 'Rubber-Duck Debugging' in programming classrooms?<br><br>प्रोग्रामिंग कक्षाओं में 'रबर-डक डिबगिंग' (Rubber-Duck Debugging) का शैक्षणिक उद्देश्य क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To play audio toys when code compiles</button>
+                        <button class="opt-btn" value="B">B) To encourage students to explain their code line-by-line out loud to an inanimate object, helping them spot logical flaws (छात्रों को जोर से लाइन-दर-लाइन कोड समझाने के लिए प्रोत्साहित करना ताकि वे तार्किक कमियां पकड़ सकें)</button>
+                        <button class="opt-btn" value="C">C) To test internet connectivity</button>
+                        <button class="opt-btn" value="D">D) To format hard drives</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Explaining code out loud forces learners to articulate their assumptions, often revealing the logical bug instantly.</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q15. Regular dusting of PC internals, cleaning keyboard keys, and running antivirus scans fall under:<br><br>पीसी के आंतरिक हिस्सों की नियमित सफाई और एंटीवायरस स्कैन चलाना किसके अंतर्गत आता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Preventive Maintenance (निवारक रखरखाव)</button>
+                        <button class="opt-btn" value="B">B) Corrective Maintenance</button>
+                        <button class="opt-btn" value="C">C) Emergency Rebuilding</button>
+                        <button class="opt-btn" value="D">D) Hardware Disposal</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Preventive maintenance is routine care performed to prevent equipment failure *before* it breaks down. Corrective maintenance fixes things after they break.</div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q16. In pair programming, the student who actively types code, writes functions, and implements syntax is known as the:<br><br>पेयर प्रोग्रामिंग में, वह छात्र जो सक्रिय रूप से कोड टाइप करता है और फ़ंक्शन लिखता है, क्या कहलाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Navigator</button>
+                        <button class="opt-btn" value="B">B) Driver (ड्राइवर)</button>
+                        <button class="opt-btn" value="C">C) Observer</button>
+                        <button class="opt-btn" value="D">D) Evaluator</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> In pair programming, the 'Driver' controls the keyboard/mouse and writes the code, while the 'Navigator' reviews each line for bugs and plans the next step.</div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q17. What is the primary role of the 'Navigator' in Pair Programming?<br><br>पेयर प्रोग्रामिंग में 'नेविगेटर' की मुख्य भूमिका क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To sleep while the driver works</button>
+                        <button class="opt-btn" value="B">B) To type code faster</button>
+                        <button class="opt-btn" value="C">C) To review code for errors, spot bugs, and think strategically about the overall design while the driver types (ड्राइवर के टाइप करते समय त्रुटियों के लिए कोड की समीक्षा करना और रणनीतिक रूप से सोचना)</button>
+                        <button class="opt-btn" value="D">D) To grade the assignment</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Navigator observes the Driver's code, checks for logical errors, and plans ahead, and roles are swapped periodically.</div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q18. What does 'CS Unplugged' refer to in computer science pedagogy?<br><br>कंप्यूटर विज्ञान शिक्षाशास्त्र में 'CS अनप्लग्ड' (CS Unplugged) से क्या तात्पर्य है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Turning off all lab computers permanently</button>
+                        <button class="opt-btn" value="B">B) Teaching computer science concepts (like sorting algorithms or binary) using physical games, cards, and kinesthetic activities without computers (बिना कंप्यूटर के शारीरिक खेलों और कार्डों के माध्यम से CS अवधारणाएं सिखाना)</button>
+                        <button class="opt-btn" value="C">C) Fixing unplugged power cables</button>
+                        <button class="opt-btn" value="D">D) Disconnecting the internet</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> CS Unplugged uses physical activities, puzzles, and kinesthetic learning to teach computational thinking without requiring computers.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q19. A teacher maintains a 'Log Book' in the computer lab. What is its primary use?<br><br>कंप्यूटर लैब में 'लॉग बुक' का प्राथमिक उपयोग क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) To track system usage hours, user names, and log-in/log-out times (सिस्टम उपयोग के घंटे और उपयोगकर्ता नाम ट्रैक करना)</button>
+                        <button class="opt-btn" value="B">B) To record student exam marks</button>
+                        <button class="opt-btn" value="C">C) To store spare computer mice</button>
+                        <button class="opt-btn" value="D">D) To write lesson plans</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A log book tracks who used which terminal, when, and for how long, helping maintain accountability and monitor hardware wear.</div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q20. In software project evaluation, why is 'Process Evaluation' just as important as 'Product Evaluation'?<br><br>सॉफ्टवेयर प्रोजेक्ट मूल्यांकन में, 'प्रक्रिया मूल्यांकन' (Process Evaluation) 'उत्पाद मूल्यांकन' जितना महत्वपूर्ण क्यों है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Because product doesn't matter</button>
+                        <button class="opt-btn" value="B">B) Because it evaluates algorithmic thinking, git commits, teamwork, and problem-solving stages rather than just checking if the final app works (यह केवल ऐप चलने के बजाय एल्गोरिदम, टीम वर्क और समस्या-समाधान चरणों का मूल्यांकन करता है)</button>
+                        <button class="opt-btn" value="C">C) Because process takes zero time</button>
+                        <button class="opt-btn" value="D">D) Because students hate writing code</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Evaluating the process (git history, design docs, incremental testing) ensures students developed genuine computational thinking rather than copying final code.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const totalQuestions = 20;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+
+                // Final Score Celebration
+                if (totalAnswered === totalQuestions) {
+                    const percentage = (score / totalQuestions) * 100;
+                    const scoreDisplay = document.querySelector('.score-display');
+                    if (percentage >= 75) {
+                        scoreDisplay.style.background = "#dcfce7";
+                        scoreDisplay.style.color = "#166534";
+                        scoreDisplay.innerHTML += ` (Excellent! ${percentage}%)`;
+                    } else {
+                        scoreDisplay.style.background = "#fee2e2";
+                        scoreDisplay.style.color = "#991b1b";
+                        scoreDisplay.innerHTML += ` (Review Notes! ${percentage}%)`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

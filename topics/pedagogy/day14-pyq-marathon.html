@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 14: Pedagogy PYQ Marathon | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tag-words-container { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .tag-positive { background: #dcfce7; color: #166534; padding: 1rem; border-radius: 8px; flex: 1; border-left: 4px solid #16a34a; }
+        .tag-negative { background: #fee2e2; color: #991b1b; padding: 1rem; border-radius: 8px; flex: 1; border-left: 4px solid #dc2626; }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; position: sticky; top: 20px; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 14: PYQ Marathon
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 14: Full Pedagogy PYQ Marathon</h1>
+            <div class="subtitle">Tag-Word Elimination Technique & 30-Question Mega Drill</div>
+            
+            <h2>1. The 'Tag-Word' Elimination Strategy (टैग-वर्ड एलिमिनेशन तकनीक)</h2>
+            <p>DSSSB TGT Pedagogy questions are heavily aligned with Constructivism, NCF 2005, and NEP 2020. If you are stuck on a question, look for these "Tag Words" in the options. <strong>Positive tag words</strong> usually indicate the correct pedagogical answer, while <strong>Negative tag words</strong> are almost always incorrect in a modern classroom context.</p>
+
+            <div class="tag-words-container">
+                <div class="tag-positive">
+                    <h3>✅ Positive Tag Words (सकारात्मक शब्द)</h3>
+                    <ul>
+                        <li>Facilitator (सुगमकर्ता)</li>
+                        <li>Scaffolding (पाड़ / मचान)</li>
+                        <li>Child-Centered (बाल-केंद्रित)</li>
+                        <li>Learning by Doing (करके सीखना)</li>
+                        <li>Inclusive (समावेशी)</li>
+                        <li>Real-world connection (वास्तविक जीवन से जोड़ना)</li>
+                        <li>Discovery / Heuristic (अन्वेषण / खोज)</li>
+                        <li>Divergent thinking (अपसारी चिंतन)</li>
+                        <li>Formative / Diagnostic (रचनात्मक / निदानात्मक)</li>
+                        <li>Flexibility / Adaptability (लचीलापन)</li>
+                    </ul>
+                </div>
+                <div class="tag-negative">
+                    <h3>❌ Negative Tag Words (नकारात्मक शब्द)</h3>
+                    <ul>
+                        <li>Rote Memorization (रटना / रटकर याद करना)</li>
+                        <li>Punishment / Strict Discipline (दंड / कठोर अनुशासन)</li>
+                        <li>Segregation / Labeling (अलगाव / ठप्पा लगाना)</li>
+                        <li>Only / Strictly / Exactly (केवल / एकमात्र / सख्ती से)</li>
+                        <li>Textbook-centered (पाठ्यपुस्तक-केंद्रित)</li>
+                        <li>Passive listener (निष्क्रिय श्रोता)</li>
+                        <li>Teacher-centered / Authoritarian (शिक्षक-केंद्रित / सत्तावादी)</li>
+                        <li>Convergent thinking limits (सीमित अभिसारी चिंतन)</li>
+                        <li>Ignoring individual differences (व्यक्तिगत भिन्नताओं की उपेक्षा)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p><strong>Pro Tip:</strong> In multiple-choice questions, eliminate any option that forces rote learning, punishes a student, or relies "only" on a textbook. Select the option that empowers the student to construct their own knowledge.</p>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (30 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 30</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. A teacher notices that a student is struggling to solve a math problem. Instead of giving the final answer, the teacher asks a guiding question and points to a similar example on the board. This technique is an example of:<br><br>एक शिक्षक देखता है कि एक छात्र को गणित की समस्या हल करने में संघर्ष करना पड़ रहा है। अंतिम उत्तर देने के बजाय, शिक्षक एक मार्गदर्शक प्रश्न पूछता है और बोर्ड पर इसी तरह के उदाहरण की ओर इशारा करता है। यह तकनीक किसका उदाहरण है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Positive Punishment</button>
+                        <button class="opt-btn" value="B">B) Scaffolding (पाड़ / मचान)</button>
+                        <button class="opt-btn" value="C">C) Classical Conditioning</button>
+                        <button class="opt-btn" value="D">D) Rote Memorization</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Scaffolding (Vygotsky) involves providing temporary support—like hints or cues—within the student's ZPD to help them reach the answer independently. (Tag Word: Positive).</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q2. Which of the following statements strictly contradicts the principles of NCF 2005?<br><br>निम्नलिखित में से कौन-सा कथन NCF 2005 के सिद्धांतों का पूरी तरह से खंडन करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Connecting knowledge to life outside the school</button>
+                        <button class="opt-btn" value="B">B) Ensuring that learning shifts away from rote methods</button>
+                        <button class="opt-btn" value="C">C) Strictly confining education to textbooks and enforcing absolute silence in class (शिक्षा को सख्ती से पाठ्यपुस्तकों तक सीमित करना और कक्षा में पूर्ण मौन लागू करना)</button>
+                        <button class="opt-btn" value="D">D) Making examinations more flexible</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Confining learning to textbooks (textbook-centered) and enforcing absolute silence (passive learners) are negative tag words. NCF 2005 promotes going *beyond* textbooks.</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q3. According to Piaget, cognitive development is primarily driven by:<br><br>पियाजे के अनुसार, संज्ञानात्मक विकास मुख्य रूप से किसके द्वारा संचालित होता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Social interaction with adults</button>
+                        <button class="opt-btn" value="B">B) Biological maturation and active independent exploration of the environment (जैविक परिपक्वता और पर्यावरण की सक्रिय स्वतंत्र खोज)</button>
+                        <button class="opt-btn" value="C">C) Strict rewards and punishments</button>
+                        <button class="opt-btn" value="D">D) Memorizing facts given by teachers</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Piaget viewed children as 'Little Scientists' who actively construct knowledge through biological maturation and independent exploration. (Vygotsky emphasized social interaction).</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q4. A school decides to put all children with visual impairments into a separate building away from the main school so they can receive 'specialized care'. According to modern educational frameworks (RPwD, Salamanca), this practice is called:<br><br>एक स्कूल दृष्टिबाधित सभी बच्चों को मुख्य स्कूल से दूर एक अलग इमारत में रखने का फैसला करता है। आधुनिक शैक्षिक ढांचों के अनुसार, इस प्रथा को क्या कहा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Inclusion (समावेशन)</button>
+                        <button class="opt-btn" value="B">B) Integration (एकीकरण)</button>
+                        <button class="opt-btn" value="C">C) Mainstreaming (मुख्यधारा)</button>
+                        <button class="opt-btn" value="D">D) Segregation (अलगाव / पृथक्करण)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Keeping students with disabilities in entirely separate facilities is Segregation. Modern pedagogy demands Inclusion (teaching them in the same mainstream classroom).</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q5. A teacher conducts a test before starting a new chapter in Mathematics to find out where students are lacking in their basic calculation skills. This test is an example of:<br><br>एक शिक्षक गणित में एक नया अध्याय शुरू करने से पहले एक परीक्षण आयोजित करता है ताकि यह पता लगाया जा सके कि छात्रों की बुनियादी गणना कौशल में कहाँ कमी है। यह परीक्षण किसका उदाहरण है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Summative Assessment</button>
+                        <button class="opt-btn" value="B">B) Standardized Aptitude Test</button>
+                        <button class="opt-btn" value="C">C) Diagnostic Assessment (निदानात्मक आकलन)</button>
+                        <button class="opt-btn" value="D">D) Assessment of Learning</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Finding out *where* students are lacking (identifying learning gaps) is the core purpose of a Diagnostic Assessment.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q6. Which law of learning, proposed by Thorndike, states that learning is most effective when the learner is physically and mentally prepared to learn?<br><br>थार्नडाइक द्वारा प्रस्तावित सीखने का कौन-सा नियम कहता है कि सीखना तब सबसे प्रभावी होता है जब शिक्षार्थी सीखने के लिए शारीरिक और मानसिक रूप से तैयार हो?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Law of Readiness (तत्परता का नियम)</button>
+                        <button class="opt-btn" value="B">B) Law of Exercise</button>
+                        <button class="opt-btn" value="C">C) Law of Effect</button>
+                        <button class="opt-btn" value="D">D) Law of Belongingness</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Law of Readiness states that when an organism is ready to act, doing so is satisfying; when not ready, being forced to act is annoying.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q7. What is the fundamental idea behind Jerome Bruner's 'Spiral Curriculum'?<br><br>जेरोम ब्रूनर के 'सर्पिल पाठ्यक्रम' के पीछे मूल विचार क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) A topic should only be taught once to avoid repetition.</button>
+                        <button class="opt-btn" value="B">B) Learning should strictly be rote-based.</button>
+                        <button class="opt-btn" value="C">C) Basic ideas should be introduced early and revisited continuously across grades with increasing complexity (बुनियादी विचारों को बार-बार बढ़ती जटिलता के साथ दोहराया जाना चाहिए)</button>
+                        <button class="opt-btn" value="D">D) Curriculum should only focus on physical education.</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Bruner believed any subject can be taught at any age in an intellectually honest way, forming a spiral that deepens over time.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q8. Under the RTE Act 2009, how many instructional hours are mandated for Primary classes (1 to 5) in one academic year?<br><br>RTE अधिनियम 2009 के तहत, एक शैक्षणिक वर्ष में प्राथमिक कक्षाओं (1 से 5) के लिए कितने शैक्षणिक घंटे अनिवार्य हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 1000 hours</button>
+                        <button class="opt-btn" value="B">B) 800 hours (800 घंटे)</button>
+                        <button class="opt-btn" value="C">C) 600 hours</button>
+                        <button class="opt-btn" value="D">D) 1200 hours</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> RTE 2009 mandates 200 instructional days or 800 hours for Primary, and 220 days or 1000 hours for Upper Primary.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q9. A teenager refuses to participate in a school play because he believes that every single person in the audience will notice a tiny stain on his shirt. David Elkind defines this phenomenon as:<br><br>एक किशोर स्कूल के नाटक में भाग लेने से इंकार कर देता है क्योंकि उसे लगता है कि दर्शक उसकी शर्ट पर लगे एक छोटे से दाग पर ही ध्यान देंगे। इसे डेविड एल्काइंड ने क्या कहा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Personal Fable</button>
+                        <button class="opt-btn" value="B">B) Post-conventional morality</button>
+                        <button class="opt-btn" value="C">C) Imaginary Audience (काल्पनिक दर्शक)</button>
+                        <button class="opt-btn" value="D">D) Role Confusion</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Imaginary Audience is the adolescent egocentric belief that they are constantly being observed and judged by everyone around them.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q10. In computer lab pedagogy, applying 'Preventive Maintenance' means:<br><br>कंप्यूटर लैब शिक्षाशास्त्र में, 'निवारक रखरखाव' (Preventive Maintenance) लागू करने का अर्थ है:</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Fixing a monitor only after it bursts</button>
+                        <button class="opt-btn" value="B">B) Routinely cleaning PCs and running virus scans before hardware failure occurs (हार्डवेयर विफलता होने से पहले नियमित रूप से पीसी की सफाई करना और वायरस स्कैन चलाना)</button>
+                        <button class="opt-btn" value="C">C) Throwing away old computers</button>
+                        <button class="opt-btn" value="D">D) Only updating software once a decade</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Preventive maintenance is proactive (e.g., dusting, scanning) to prevent breakdowns, whereas corrective maintenance is reactive (fixing after it breaks).</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q11. The term 'Dysgraphia' is specifically associated with a child's inability to:<br><br>'डिस्ग्राफिया' (Dysgraphia) शब्द मुख्य रूप से बच्चे की किस अक्षमता से जुड़ा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Write legibly and organize thoughts on paper (स्पष्ट रूप से लिखने और विचारों को कागज़ पर व्यवस्थित करने में असमर्थता)</button>
+                        <button class="opt-btn" value="B">B) Perform basic arithmetic</button>
+                        <button class="opt-btn" value="C">C) Read fluently</button>
+                        <button class="opt-btn" value="D">D) Maintain physical balance</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Dysgraphia affects fine motor skills and cognitive processing needed for writing. Dyscalculia is for math, Dyslexia is for reading.</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q12. What is the central philosophy of the 'Flipped Classroom' model?<br><br>'फ्लिप्ड क्लासरूम' मॉडल का मुख्य दर्शन क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Teacher lectures in class, students do homework alone at home.</button>
+                        <button class="opt-btn" value="B">B) Students watch instructional videos at home, and utilize class time for interactive problem-solving and activities (छात्र घर पर निर्देशात्मक वीडियो देखते हैं, और कक्षा के समय का उपयोग इंटरैक्टिव समस्या-समाधान के लिए करते हैं)</button>
+                        <button class="opt-btn" value="C">C) Desks are turned upside down to promote creativity.</button>
+                        <button class="opt-btn" value="D">D) Only physical textbooks are used, completely banning technology.</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The traditional model is 'flipped'. Direct instruction happens at home asynchronously, and homework/activities happen synchronously in class with the teacher's help.</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q13. In Bloom's Taxonomy (Revised 2001), writing a completely original poem or designing a new software application falls under which level?<br><br>संशोधित ब्लूम वर्गीकरण में, एक पूरी तरह से मूल कविता लिखना या एक नया सॉफ्टवेयर एप्लिकेशन डिजाइन करना किस स्तर के अंतर्गत आता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Apply</button>
+                        <button class="opt-btn" value="B">B) Analyze</button>
+                        <button class="opt-btn" value="C">C) Create (रचना करना / सृजन करना)</button>
+                        <button class="opt-btn" value="D">D) Understand</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Combining elements to form a coherent or functional whole, and generating a new product/pattern is the highest cognitive level: Create (formerly Synthesis).</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q14. In Flanders Interaction Analysis (FIAC), category 8 and 9 are strictly dedicated to:<br><br>फ्लैंडर्स अंतःक्रिया विश्लेषण (FIAC) में, श्रेणी 8 और 9 मुख्य रूप से किसे समर्पित हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Teacher Talk</button>
+                        <button class="opt-btn" value="B">B) Pupil Talk (छात्र वार्ता)</button>
+                        <button class="opt-btn" value="C">C) Silence or Confusion</button>
+                        <button class="opt-btn" value="D">D) Principal's observation</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Categories 1-7 are Teacher Talk. Category 8 is Pupil Response, and Category 9 is Pupil Initiation. Category 10 is Silence/Confusion.</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q15. The 'Heuristic Method' of teaching is highly effective for fostering which type of thinking?<br><br>शिक्षण की 'ह्यूरिस्टिक विधि' (अन्वेषण विधि) किस प्रकार की सोच को बढ़ावा देने के लिए अत्यधिक प्रभावी है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Divergent and Scientific thinking (अपसारी और वैज्ञानिक चिंतन)</button>
+                        <button class="opt-btn" value="B">B) Rote memorization</button>
+                        <button class="opt-btn" value="C">C) Convergent thinking</button>
+                        <button class="opt-btn" value="D">D) Authoritarian compliance</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Heuristic means "I find out". It puts the student in the shoes of a discoverer, promoting divergent thinking, hypothesis testing, and the scientific method.</div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q16. Which of the following defines the 'Null Curriculum' (उपेक्षित पाठ्यचर्या)?<br><br>निम्नलिखित में से कौन 'उपेक्षित पाठ्यचर्या' (Null Curriculum) को परिभाषित करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) The official syllabus printed by the board</button>
+                        <button class="opt-btn" value="B">B) The unwritten social rules of the school</button>
+                        <button class="opt-btn" value="C">C) Extracurricular sports activities</button>
+                        <button class="opt-btn" value="D">D) The subjects, perspectives, or topics that schools consciously or unconsciously exclude from being taught (वे विषय या दृष्टिकोण जिन्हें स्कूलों में जानबूझकर या अनजाने में पढ़ाने से छोड़ दिया जाता है)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Eisner defined Null Curriculum as what is left out. What is absent from the curriculum (e.g., local tribal history) teaches students that those topics are unimportant.</div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q17. In the context of Action Research, what does the 'O' stand for in the PAOR cycle?<br><br>क्रियात्मक अनुसंधान के संदर्भ में, PAOR चक्र में 'O' का क्या अर्थ है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Organize</button>
+                        <button class="opt-btn" value="B">B) Orient</button>
+                        <button class="opt-btn" value="C">C) Observe (अवलोकन)</button>
+                        <button class="opt-btn" value="D">D) Obtain</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The Action Research cycle consists of: Plan (योजना), Act (कार्यान्वयन), Observe (अवलोकन - gathering data on the action), and Reflect (चिंतन/समीक्षा).</div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q18. A student who strictly follows rules only because they want to receive a sticker or avoid a timeout is operating at which level of Kohlberg's moral development?<br><br>एक छात्र जो केवल इसलिए नियमों का सख्ती से पालन करता है क्योंकि वह स्टिकर प्राप्त करना चाहता है या दंड से बचना चाहता है, कोहलबर्ग के नैतिक विकास के किस स्तर पर काम कर रहा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Post-Conventional</button>
+                        <button class="opt-btn" value="B">B) Pre-Conventional (पूर्व-रूढ़िगत)</button>
+                        <button class="opt-btn" value="C">C) Conventional</button>
+                        <button class="opt-btn" value="D">D) Universal Ethical</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Pre-conventional morality (Level 1) is entirely externally controlled by rewards and punishments, typical in young children.</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q19. Under the TPACK model for digital pedagogy, 'CK' refers to Content Knowledge. What does 'PK' refer to?<br><br>डिजिटल शिक्षाशास्त्र के TPACK मॉडल के तहत, 'CK' का अर्थ कंटेंट नॉलेज है। 'PK' का क्या अर्थ है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Program Knowledge</button>
+                        <button class="opt-btn" value="B">B) Pedagogical Knowledge (शैक्षणिक ज्ञान)</button>
+                        <button class="opt-btn" value="C">C) Practical Knowledge</button>
+                        <button class="opt-btn" value="D">D) Primary Knowledge</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> TPACK stands for Technological Pedagogical Content Knowledge. PK is the deep knowledge about the methods and practices of teaching (Pedagogy).</div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q20. Which of the following is considered a 'Formative Assessment' tool?<br><br>निम्नलिखित में से किसे 'रचनात्मक आकलन' (Formative Assessment) उपकरण माना जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Annual Board Exam</button>
+                        <button class="opt-btn" value="B">B) Weekly oral quiz and concept mapping during class (कक्षा के दौरान साप्ताहिक मौखिक प्रश्नोत्तरी और अवधारणा मानचित्रण)</button>
+                        <button class="opt-btn" value="C">C) Final semester project for certification</button>
+                        <button class="opt-btn" value="D">D) Standardized state testing</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Formative assessment happens *during* the learning process to provide ongoing feedback, unlike summative assessment which happens at the end for grading.</div>
+                </div>
+
+                <!-- Q21 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q21. According to Edgar Dale's Cone of Experience, which learning method yields the highest retention rate (Base of the cone)?<br><br>एडगर डेल के अनुभव शंकु के अनुसार, कौन-सी अधिगम विधि सबसे अधिक प्रतिधारण दर (retention rate) प्रदान करती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Reading a book</button>
+                        <button class="opt-btn" value="B">B) Watching a video</button>
+                        <button class="opt-btn" value="C">C) Direct Purposeful Experiences / Learning by doing (प्रत्यक्ष उद्देश्यपूर्ण अनुभव / करके सीखना)</button>
+                        <button class="opt-btn" value="D">D) Listening to a lecture</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The base of the cone represents hands-on, direct experiences which are the least abstract and provide the highest retention (up to 90%).</div>
+                </div>
+
+                <!-- Q22 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q22. Maslow's Hierarchy states that higher-level needs (like Self-Actualization) cannot be effectively pursued unless:<br><br>मास्लो का पदानुक्रम कहता है कि उच्च-स्तरीय आवश्यकताओं (जैसे आत्म-सिद्धि) का प्रभावी ढंग से तब तक पीछा नहीं किया जा सकता जब तक कि:</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Lower-level deficiency needs (like physiological and safety needs) are met first (निचले स्तर की कमी संबंधी आवश्यकताएं पहले पूरी हों)</button>
+                        <button class="opt-btn" value="B">B) The student passes an IQ test</button>
+                        <button class="opt-btn" value="C">C) The student memorizes the textbook</button>
+                        <button class="opt-btn" value="D">D) The teacher ignores the student's background</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> A hungry, tired, or terrified student cannot focus on creativity and problem-solving (self-actualization). Basic needs form the foundation.</div>
+                </div>
+
+                <!-- Q23 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q23. Removing an aversive stimulus to increase a target behavior is the definition of:<br><br>किसी लक्षित व्यवहार को बढ़ाने के लिए एक अप्रिय उद्दीपक (aversive stimulus) को हटाना किसकी परिभाषा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Positive Punishment</button>
+                        <button class="opt-btn" value="B">B) Negative Reinforcement (ऋणात्मक पुनर्बलन)</button>
+                        <button class="opt-btn" value="C">C) Negative Punishment</button>
+                        <button class="opt-btn" value="D">D) Extinction</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Reinforcement *always* increases behavior. "Negative" means removing a stimulus (e.g., taking away homework because the class behaved well).</div>
+                </div>
+
+                <!-- Q24 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q24. In the 5E constructivist instructional model, what is the role of the 'Explain' phase?<br><br>5E रचनावादी शिक्षण मॉडल में, 'Explain' (व्याख्या करना) चरण की क्या भूमिका है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Giving students a final exam</button>
+                        <button class="opt-btn" value="B">B) Taking students on a field trip</button>
+                        <button class="opt-btn" value="C">C) Hooking the students' interest at the very beginning</button>
+                        <button class="opt-btn" value="D">D) Teacher formally introduces definitions, scientific terms, and clarifies concepts after students have explored them (अन्वेषण के बाद शिक्षक द्वारा औपचारिक रूप से परिभाषाओं और अवधारणाओं को स्पष्ट करना)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> During 'Explain', the teacher steps in to provide formal vocabulary and correct any misconceptions observed during the 'Explore' phase.</div>
+                </div>
+
+                <!-- Q25 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q25. The transition of speech from Social Speech (external) to Private Speech (self-talk) and finally to Inner Speech (silent thought) was theorized by:<br><br>सामाजिक वाक् (बाहरी) से निजी वाक् (स्व-बातचीत) और अंततः आंतरिक वाक् (मौन विचार) में भाषण के संक्रमण का सिद्धांत किसने दिया था?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Noam Chomsky</button>
+                        <button class="opt-btn" value="B">B) Jean Piaget</button>
+                        <button class="opt-btn" value="C">C) Lev Vygotsky (लेव वायगोत्स्की)</button>
+                        <button class="opt-btn" value="D">D) B.F. Skinner</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Vygotsky argued that language and thought develop separately and merge around age 3 (Private speech) before internalizing completely (Inner speech) around age 7.</div>
+                </div>
+
+                <!-- Q26 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q26. Which teaching method proceeds logically from 'Examples to Rules' (Specific to General)?<br><br>कौन-सी शिक्षण विधि तार्किक रूप से 'उदाहरण से नियम' (विशिष्ट से सामान्य) की ओर बढ़ती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Deductive Method (निगमन विधि)</button>
+                        <button class="opt-btn" value="B">B) Inductive Method (आगमन विधि)</button>
+                        <button class="opt-btn" value="C">C) Lecture Method</button>
+                        <button class="opt-btn" value="D">D) Rote Dictation</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Induction builds a generalized rule or theory based on analyzing specific concrete examples. Deduction works in reverse (Rule -> Examples).</div>
+                </div>
+
+                <!-- Q27 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q27. When evaluating a Computer Science student's coding project, using an 'Analytic Rubric' helps the teacher to:<br><br>कंप्यूटर विज्ञान के छात्र के कोडिंग प्रोजेक्ट का मूल्यांकन करते समय, 'विश्लेषणात्मक रूब्रिक' (Analytic Rubric) का उपयोग करने से शिक्षक को क्या मदद मिलती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Give a single overall letter grade without details</button>
+                        <button class="opt-btn" value="B">B) Score specific individual criteria separately, such as syntax, logic, and UI, providing detailed diagnostic feedback (सिंटैक्स, लॉजिक और यूआई जैसे विशिष्ट व्यक्तिगत मानदंडों पर अलग-अलग स्कोर करना)</button>
+                        <button class="opt-btn" value="C">C) Fail the student instantly</button>
+                        <button class="opt-btn" value="D">D) Avoid looking at the code</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Analytic rubrics break the project down into multiple components (e.g., comments, logic, UI), grading each separately to provide pinpoint feedback. Holistic rubrics just give one overall score.</div>
+                </div>
+
+                <!-- Q28 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q28. What is the fundamental characteristic of 'Asynchronous' digital learning?<br><br>'अतुल्यकालिक' (Asynchronous) डिजिटल अधिगम की मूलभूत विशेषता क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) It requires all students and the teacher to be online on a live Zoom call exactly at 9:00 AM</button>
+                        <button class="opt-btn" value="B">B) It allows students to learn at their own pace and schedule using pre-recorded materials and discussion forums (यह छात्रों को अपने समय और गति से सीखने की अनुमति देता है)</button>
+                        <button class="opt-btn" value="C">C) It requires physical attendance in a school building</button>
+                        <button class="opt-btn" value="D">D) It strictly bans the internet</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Asynchronous means "not at the same time." Students access materials (videos, blogs, emails) whenever it is convenient for them.</div>
+                </div>
+
+                <!-- Q29 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q29. According to the RPwD Act 2016, how many disabilities are officially recognized by the Government of India?<br><br>RPwD अधिनियम 2016 के अनुसार, भारत सरकार द्वारा आधिकारिक तौर पर कितनी अक्षमताओं (disabilities) को मान्यता प्राप्त है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 7</button>
+                        <button class="opt-btn" value="B">B) 21</button>
+                        <button class="opt-btn" value="C">C) 14</button>
+                        <button class="opt-btn" value="D">D) 25</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 2016 Act expanded the list from 7 (under the old 1995 PwD Act) to 21 specified disabilities.</div>
+                </div>
+
+                <!-- Q30 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q30. Look at the tag words. If a question asks "Which of the following is the BEST way to teach a complex topic?", which option should you eliminate immediately?<br><br>टैग वर्ड्स को देखें। यदि प्रश्न पूछता है "जटिल विषय पढ़ाने का सबसे अच्छा तरीका कौन-सा है?", तो आपको किस विकल्प को तुरंत समाप्त (eliminate) कर देना चाहिए?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Forcing students to strictly memorize textbook definitions (छात्रों को सख्ती से पाठ्यपुस्तक की परिभाषाएं रटने के लिए मजबूर करना)</button>
+                        <button class="opt-btn" value="B">B) Facilitating a hands-on project</button>
+                        <button class="opt-btn" value="C">C) Providing scaffolding within their ZPD</button>
+                        <button class="opt-btn" value="D">D) Connecting the topic to real-world experiences</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Tag Word Elimination! "Strictly", "Memorize", and "Textbook" are highly negative pedagogical tag words. Options B, C, and D contain positive constructivist tag words.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const totalQuestions = 30;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+
+                // Final Score Celebration
+                if (totalAnswered === totalQuestions) {
+                    const percentage = (score / totalQuestions) * 100;
+                    const scoreDisplay = document.querySelector('.score-display');
+                    if (percentage >= 75) {
+                        scoreDisplay.style.background = "#dcfce7";
+                        scoreDisplay.style.color = "#166534";
+                        scoreDisplay.innerHTML += ` (Excellent! ${percentage}%)`;
+                    } else {
+                        scoreDisplay.style.background = "#fee2e2";
+                        scoreDisplay.style.color = "#991b1b";
+                        scoreDisplay.innerHTML += ` (Keep Practicing! ${percentage}%)`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
