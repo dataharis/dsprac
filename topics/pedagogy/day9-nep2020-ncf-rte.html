@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 9: NEP 2020, NCF & RTE Act 2009 | DSSSB TGT Master Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary-color); text-decoration: none; }
+
+        .content-card, .quiz-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 2rem; }
+        .subtitle { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        h2 { color: var(--secondary-color); margin: 1.8rem 0 0.8rem 0; font-size: 1.35rem; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        h3 { color: var(--text-main); margin: 1.2rem 0 0.6rem 0; font-size: 1.15rem; font-weight: 600; }
+        p, li { margin-bottom: 0.75rem; color: #334155; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+
+        .bilingual-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Instant Quiz Styling */
+        .quiz-intro { margin-bottom: 1.5rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .score-display { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); background: #e0e7ff; padding: 0.5rem 1rem; border-radius: 8px; position: sticky; top: 20px; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        .question-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .question-box p.q-text {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 1.2rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: var(--secondary-color);
+        }
+
+        .opt-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .opt-btn.correct::after { content: " ✓"; font-weight: bold; }
+
+        .opt-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #991b1b !important;
+        }
+        
+        .opt-btn.incorrect::after { content: " ✗"; font-weight: bold; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            display: none;
+            color: #0369a1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 0.9rem; background: white; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>DSSSB TGT Master Hub</h2>
+        <a href="../../index.html">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> > <a href="../../index.html">Paper 2: Pedagogy</a> > Day 9: NEP, NCF & RTE
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div class="content-card">
+            <h1>Day 9: NEP 2020, NCF & RTE Act 2009</h1>
+            <div class="subtitle">5+3+3+4 Structure, PARAKH, Panchakosha & RTE Norms | Bilingual Notes</div>
+            
+            <h2>1. National Education Policy (NEP) 2020 (राष्ट्रीय शिक्षा नीति 2020)</h2>
+            <p>Drafted by the committee headed by <strong>Dr. K. Kasturirangan</strong>. It aims to transform India into a vibrant knowledge society.</p>
+            <ul>
+                <li><strong>Curricular Structure:</strong> Shifts from 10+2 to the <strong>5+3+3+4</strong> structure.
+                    <br>• <strong>Foundational (5 yrs):</strong> Ages 3-8 (Anganwadi + Classes 1 & 2). Play/activity-based.
+                    <br>• <strong>Preparatory (3 yrs):</strong> Ages 8-11 (Classes 3-5). Discovery & interactive learning.
+                    <br>• <strong>Middle (3 yrs):</strong> Ages 11-14 (Classes 6-8). Experiential learning in sciences, math, arts. <strong>*Coding & Vocational training starts in Class 6 (10 Bagless Days).*</strong>
+                    <br>• <strong>Secondary (4 yrs):</strong> Ages 14-18 (Classes 9-12). Multidisciplinary study, critical thinking, flexibility in subject choices.
+                </li>
+                <li><strong>PARAKH:</strong> Performance Assessment, Review, and Analysis of Knowledge for Holistic Development. (A National Assessment Centre).</li>
+                <li><strong>360-Degree Holistic Progress Card (HPC):</strong> Moving away from rote-learning evaluations to a multi-dimensional card including self, peer, and teacher assessments.</li>
+            </ul>
+
+            <h2>2. National Curriculum Framework (NCF 2005 & 2023) (राष्ट्रीय पाठ्यचर्या रूपरेखा)</h2>
+            <p><strong>NCF 2005 (Prof. Yash Pal - "Learning Without Burden"):</strong> Based on Rabindranath Tagore's essay 'Civilization and Progress'.</p>
+            <ul>
+                <li><strong>5 Guiding Principles (5 मार्गदर्शक सिद्धांत):</strong>
+                    <ol>
+                        <li>Connecting knowledge to life outside the school (ज्ञान को बाहरी जीवन से जोड़ना).</li>
+                        <li>Ensuring learning shifts away from rote methods (रटने की प्रणाली से मुक्ति).</li>
+                        <li>Enriching the curriculum to go beyond textbooks (पाठ्यपुस्तकों से परे जाना).</li>
+                        <li>Making examinations more flexible and integrated with classroom life (परीक्षाओं को लचीला बनाना).</li>
+                        <li>Nurturing an overriding identity informed by democratic concerns of the country.</li>
+                    </ol>
+                </li>
+            </ul>
+            <p><strong>NCF-SE 2023 (School Education):</strong> Introduces <strong>Panchakosha Vikas</strong> (5 sheaths of human development: Physical, Vital/Pranic, Mental, Intellectual, and Spiritual) and the <strong>Panchadi</strong> pedagogy (Aditi, Bodh, Abhyas, Prayog, Prasar).</p>
+
+            <h2>3. Right to Education (RTE) Act 2009 (शिक्षा का अधिकार अधिनियम 2009)</h2>
+            <p>Emerged from the <strong>86th Constitutional Amendment (Article 21A)</strong>. Guarantees free and compulsory education for children aged <strong>6 to 14 years</strong> (and <strong>6 to 18 years</strong> for Children with Special Needs / CwSN).</p>
+            
+            <table>
+                <tr>
+                    <th>RTE Provision (प्रावधान)</th>
+                    <th>Norms / Details (मानदंड / विवरण)</th>
+                </tr>
+                <tr>
+                    <td><strong>Pupil-Teacher Ratio (PTR)</strong> (छात्र-शिक्षक अनुपात)</td>
+                    <td><strong>Primary (Class 1-5):</strong> 30:1<br><strong>Upper Primary (Class 6-8):</strong> 35:1</td>
+                </tr>
+                <tr>
+                    <td><strong>Instructional Days & Hours</strong> (शैक्षणिक दिन व घंटे)</td>
+                    <td><strong>Primary:</strong> 200 days / 800 hours<br><strong>Upper Primary:</strong> 220 days / 1000 hours</td>
+                </tr>
+                <tr>
+                    <td><strong>Teacher Working Hours</strong> (शिक्षक कार्य घंटे)</td>
+                    <td>Minimum <strong>45 hours per week</strong> (including preparation time).</td>
+                </tr>
+                <tr>
+                    <td><strong>Important Sections</strong> (मह महत्वपूर्ण धाराएं)</td>
+                    <td>
+                        • <strong>Sec 12:</strong> 25% reservation in private schools.<br>
+                        • <strong>Sec 17:</strong> Prohibition of physical punishment/mental harassment.<br>
+                        • <strong>Sec 21:</strong> Formation of School Management Committee (SMC).<br>
+                        • <strong>Sec 28:</strong> Teachers prohibited from private tuition.
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-container">
+            <h1>Interactive Practice Quiz (20 MCQs)</h1>
+            <div class="quiz-intro">
+                <p>Click any option to get instant feedback and detailed explanations.</p>
+                <div class="score-display">Score: <span id="currentScore">0</span> / 20</div>
+            </div>
+            
+            <div id="quiz-wrapper">
+                
+                <!-- Q1 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q1. NEP 2020 recommends shifting the traditional 10+2 structure in school education to a new pedagogical structure. What is this new structure?<br><br>NEP 2020 स्कूल शिक्षा में पारंपरिक 10+2 संरचना को किस नई शैक्षणिक संरचना में बदलने की सिफारिश करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 3+5+3+4</button>
+                        <button class="opt-btn" value="B">B) 5+3+3+4</button>
+                        <button class="opt-btn" value="C">C) 4+3+3+5</button>
+                        <button class="opt-btn" value="D">D) 5+4+3+3</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> NEP 2020 proposes the 5+3+3+4 design: 5 years of Foundational, 3 years of Preparatory, 3 years of Middle, and 4 years of Secondary schooling.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q2. According to NEP 2020, vocational education and 'Coding' will be integrated into the school curriculum starting from which class?<br><br>NEP 2020 के अनुसार, व्यावसायिक शिक्षा और 'कोडिंग' को किस कक्षा से स्कूल पाठ्यक्रम में शामिल किया जाएगा?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Class 8</button>
+                        <button class="opt-btn" value="B">B) Class 5</button>
+                        <button class="opt-btn" value="C">C) Class 6</button>
+                        <button class="opt-btn" value="D">D) Class 9</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> To promote 21st-century skills, NEP 2020 mandates the introduction of vocational training, 10 bagless days, and coding starting from Class 6 (Middle Stage).</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q3. Under the RTE Act 2009, what is the mandated Pupil-Teacher Ratio (PTR) for Upper Primary classes (Classes 6-8)?<br><br>RTE अधिनियम 2009 के तहत, उच्च प्राथमिक कक्षाओं (कक्षा 6-8) के लिए अनिवार्य छात्र-शिक्षक अनुपात (PTR) क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 30:1</button>
+                        <button class="opt-btn" value="B">B) 35:1</button>
+                        <button class="opt-btn" value="C">C) 40:1</button>
+                        <button class="opt-btn" value="D">D) 25:1</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The prescribed PTR is 30:1 for Primary (Classes 1-5) and 35:1 for Upper Primary (Classes 6-8).</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q4. What is the full form of 'PARAKH' proposed in NEP 2020 as a standard-setting body?<br><br>NEP 2020 में प्रस्तावित 'PARAKH' का पूर्ण रूप क्या है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Performance Assessment, Review, and Analysis of Knowledge for Holistic Development</button>
+                        <button class="opt-btn" value="B">B) Program for Assessment, Revision, and Analysis of Kids' Health</button>
+                        <button class="opt-btn" value="C">C) Planning, Assessment, Review, and Analysis of Knowledge for Higher Education</button>
+                        <button class="opt-btn" value="D">D) Prime Assessment Review for All Kids in Hindi</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> PARAKH is the newly proposed National Assessment Centre tasked with setting norms, standards, and guidelines for student assessment and evaluation.</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q5. According to the RTE Act 2009, what are the minimum number of working hours per week for a teacher, including preparation time?<br><br>RTE अधिनियम 2009 के अनुसार, एक शिक्षक के लिए तैयारी के समय सहित प्रति सप्ताह काम के न्यूनतम घंटे कितने हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 40 hours</button>
+                        <button class="opt-btn" value="B">B) 50 hours</button>
+                        <button class="opt-btn" value="C">C) 45 hours</button>
+                        <button class="opt-btn" value="D">D) 42 hours</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> RTE norms mandate a minimum of 45 working hours per week for teachers, which includes time spent teaching in class and preparing lessons.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q6. Which Section of the RTE Act 2009 strictly prohibits physical punishment and mental harassment of a child?<br><br>RTE अधिनियम 2009 की कौन-सी धारा किसी बच्चे के शारीरिक दंड और मानसिक उत्पीड़न पर पूरी तरह रोक लगाती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Section 17</button>
+                        <button class="opt-btn" value="B">B) Section 21</button>
+                        <button class="opt-btn" value="C">C) Section 12</button>
+                        <button class="opt-btn" value="D">D) Section 28</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Section 17 explicitly bans corporal punishment and mental harassment, making it a punishable offense.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q7. The National Curriculum Framework (NCF) 2005 derives its educational philosophy largely from an essay titled "Civilization and Progress" written by:<br><br>राष्ट्रीय पाठ्यचर्या रूपरेखा (NCF) 2005 ने अपना शैक्षिक दर्शन मुख्य रूप से "सभ्यता और प्रगति" नामक निबंध से प्राप्त किया है। इसके लेखक कौन हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Mahatma Gandhi</button>
+                        <button class="opt-btn" value="B">B) Sri Aurobindo</button>
+                        <button class="opt-btn" value="C">C) Rabindranath Tagore</button>
+                        <button class="opt-btn" value="D">D) Swami Vivekananda</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> NCF 2005 begins with a quote from Tagore's essay 'Civilization and Progress', emphasizing that creative spirit and generous joy are key in childhood.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q8. According to NCF 2005, which of the following is ONE of the five guiding principles for curriculum development?<br><br>NCF 2005 के अनुसार, पाठ्यक्रम विकास के लिए पांच मार्गदर्शक सिद्धांतों में से एक कौन-सा है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Increasing the load of textbooks</button>
+                        <button class="opt-btn" value="B">B) Connecting knowledge to life outside the school (ज्ञान को स्कूल के बाहरी जीवन से जोड़ना)</button>
+                        <button class="opt-btn" value="C">C) Promoting rote memorization for high scores</button>
+                        <button class="opt-btn" value="D">D) Conducting strict written examinations daily</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 5 principles aim to make learning relevant, shift away from rote methods, enrich the curriculum beyond textbooks, make exams flexible, and nurture a democratic identity.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q9. Under the RTE Act, the free and compulsory education is guaranteed for normal children in the age group of 6-14 years. However, for Children with Special Needs (CwSN), the age group is expanded to:<br><br>RTE अधिनियम के तहत, सामान्य बच्चों के लिए आयु 6-14 वर्ष है। विशेष आवश्यकता वाले बच्चों (CwSN) के लिए यह आयु वर्ग कितना है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 6 to 16 years</button>
+                        <button class="opt-btn" value="B">B) 6 to 18 years (6 से 18 वर्ष)</button>
+                        <button class="opt-btn" value="C">C) 3 to 14 years</button>
+                        <button class="opt-btn" value="D">D) 6 to 21 years</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> As per the Rights of Persons with Disabilities (RPwD) Act integration with RTE, children with benchmark disabilities have the right to free education up to 18 years of age.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q10. Which constitutional amendment introduced Article 21A, making Right to Education a fundamental right in India?<br><br>किस संवैधानिक संशोधन ने अनुच्छेद 21A पेश किया, जिससे भारत में शिक्षा का अधिकार एक मौलिक अधिकार बन गया?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 42nd Amendment</button>
+                        <button class="opt-btn" value="B">B) 86th Amendment (86वां संशोधन)</button>
+                        <button class="opt-btn" value="C">C) 73rd Amendment</button>
+                        <button class="opt-btn" value="D">D) 44th Amendment</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 86th Constitutional Amendment Act of 2002 inserted Article 21A into the Constitution, guaranteeing free and compulsory education as a fundamental right.</div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q11. The NEP 2020 proposes a "360-degree multidimensional report card". What does this imply?<br><br>NEP 2020 "360-डिग्री बहुआयामी रिपोर्ट कार्ड" का प्रस्ताव करता है। इसका क्या अर्थ है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) It includes self-assessment, peer-assessment, and teacher assessment of the child's holistic progress (इसमें बच्चे की समग्र प्रगति का स्वयं, सहपाठी और शिक्षक द्वारा आकलन शामिल है)</button>
+                        <button class="opt-btn" value="B">B) It means exams will be held 360 days a year</button>
+                        <button class="opt-btn" value="C">C) It evaluates only cognitive/academic skills using computers</button>
+                        <button class="opt-btn" value="D">D) It means parents write the report card</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 360-degree Holistic Progress Card (HPC) evaluates cognitive, affective, and psychomotor domains using feedback from the student, their classmates, and teachers.</div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q12. What are the minimum instructional days mandated by the RTE Act 2009 for Upper Primary (Classes 6-8) per academic year?<br><br>RTE अधिनियम 2009 द्वारा उच्च प्राथमिक (कक्षा 6-8) के लिए प्रति शैक्षणिक वर्ष कितने न्यूनतम शैक्षणिक दिन अनिवार्य हैं?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 200 days</button>
+                        <button class="opt-btn" value="B">B) 220 days (220 दिन)</button>
+                        <button class="opt-btn" value="C">C) 180 days</button>
+                        <button class="opt-btn" value="D">D) 250 days</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> For Primary (1-5), it is 200 days (800 hours). For Upper Primary (6-8), it is 220 days (1000 hours).</div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q13. Section 21 of the RTE Act mandates the formation of which body to monitor the working of the school and prepare the school development plan?<br><br>RTE अधिनियम की धारा 21 स्कूल के कामकाज की निगरानी और स्कूल विकास योजना तैयार करने के लिए किस निकाय के गठन को अनिवार्य करती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Parent Teacher Association (PTA)</button>
+                        <button class="opt-btn" value="B">B) National Education Commission</button>
+                        <button class="opt-btn" value="C">C) School Management Committee / SMC (विद्यालय प्रबंधन समिति)</button>
+                        <button class="opt-btn" value="D">D) Village Panchayat</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The SMC (School Management Committee) must be formed in every government/aided school, comprising 75% parents/guardians, to ensure local community involvement.</div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q14. In the recently released NCF-SE 2023, the holistic development of a child is mapped across five domains/sheaths known as:<br><br>हाल ही में जारी NCF-SE 2023 में, बच्चे के समग्र विकास को पांच क्षेत्रों/कोशों में मैप किया गया है, जिसे क्या कहा जाता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Panchatantra</button>
+                        <button class="opt-btn" value="B">B) Panchakosha Vikas (पंचकोश विकास)</button>
+                        <button class="opt-btn" value="C">C) Panchadi</button>
+                        <button class="opt-btn" value="D">D) Pancha Mahabhuta</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> NCF 2023 integrates ancient Indian philosophy, focusing on Panchakosha (Annamaya, Pranamaya, Manomaya, Vijnanamaya, and Anandamaya Kosha) for holistic growth.</div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q15. According to NEP 2020, what is the age group covered under the 'Foundational Stage' (the '5' in 5+3+3+4)?<br><br>NEP 2020 के अनुसार, 'बुनियादी चरण' (Foundational Stage - 5+3+3+4 में '5') के अंतर्गत कौन-सा आयु वर्ग आता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 3 to 8 years (3 से 8 वर्ष)</button>
+                        <button class="opt-btn" value="B">B) 6 to 11 years</button>
+                        <button class="opt-btn" value="C">C) 0 to 5 years</button>
+                        <button class="opt-btn" value="D">D) 8 to 11 years</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> The 5-year Foundational stage covers ages 3 to 8, which includes 3 years of Anganwadi/Preschool and 2 years of Primary school (Classes 1 & 2).</div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-box" data-correct="D">
+                    <p class="q-text">Q16. Section 28 of the RTE Act 2009 explicitly prohibits teachers from:<br><br>RTE अधिनियम 2009 की धारा 28 शिक्षकों को स्पष्ट रूप से किस बात से रोकती है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Assessing students continuously</button>
+                        <button class="opt-btn" value="B">B) Using digital technology</button>
+                        <button class="opt-btn" value="C">C) Meeting parents</button>
+                        <button class="opt-btn" value="D">D) Engaging in private tuition or private teaching activities (निजी ट्यूशन या शिक्षण गतिविधियों में शामिल होने से)</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Section 28 ensures that government teachers do not engage in private tuitions to maintain focus and ethics in their school teaching duties.</div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" data-correct="A">
+                    <p class="q-text">Q17. Under the NCF-SE 2023, 'Panchadi' refers to a five-step process for:<br><br>NCF-SE 2023 के तहत, 'पंचादी' (Panchadi) किस चीज़ की पांच-चरणीय प्रक्रिया को संदर्भित करता है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Pedagogy and lesson planning (शिक्षाशास्त्र और पाठ योजना)</button>
+                        <button class="opt-btn" value="B">B) School building construction</button>
+                        <button class="opt-btn" value="C">C) Mid-day meal distribution</button>
+                        <button class="opt-btn" value="D">D) Hiring teachers</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Panchadi is a traditional 5-step pedagogy approach: Aditi (Introduction), Bodh (Understanding), Abhyas (Practice), Prayog (Application), and Prasar (Expansion/Sharing).</div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q18. The NCF 2005 was chaired by which prominent academician?<br><br>NCF 2005 की अध्यक्षता किस प्रमुख शिक्षाविद ने की थी?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) Dr. K. Kasturirangan</button>
+                        <button class="opt-btn" value="B">B) Prof. Yash Pal (प्रो. यशपाल)</button>
+                        <button class="opt-btn" value="C">C) Dr. D.S. Kothari</button>
+                        <button class="opt-btn" value="D">D) Prof. Amartya Sen</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Prof. Yash Pal headed the National Steering Committee for NCF 2005, drawing heavily from his 1993 report "Learning without Burden" (शिक्षा बिना बोझ के).</div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" data-correct="B">
+                    <p class="q-text">Q19. Section 12 of the RTE Act 2009 mandates what percentage of reservation in private unaided schools for children belonging to weaker sections and disadvantaged groups?<br><br>RTE अधिनियम 2009 की धारा 12 के तहत, निजी गैर-सहायता प्राप्त स्कूलों में कमजोर वर्गों के बच्चों के लिए कितने प्रतिशत आरक्षण अनिवार्य है?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 10%</button>
+                        <button class="opt-btn" value="B">B) 25%</button>
+                        <button class="opt-btn" value="C">C) 33%</button>
+                        <button class="opt-btn" value="D">D) 50%</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Section 12(1)(c) mandates private unaided schools to reserve at least 25% of their entry-level seats for EWS (Economically Weaker Section) and disadvantaged groups.</div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" data-correct="C">
+                    <p class="q-text">Q20. When was the Right to Education (RTE) Act 2009 officially implemented in India?<br><br>भारत में शिक्षा का अधिकार (RTE) अधिनियम 2009 आधिकारिक तौर पर कब लागू किया गया था?</p>
+                    <div class="options">
+                        <button class="opt-btn" value="A">A) 15 August 2009</button>
+                        <button class="opt-btn" value="B">B) 26 January 2010</button>
+                        <button class="opt-btn" value="C">C) 1 April 2010 (1 अप्रैल 2010)</button>
+                        <button class="opt-btn" value="D">D) 1 April 2009</button>
+                    </div>
+                    <div class="explanation"><strong>Explanation (व्याख्या):</strong> Although passed by Parliament in 2009, the RTE Act came into force across India (except J&K at the time) on April 1, 2010.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DSSSB TGT Master Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let totalAnswered = 0;
+        const totalQuestions = 20;
+        const scoreSpan = document.getElementById('currentScore');
+        
+        document.querySelectorAll('.opt-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let qBox = this.closest('.question-box');
+                
+                if (qBox.classList.contains('answered')) return;
+                qBox.classList.add('answered');
+                
+                let correctVal = qBox.getAttribute('data-correct');
+                let selectedVal = this.getAttribute('value');
+                
+                let allBtns = qBox.querySelectorAll('.opt-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                
+                if (selectedVal === correctVal) {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    let correctBtn = qBox.querySelector(`.opt-btn[value="${correctVal}"]`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+                
+                let explanation = qBox.querySelector('.explanation');
+                if (explanation) explanation.style.display = 'block';
+                
+                totalAnswered++;
+                scoreSpan.textContent = score;
+
+                // Final Score Celebration
+                if (totalAnswered === totalQuestions) {
+                    const percentage = (score / totalQuestions) * 100;
+                    const scoreDisplay = document.querySelector('.score-display');
+                    if (percentage >= 75) {
+                        scoreDisplay.style.background = "#dcfce7";
+                        scoreDisplay.style.color = "#166534";
+                        scoreDisplay.innerHTML += ` (Excellent! ${percentage}%)`;
+                    } else {
+                        scoreDisplay.style.background = "#fee2e2";
+                        scoreDisplay.style.color = "#991b1b";
+                        scoreDisplay.innerHTML += ` (Review Notes! ${percentage}%)`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
